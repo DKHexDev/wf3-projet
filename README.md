@@ -85,6 +85,6 @@ pour compiler et minifier le code CSS, donc on utilisera cette commande lorsque 
 npm run build
 ```
 
-Sinon, toutes les classes sont de Tailwind sont déjà disponible et prêt à l'utilisation dans les fichiers .html.twig si une compilation à été faîtes.
+Sinon, toutes les classes de Tailwind sont déjà disponible et prêt à l'utilisation dans les fichiers .html.twig si une compilation à été faîtes.
 
 Documentation de Tailwind CSS : https://tailwindcss.com/docs
