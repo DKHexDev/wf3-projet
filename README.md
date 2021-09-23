@@ -6,6 +6,7 @@ Pour récupèrer le projet :
 git clone https://github.com/DKHexDev/wf3-projet.git
 cd wf3-projet
 composer install
+npm install
 ```
 
 S'il y a un blocage au niveau du `composer install` à cause de la version de PHP :
