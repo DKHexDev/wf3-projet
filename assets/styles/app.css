@@ -8,7 +8,9 @@
 */
 
 @layer components {
+
     .btn-exemple {
         @apply bg-red-500 text-white p-4 rounded hover:bg-red-600 shadow-lg
     }
+
 }
