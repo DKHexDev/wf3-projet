@@ -47,6 +47,11 @@ class Recipe
      */
     private $background;
 
+    /**
+     * @ORM\Column(type="datetime_immutable")
+     */
+    private $createdAt;
+
 
     public function getId(): ?int
     {
@@ -121,6 +126,18 @@ class Recipe
     public function setBackground(?string $background): self
     {
         $this->background = $background;
+
+        return $this;
+    }
+
+    public function getCreatedAt(): ?\DateTimeImmutable
+    {
+        return $this->createdAt;
+    }
+
+    public function setCreatedAt(\DateTimeImmutable $createdAt): self
+    {
+        $this->createdAt = $createdAt;
 
         return $this;
     }
