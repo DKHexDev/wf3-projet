@@ -1,5 +1,7 @@
 <?php
 
+namespace App\Filter\filter;
+
 final class Filter {
 
     /* 

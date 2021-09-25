@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Filter;
+namespace App\Filter\today;
 
 use DateTime;
 use Symfony\Component\Validator\Constraints as Assert;

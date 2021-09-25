@@ -2,8 +2,8 @@
 
 namespace App\Controller;
 
-use Filter\Today;
 use App\Repository\RecipeRepository;
+use App\Filter\today\Today;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
