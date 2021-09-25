@@ -18,7 +18,7 @@ class RecipeController extends AbstractController
         // Instanciation de la classe filtre ( à modifier ) qui renvoie un tableau de filtres
         // l'objet filter sera nourri grâce à des requêtes ajax.
 
-        $filter = $filtres; 
+        $filter = $filtres->getFilters();
 
         if($filter){
 
@@ -39,7 +39,7 @@ class RecipeController extends AbstractController
         else{
 
             // Récupération de toutes les recettes en base de données.
-            
+
             $recipes = $repository->findAll();
         }
 
