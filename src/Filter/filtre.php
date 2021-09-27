@@ -1,6 +1,9 @@
 <?php
 
-final class Filter {
+namespace App\Filter\filter;
+use Symfony\Component\HttpFoundation\Request;
+
+final class Filter extends Request{
 
     /* 
         Définition d'un tableau contenant les filtres de chaque type,
@@ -14,15 +17,12 @@ final class Filter {
 
     */
 
-
     // Définition des propriétés.
     // --
-
+    private $request;
     // Définition de la liste des filtres.
     private $filters    = [
         'season'    => null,
-        'culture'   => null,
-        'diet'      => null,
         'event'     => null
     ];
 
@@ -34,24 +34,26 @@ final class Filter {
     // --
 
     /**
-     * Fonction qui permet d'ajouter les filtres.
+     * Fonction qui récupère les données de Request et les intègre au tableau de filtres
      * 
      * @return void Ne retourne rien. 
      */
+    public function __construct(){
+
+        $this->request = Request::createFromGlobals();
+
+    }
+        
+    /**
+     * Va chercher les filtres définis en méthode get (Dans l'url)
+     * 
+     * @return void
+     */
     public function setFilters()
     {
-
-        // Affectation des données au sein du tableau, récupération des données
-        // dans la superglobale POST.
-        if($_SERVER['REQUEST_METHOD'] === 'POST')
-        {
-            $this->filters['season']  = isset($_POST['season'])  ? $_POST['season']  : null;
-            $this->filters['culture'] = isset($_POST['culture']) ? $_POST['culture'] : null;
-            $this->filters['diet']    = isset($_POST['diet'])    ? $_POST['diet']    : null;
-            $this->filters['event']   = isset($_POST['event'])   ? $_POST['event']   : null;
-        }
-
-        return;
+        $season = $this->query->request->get('season');
+        $event  = $this->query->request->get('event');
+    
     }
 
     /**
@@ -70,8 +72,7 @@ final class Filter {
      * 
      * @return void Ne retourne rien.
      */
-    private function prepareMessage()
-    {
+    private function prepareMessage(){
         // Valeur témoin permettant de vérifier si aucun filtre n'est appliqué
         $a = 0;
 
@@ -104,8 +105,7 @@ final class Filter {
      * 
      * @return string Retourne le message de filtre.
      */
-    public function toString()
-    {
+    public function toString(){
         $this->prepareMessage();
         return($this->messageFilters);
     }
