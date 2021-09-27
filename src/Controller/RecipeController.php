@@ -18,86 +18,88 @@ class RecipeController extends AbstractController
      */
     public function index(RecipeRepository $repository): Response
     {
-// Récupére toutes les recettes.
-$recipes = $repository->findAll();
+        // Récupére toutes les recettes.
+        $recipes = $repository->findAll();
 
-// Retourne la vue.
-return $this->render('recipe/index.html.twig', [
-    'controller_name' => 'RecipeController',
-    'recipes' => $recipes,
-]);
-}
+        // Retourne la vue.
+        return $this->render('recipe/index.html.twig', [
+            'controller_name' => 'RecipeController',
+            'recipes' => $recipes,
+        ]);
+    }
 
-/**
-* @Route("/recipe/create", name="recipe_create")
-*/
-public function create(Request $request, SluggerInterface $slugger)
-{
-// Autorisation pour aller sur la page.
-$this->denyAccessUnlessGranted('ROLE_ADMIN');
+    /**
+     * @Route("/recipe/create", name="recipe_create")
+     */
+    public function create(Request $request, SluggerInterface $slugger)
+    {
+        // Autorisation pour aller sur la page.
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
 
-$recipe = new Recipe();
+        $recipe = new Recipe();
 
-$form = $this->createForm(RecipeType::class, $recipe);
+        $form = $this->createForm(RecipeType::class, $recipe);
 
-$form->handleRequest($request);
+        $form->handleRequest($request);
 
-// Vérification si le formulaire est soumis et valide
-if ($form->isSubmitted() && $form->isValid())
-{
-    // Génére le slug de la recette et l'applique.
-    $slug = $slugger->slug($recipe->getName())->lower();
-    $recipe->setSlug($slug);
+        // Vérification si le formulaire est soumis et valide
+        if ($form->isSubmitted() && $form->isValid())
+        {
+            // Génére le slug de la recette et l'applique.
+            $slug = $slugger->slug($recipe->getName())->lower();
+            $recipe->setSlug($slug);
 
-    // Définition de la date de création.
-    $recipe->setCreatedAt(new \DateTimeImmutable());
+            // Définition de la date de création.
+            $recipe->setCreatedAt(new \DateTimeImmutable());
 
-    // TEMPORAIRE
-    $recipe->setIngredients([]);
+            // TEMPORAIRE
+            $recipe->setIngredients([]);
+        
+            $manager = $this->getDoctrine()->getManager();
+            $manager->persist($recipe);
+            $manager->flush();
 
-    $manager = $this->getDoctrine()->getManager();
-    $manager->persist($recipe);
-    $manager->flush();
+            // Message de succès pour informer l'utilisateur
+            $this->addFlash('green', 'La recette a bien été créé.');
 
-    // Message de succès pour informer l'utilisateur
-    $this->addFlash('green', 'La recette a bien été créé.');
+            // Redirection vers la nouvelle recette.
+            return $this->redirectToRoute('recipe_show', ['slug' => $recipe->getSlug()]);
+        }
 
-    // Redirection vers la nouvelle recette.
-    return $this->redirectToRoute('recipe_show', ['slug' => $recipe->getSlug()]);
-}
+        // Retourne la vue.
+        return $this->render('recipe/create.html.twig', [
+            'form' => $form->createView(),
+        ]);
+    }
 
-// Retourne la vue.
-return $this->render('recipe/create.html.twig', [
-    'form' => $form->createView(),
-]);
-}
+    /**
+     * @Route("/recipe/{id}/delete", name="recipe_delete")
+     */
+    public function delete(Recipe $recipe)
+    {
+        // Autorisation pour aller sur la page.
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
 
-/**
-* @Route("/recipe/{id}/delete", name="recipe_delete")
-*/
-public function delete(Recipe $recipe)
-{
-// Autorisation pour aller sur la page.
-$this->denyAccessUnlessGranted('ROLE_ADMIN');
+        $manager = $this->getDoctrine()->getManager();
+        $manager->remove($recipe);
+        $manager->flush();
+        
+        // Message de succès pour informer l'utilisateur
+        $this->addFlash('red', "La recette a bien été supprimée.");
 
-$manager = $this->getDoctrine()->getManager();
-$manager->remove($recipe);
-$manager->flush();
+        return $this->redirectToRoute('recipe_list');
+    }
 
-// Message de succès pour informer l'utilisateur
-$this->addFlash('red', "La recette a bien été supprimée.");
+    /**
+     * @Route("/recipe/{slug}", name="recipe_show")
+     */
+    public function show(Recipe $recipe)
+    {
+        // Retourne la vue.
+        return $this->render('recipe/show.html.twig', [
+            'recipe' => $recipe,
+        ]);
+    }
 
-return $this->redirectToRoute('recipe_list');
-}
 
-/**
-* @Route("/recipe/{slug}", name="recipe_show")
-*/
-public function show(Recipe $recipe)
-{
-// Retourne la vue.
-return $this->render('recipe/show.html.twig', [
-    'recipe' => $recipe,
-]);
-}
 }
