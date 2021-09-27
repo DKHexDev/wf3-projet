@@ -73,6 +73,44 @@ class RecipeController extends AbstractController
     }
 
     /**
+     * @Route("/recipe/{slug}", name="recipe_show")
+     */
+    public function show(Recipe $recipe)
+    {
+        // Retourne la vue.
+        return $this->render('recipe/show.html.twig', [
+            'recipe' => $recipe,
+        ]);
+    }
+
+    /**
+     * @Route("/recipe/{id}/edit", name="recipe_edit")
+     */
+    public function edit(Recipe $recipe, Request $request)
+    {
+        // Autorisation pour aller sur la page.
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
+
+        $form = $this->createForm(RecipeType::class, $recipe);
+        $form->handleRequest($request);
+
+        // Vérification si le formulaire est soumis et valide
+        if($form->isSubmitted() && $form->isValid())
+        {
+            $this->getDoctrine()->getManager()->flush();
+
+            $this->addFlash('green', 'La recette a bien été modifié');
+            return $this->redirectToRoute('recipe_show', ['slug' => $recipe->getSlug()]);
+        }
+
+        // Retourne la vue.
+        return $this->render('recipe/edit.html.twig', [
+            'form' => $form->createView(),
+            'recipe' => $recipe,
+        ]);
+    }
+
+    /**
      * @Route("/recipe/{id}/delete", name="recipe_delete")
      */
     public function delete(Recipe $recipe)
@@ -90,16 +128,6 @@ class RecipeController extends AbstractController
         return $this->redirectToRoute('recipe_list');
     }
 
-    /**
-     * @Route("/recipe/{slug}", name="recipe_show")
-     */
-    public function show(Recipe $recipe)
-    {
-        // Retourne la vue.
-        return $this->render('recipe/show.html.twig', [
-            'recipe' => $recipe,
-        ]);
-    }
 
 
 }
