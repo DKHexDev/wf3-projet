@@ -19,6 +19,15 @@ class RecipeRepository extends ServiceEntityRepository
         parent::__construct($registry, Recipe::class);
     }
 
+    public function findLatest()
+    {
+        return $this->createQueryBuilder('p')
+            ->join('p.tags', 't')
+            ->select('p, t')
+            ->getQuery()
+            ->getResult();
+    }
+
     // /**
     //  * @return Recipe[] Returns an array of Recipe objects
     //  */

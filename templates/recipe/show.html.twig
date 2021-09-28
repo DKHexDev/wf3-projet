@@ -7,16 +7,6 @@
     Titre de la recette : {{ recipe.name }}<br>
     Description de la recette : {{ recipe.description }}<br>
 
-    {% if recipe.ingredients|length > 0 %}
-        Ingrédients de la recette :
-
-        {% for ingredient in recipe.ingredients %}
-            {{ recipe.ingredients }}, 
-        {% endfor %}
-    {% else %}
-        Il n'y a pas d'ingrédients sur cette recette.<br>
-    {% endif %}
-
     Saison de la recette : {{ recipe.season }}<br>
 
     {% if recipe.event %}
