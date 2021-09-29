@@ -1,0 +1,24 @@
+{% extends "base.html.twig" %}
+
+{% block title %}{{ recipe.name }}{% endblock %}
+
+{% block body %}
+
+    Titre de la recette : {{ recipe.name }}<br>
+    Description de la recette : {{ recipe.description }}<br>
+
+    Saison de la recette : {{ recipe.season }}<br>
+
+    {% if recipe.event %}
+        Évènement de la recette : {{ recipe.name }}<br>
+    {% else %}
+        Il n'y a pas d'évènement pour cette recette.<br>
+    {% endif %}
+
+    Date de création de la recette : {{ recipe.createdAt|date('d-m-Y') }}
+
+
+
+{% endblock %}
+
+

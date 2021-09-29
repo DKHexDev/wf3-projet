@@ -17,4 +17,15 @@
         <li>Your template at <code><a href="{{ 'C:/Users/thoma/Desktop/Project/wf3-projet/templates/recipe/index.html.twig'|file_link(0) }}">templates/recipe/index.html.twig</a></code></li>
     </ul>
 </div>
+
+{#
+{% for recipe in recipes %}
+    <div>
+    {% for tag in recipe.tags %}
+        {{ tag }}<br>
+    {% endfor %}
+    </div><br><br>
+{% endfor %} 
+#}
+
 {% endblock %}
