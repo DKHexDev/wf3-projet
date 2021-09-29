@@ -2,19 +2,21 @@
 
 namespace App\Controller;
 
+use App\Repository\TagRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Serializer\SerializerInterface;
 
 class TagController extends AbstractController
 {
     /**
-     * @Route("/tag", name="tag")
+     * @Route("/tags/tags.json", name="tags_list")
      */
-    public function index(): Response
+    public function index(Request $request, TagRepository $repository, SerializerInterface $serializer)
     {
-        return $this->render('tag/index.html.twig', [
-            'controller_name' => 'TagController',
-        ]);
+        $tags = $repository->findAll();
+        return $this->json($serializer->serialize($tags, "json"));
     }
 }
