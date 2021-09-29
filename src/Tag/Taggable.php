@@ -12,6 +12,7 @@ trait Taggable {
      * @var array
      * 
      * @ORM\ManyToMany(targetEntity=Tag::class, cascade={"persist"})
+     * @Assert\NotBlank
      */
     private $tags = [];
 
