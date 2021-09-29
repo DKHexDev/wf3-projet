@@ -8,16 +8,26 @@
     .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
 </style>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+<div>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/Users/thoma/Desktop/Project/wf3-projet/src/Controller/RecipeController.php'|file_link(0) }}">src/Controller/RecipeController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/Users/thoma/Desktop/Project/wf3-projet/templates/recipe/index.html.twig'|file_link(0) }}">templates/recipe/index.html.twig</a></code></li>
-    </ul>
 </div>
 
+<form id="filtres">
+    <input name="season[]" value="autumn" type="checkbox" class="check">
+    <input name="season[]" value="winter" type="checkbox" class="check">
+    <input name="season[]" value="spring" type="checkbox" class="check">
+    <input name="season[]" value="summer" type="checkbox" class="check">
+
+    <input name="event[]" value="christmas" type="checkbox" class="check">
+    <input name="event[]" value="nationalDay" type="checkbox" class="check">
+    <input name="event[]" value="halloween" type="checkbox" class="check">
+    <input name="event[]" value="easter" type="checkbox" class="check">
+
+</form>
+
+<div id="product-list">
+
+</div>
 {#
 {% for recipe in recipes %}
     <div>
