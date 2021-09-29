@@ -28,6 +28,14 @@ class AppFixtures extends Fixture
             ];
             $seasonRand= array_rand($season);
 
+            $event = [
+                'christmas',
+                'nationalDay',
+                'halloween',
+                'easter'
+            ];
+            $eventRand= array_rand($event);
+
             $recipe = new Recipe();
             $recipe->setName($faker->sentence(3));
             $recipe->setSlug($faker->slug());
@@ -36,6 +44,7 @@ class AppFixtures extends Fixture
             
             //$recipe->setBackground();
             $recipe->setSeason($season[$seasonRand]);
+            $recipe->setEvent($event[$eventRand]);
             $recipe->addTag($tags);
 
             $manager->persist($recipe);
