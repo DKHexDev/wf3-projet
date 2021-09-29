@@ -22,7 +22,6 @@ class AppFixtures extends Fixture
             $recipe->setDescription($faker->text());
             $recipe->setCreatedAt(\DateTimeImmutable::createFromMutable($faker->dateTimeBetween('-30 days')));
             $recipe->setBackground(null);
-            $recipe->setIngredients(["Carotte", "Concombre"]);
             $recipe->setSeason($faker->text());
 
 
