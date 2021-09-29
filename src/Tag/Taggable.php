@@ -9,7 +9,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 trait Taggable {
 
     /**
-     * @var array
+     * @var array|object
      * 
      * @ORM\ManyToMany(targetEntity=Tag::class, inversedBy="recipes", cascade={"persist"})
      * @Assert\NotBlank
@@ -33,7 +33,7 @@ trait Taggable {
 
     public function removeTag(Tag $tag): self
     {
-        $this->tag->removeElement($tag);
+        $this->tags->removeElement($tag);
 
         return $this;
     }
