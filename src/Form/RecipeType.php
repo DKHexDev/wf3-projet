@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\Recipe;
+use App\Form\Type\TagsType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -26,9 +27,9 @@ class RecipeType extends AbstractType
                     'placeholder' => 'Description de la recette',
                 ]
             ])
-            //->add('ingredients', TextareaType::class, [
-            //    'label' => 'Ingrédients'
-            //])
+            ->add('tags', TagsType::class, [
+                'label' => 'Ingrédients',
+            ])
             ->add('season', TextType::class, [
                 'label' => 'Saison',
                 'attr' => [

@@ -3,14 +3,20 @@
 namespace App\Entity;
 
 use App\Repository\RecipeRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use App\Tag\Taggable;
 
 /**
  * @ORM\Entity(repositoryClass=RecipeRepository::class)
  */
 class Recipe
 {
+
+    use Taggable;
+
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -30,11 +36,6 @@ class Recipe
      * @Assert\NotBlank
      */
     private $description;
-
-    /**
-     * @ORM\Column(type="array")
-     */
-    private $ingredients = [];
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -64,6 +65,12 @@ class Recipe
      */
     private $slug;
 
+    public function __construct()
+    {
+        $this->tags = new ArrayCollection();
+    }
+
+
 
     public function getId(): ?int
     {
@@ -90,18 +97,6 @@ class Recipe
     public function setDescription(string $description): self
     {
         $this->description = $description;
-
-        return $this;
-    }
-
-    public function getIngredients(): ?array
-    {
-        return $this->ingredients;
-    }
-
-    public function setIngredients(array $ingredients): self
-    {
-        $this->ingredients = $ingredients;
 
         return $this;
     }
@@ -165,6 +160,8 @@ class Recipe
 
         return $this;
     }
+
+
 
 
 }
