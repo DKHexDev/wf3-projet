@@ -10,10 +10,12 @@ class ApiController extends AbstractController
 {
     /**
      * @Route("/api/recipes", name="api_recipe_list")
+     * 
      */
     public function index(): Response
     {
 
+        
         return $this->json(['Message' => 'ok']);
     }
 }
