@@ -19,7 +19,9 @@ class RecipeController extends AbstractController
     public function index(RecipeRepository $repository): Response
     {
         // Récupére toutes les recettes.
-        $recipes = $repository->findAll();
+        $recipes = $repository->findLatest();
+
+        dump($recipes);
 
         // Retourne la vue.
         return $this->render('recipe/index.html.twig', [
@@ -51,9 +53,6 @@ class RecipeController extends AbstractController
 
             // Définition de la date de création.
             $recipe->setCreatedAt(new \DateTimeImmutable());
-
-            // TEMPORAIRE
-            $recipe->setIngredients([]);
         
             $manager = $this->getDoctrine()->getManager();
             $manager->persist($recipe);
@@ -73,12 +72,49 @@ class RecipeController extends AbstractController
     }
 
     /**
+     * @Route("/recipe/{id}/edit", name="recipe_edit")
+     */
+    public function edit(Recipe $recipe, Request $request)
+    {
+        // Autorisation pour aller sur la page.
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
+
+        // Si la recette n'est pas trouvée, on redirige vers la 404.
+        if (!$recipe) {
+            throw $this->createNotFoundException('Cette recette n\'existe pas');
+        }
+
+        $form = $this->createForm(RecipeType::class, $recipe);
+        $form->handleRequest($request);
+
+        // Vérification si le formulaire est soumis et valide
+        if($form->isSubmitted() && $form->isValid())
+        {
+            $this->getDoctrine()->getManager()->flush();
+
+            $this->addFlash('green', 'La recette a bien été modifié');
+            return $this->redirectToRoute('recipe_show', ['slug' => $recipe->getSlug()]);
+        }
+
+        // Retourne la vue.
+        return $this->render('recipe/edit.html.twig', [
+            'form' => $form->createView(),
+            'recipe' => $recipe,
+        ]);
+    }
+
+    /**
      * @Route("/recipe/{id}/delete", name="recipe_delete")
      */
     public function delete(Recipe $recipe)
     {
         // Autorisation pour aller sur la page.
         $this->denyAccessUnlessGranted('ROLE_ADMIN');
+
+        // Si la recette n'est pas trouvée, on redirige vers la 404.
+        if (!$recipe) {
+            throw $this->createNotFoundException('Cette recette n\'existe pas');
+        }
 
         $manager = $this->getDoctrine()->getManager();
         $manager->remove($recipe);
@@ -95,11 +131,18 @@ class RecipeController extends AbstractController
      */
     public function show(Recipe $recipe)
     {
+        // Si la recette n'est pas trouvée, on redirige vers la 404.
+        if (!$recipe) {
+            throw $this->createNotFoundException('Cette recette n\'existe pas');
+        }
+
+        dump($recipe->getTags());
+
+        
         // Retourne la vue.
         return $this->render('recipe/show.html.twig', [
             'recipe' => $recipe,
         ]);
     }
-
 
 }
