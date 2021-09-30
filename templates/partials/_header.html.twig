@@ -1,29 +1,28 @@
 <!-- Navbar -->
-<nav
-	class="bg-gray-700 text-yellow-500">
+<nav class="text-yellow-500">
 
 	<!-- Structure Navbar-->
 	<div class="max-w-full mx-auto flex justify-between">
 
-		<div
-			class="flex items-center space-x-4">
+		<div class="flex items-center space-x-4 ">
 
 			<!-- Logo -->
 			<div class="p-4">
 
 				<a href="#" class="flex"></a>
-				<span class="text-4xl font-bold hover:text-yellow-300">M'Cooking</span>
+				
+				<span class="text-4xl font-bold hover:text-yellow-200">M'Cooking</span>
 
 			</div>
 
 			<!-- Link Site -->
 			<div class="hidden md:flex items-center space-x-2">
 
-				<a href="#" class="py-4 px-3 hover:text-yellow-300">Accueil</a>
+				<a href="{{ path('home') }}" class="py-4 px-3 hover:text-yellow-200">Accueil</a>
 
-				<a href="#" class="py-4 px-3 hover:text-yellow-300">Recherches</a>
+				<a href="{{ path('recipe_list') }}" class="py-4 px-3 hover:text-yellow-200">Recherches</a>
 
-				<a href="#" class="py-4 px-3 hover:text-yellow-300">Contacts</a>
+				<a href="{{ path('contact') }}" class="py-4 px-3 hover:text-yellow-200">Contact</a>
 
 			</div>
 
@@ -32,22 +31,27 @@
 		<!-- Link Account & Registration -->
 		<div class="hidden md:flex items-center space-x-1">
 
-			<a href="#" class="py-2 px-3 hover:text-yellow-300">Mon compte</a>
-
-			<a href="#" class="py-2 px-3 bg-gray-800 hover:bg-gray-900 hover:text-yellow-600 transition duration-300 rounded">Inscription</a>
+		{% if app.user %} 
+			<a href="#" class="py-2 px-3 hover:text-yellow-200">{{ app.user.email }}</a>
+		{% else %}
+			<a href="{{ path('app_login') }}" class="py-2 px-3 hover:text-yellow-200">Se connecter</a>
+			<a href="#" class="py-2 px-3 border border-yellow-400 bg-gray-800 hover:bg-gray-900 hover:text-yellow-400 transition duration-300 rounded">Inscription</a>
+		{% endif %}
 
 		</div>
 
 		<!--Button Menu -->
 		<div class="md:hidden flex items-center">
-			<button class = "mobile-menu-button px-3">
-				<i class="fas fa-utensils fa-3x"></i>
-			</button>
+
+			<button class = "mobile-menu-button px-3"><i class="fas fa-utensils fa-3x"></i></button>
+
 		</div>
+
 	</div>
 
 	<!-- Mobile Menu -->
 	<div class="mobile-menu hidden md:hidden">
+
 		<a href="#" class="block py-2 px-4 text-sm hover:bg-gray-900">Accueil</a>
 
 		<a href="#" class="block py-2 px-4 text-sm hover:bg-gray-900">Recherches</a>
@@ -57,5 +61,7 @@
 		<a href="#" class="block py-2 px-4 text-sm hover:bg-gray-900">Mon Compte</a>
 
 		<a href="#" class="block py-2 px-4 text-sm hover:bg-gray-900">Inscription</a>
+
 	</div>
+
 </nav>
