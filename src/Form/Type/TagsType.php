@@ -9,6 +9,8 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
+
+
 class TagsType extends AbstractType
 {
 
@@ -31,9 +33,12 @@ class TagsType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefault('attr', [
-            'class' => 'tag-input mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50'
+            'id' => 'recipe_tags',
+            'class' => 'tag-input mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50',
+            'placeholder' => 'Ingrédients'
         ]);
-        $resolver->setDefault('required', false);
+        $resolver->setDefault('required', true);
+        
     }
 
     // Le parent de TagsType
