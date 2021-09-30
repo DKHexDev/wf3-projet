@@ -4,7 +4,7 @@ namespace App\Tag;
 use App\Entity\Tag;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraints as Assert;
+// use Symfony\Component\Validator\Constraints as Assert;
 
 trait Taggable {
 
@@ -12,9 +12,8 @@ trait Taggable {
      * @var array|object
      * 
      * @ORM\ManyToMany(targetEntity=Tag::class, inversedBy="recipes", cascade={"persist"})
-     * @Assert\NotBlank
      */
-    private $tags = [];
+    private $tags;
 
     /**
      * @return Collection|Tag[]

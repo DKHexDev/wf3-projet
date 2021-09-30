@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Tag;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\Query\ResultSetMappingBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -17,6 +18,23 @@ class TagRepository extends ServiceEntityRepository
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Tag::class);
+    }
+
+    // Méthode pour retrouver les tags qui ne sont utilisées
+    // par rapport à une entity.
+    public function findUnusedTag($class)
+    {
+        $em = $this->getEntityManager();
+        $rsm = new ResultSetMappingBuilder($em);
+        $rsm->addRootEntityFromClassMetadata(Tag::class, 't');
+        $join_table = $em->getClassMetadata($class)->getAssociationMapping('tags')['joinTable']['name'];
+        dump($join_table);
+
+        return $em->createNativeQuery('
+            SELECT t.id, t.name 
+            FROM tag t 
+            LEFT JOIN recipe_tag ON recipe_tag.tag_id = t.id
+            WHERE recipe_tag.tag_id IS NULL', $rsm)->getResult();
     }
 
     // /**

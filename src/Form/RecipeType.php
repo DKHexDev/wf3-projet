@@ -9,6 +9,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints as Assert;
 
 class RecipeType extends AbstractType
 {
@@ -29,6 +30,12 @@ class RecipeType extends AbstractType
             ])
             ->add('tags', TagsType::class, [
                 'label' => 'Ingrédients',
+                'constraints' => [
+                    new Assert\Count([
+                        'min' => 1,
+                        'max' => 15
+                    ])
+                ]
             ])
             ->add('season', TextType::class, [
                 'label' => 'Saison',
