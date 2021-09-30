@@ -8,9 +8,12 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use App\Tag\Taggable;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * @ORM\Entity(repositoryClass=RecipeRepository::class)
+ * @Vich\Uploadable
  */
 class Recipe
 {
@@ -51,6 +54,14 @@ class Recipe
     private $event;
 
     /**
+     * 
+     * @Vich\UploadableField(mapping="recipes", fileNameProperty="background")
+     * 
+     * @var File|null
+     */
+    private $imageFile;
+
+    /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $background;
@@ -64,6 +75,8 @@ class Recipe
      * @ORM\Column(type="string", length=255)
      */
     private $slug;
+
+    
 
     public function __construct()
     {
@@ -161,7 +174,21 @@ class Recipe
         return $this;
     }
 
+    public function setImageFile(?File $imageFile = null): void
+    {
+        $this->imageFile = $imageFile;
 
+        if (null !== $imageFile) {
+            // It is required that at least one field changes if you are using doctrine
+            // otherwise the event listeners won't be called and the file is lost
+            $this->createdAt = new \DateTimeImmutable();
+        }
+    }
+
+    public function getImageFile(): ?File
+    {
+        return $this->imageFile;
+    }
 
 
 }
