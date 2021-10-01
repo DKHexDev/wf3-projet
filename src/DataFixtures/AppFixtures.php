@@ -51,6 +51,7 @@ class AppFixtures extends Fixture
 
         $user = new User();
         $user->setEmail("john.doe@doe.com");
+        $user->setPseudo('Johnny');
         $user->setRoles(["ROLE_ADMIN"]);
         $user->setPassword('$2y$13$hXnyavUYmiknXaBQjuYKTekUuW.1tbrQ7/E1.zgBCPUu8I3TsBe4G'); // Mdp : password
 
