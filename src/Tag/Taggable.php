@@ -4,17 +4,16 @@ namespace App\Tag;
 use App\Entity\Tag;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraints as Assert;
+// use Symfony\Component\Validator\Constraints as Assert;
 
 trait Taggable {
 
     /**
-     * @var array
+     * @var array|object
      * 
      * @ORM\ManyToMany(targetEntity=Tag::class, inversedBy="recipes", cascade={"persist"})
-     * @Assert\NotBlank
      */
-    private $tags = [];
+    private $tags;
 
     /**
      * @return Collection|Tag[]
@@ -33,7 +32,7 @@ trait Taggable {
 
     public function removeTag(Tag $tag): self
     {
-        $this->tag->removeElement($tag);
+        $this->tags->removeElement($tag);
 
         return $this;
     }

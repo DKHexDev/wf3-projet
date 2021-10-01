@@ -13,6 +13,10 @@
         @apply bg-red-500 text-white p-4 rounded hover:bg-red-600 shadow-lg
     }
 
+    /* ---------------- */
+    /* Système des tags */
+    /* ---------------- */
+
     .bootstrap-tagsinput {
         @apply w-full 
     }
@@ -21,5 +25,15 @@
         @apply bg-blue-500 text-white
     }
 
+    .tt-menu {
+        @apply absolute top-full left-0 z-50 w-auto bg-white border border-gray-300 px-5 py-3
+    }
 
+    .tt-dataset {
+        @apply flex flex-col gap-4
+    }
+
+    .tt-suggestion {
+        @apply flex flex-row w-full hover:bg-gray-700 hover:text-white rounded p-2 transition-colors
+    }
 }
