@@ -15,21 +15,35 @@ class AppFixtures extends Fixture
     {
         $faker = Factory::create('fr_FR');
 
-        $seasons = ["Hiver", "Printemps", "Été", "Automne"];
-
         // Génération dynamique des recettes et ingrédients.
         for ($i = 0; $i < 100; $i++)
         {
             $tags = new Tag();
             $tags->setName($faker->sentence(3));
 
+            $season = [
+                'spring',
+                'summer',
+                'autumn',
+                'winter'
+            ];
+
+            $event = [
+                'christmas',
+                'nationalDay',
+                'halloween',
+                'easter'
+            ];
+            $eventRand= array_rand($event);
+
             $recipe = new Recipe();
             $recipe->setName($faker->sentence(3));
             $recipe->setSlug($faker->slug());
             $recipe->setDescription($faker->text());
             $recipe->setCreatedAt(\DateTimeImmutable::createFromMutable($faker->dateTimeBetween('-30 days')));
+            
             //$recipe->setBackground();
-            $recipe->setSeason($seasons[array_rand($seasons)]);
+            $recipe->setSeason($season[array_rand($season)]);
             $recipe->addTag($tags);
 
             $manager->persist($recipe);
