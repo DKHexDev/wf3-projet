@@ -23,11 +23,28 @@ class AppFixtures extends Fixture
             $tags = new Tag();
             $tags->setName($faker->sentence(3));
 
+            $season = [
+                'spring',
+                'summer',
+                'autumn',
+                'winter'
+            ];
+            $seasonRand= array_rand($season);
+
+            $event = [
+                'christmas',
+                'nationalDay',
+                'halloween',
+                'easter'
+            ];
+            $eventRand= array_rand($event);
+
             $recipe = new Recipe();
             $recipe->setName($faker->sentence(3));
             $recipe->setSlug($faker->slug());
             $recipe->setDescription($faker->text());
             $recipe->setCreatedAt(\DateTimeImmutable::createFromMutable($faker->dateTimeBetween('-30 days')));
+            
             //$recipe->setBackground();
             $recipe->setSeason($seasons[array_rand($seasons)]);
             $recipe->addTag($tags);

@@ -1,23 +1,16 @@
 // Filtrage des produits
 
-// Remplacer la classe par la classe Tailwind adaptée
-const filtreCase = document.querySelector('.form-check-input');
-let request = new XMLHttpRequest();
 
-filtreCase.addEventListener('click', (event) => {
 
-    // #filtres est l'id à placer sur le formalaire des filtres.
-    // On récupère ici toutes les données du formulaires (les filtres à renvoyer au fichier php )
-    let result = document.querySelector('#filtres');
-    result = new FormData(result);
-    console.log(result);
+$('.check').change(function (){
 
-    // On lance la requête ajax :
+    // On récupère les valeurs du formulaire 'filtres'
+    let filtres = $('#filtres').serialize();
 
-    request.open('POST', '/api/recipes', true);
+    $.get('http://localhost:8000/api/recipes/', filtres)
+    .then(function (response){
 
-    request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
-    
-    request.send(result);
+        $('#product-list').html(response);
+    });
 
 })
