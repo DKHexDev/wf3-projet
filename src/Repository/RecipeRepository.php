@@ -28,21 +28,6 @@ class RecipeRepository extends ServiceEntityRepository
             ->getResult();
     }
 
-    /**
-     * @todo
-     */
-    public function findLatestBy($value){
-
-        return $this->createQueryBuilder('p')
-            ->andWhere('p.exampleField = :val')
-            ->setParameter('val', $value)
-            ->join('p.tags', 't')
-            ->select('p, t')
-            ->getQuery()
-            ->getResult();
-
-    }
-
     // /**
     //  * @return Recipe[] Returns an array of Recipe objects
     //  */

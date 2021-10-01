@@ -22,12 +22,30 @@ class ApiController extends AbstractController
         $recipeBySeason = [];
         $recipeByEvent = [];
 
-        foreach($seasons as $season){
+        /* @todo : le programme n'entre jamais dans cette condition 
+        et ne renvoie donc jamais toutes les données */
+        if(count($seasons) == '0' && count($events) == '0'){
 
-            $recipeBySeason += $repository->findBy(['season' => $season]);
+            $recipes = $repository->findLatest();
+
+            return $this->json($recipes, 200, [], ['groups' => ['public_json']]);
         }
-        dump($recipeBySeason);
+        else{
 
-        return $this->json("ok");
+            foreach($seasons as $season){
+
+                $recipeBySeason += $repository->findBy(['season' => $season]);
+            }
+            foreach($events as $event){
+
+                $recipeByEvent += $repository->findBy(['event' => $event]);
+            }
+
+            $recipes = array_merge($recipeBySeason, $recipeByEvent);
+
+            dump('ok');
+            return $this->json($recipes, 200, [], ['groups' => ['public_json']]);
+        }
+
     }
 }
