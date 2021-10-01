@@ -46,10 +46,10 @@ class RecipeType extends AbstractType
             ->add('season', ChoiceType::class, [
                 'label' => 'Saison',
                 'choices'  => [
-                    'Hiver' => 'Hiver',
-                    'Printemps' => 'Printemps',
-                    'Été' => 'Été',
-                    'Automne' => 'Automne'
+                    'Hiver' => 'winter',
+                    'Printemps' => 'spring',
+                    'Été' => 'summer',
+                    'Automne' => 'autumn'
                 ]
             ])
             // Évènement de la recette.
