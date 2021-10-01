@@ -26,8 +26,8 @@ class ApiController extends AbstractController
 
             $recipeBySeason += $repository->findBy(['season' => $season]);
         }
+        dump($recipeBySeason);
 
-
-        return $this->json('ok');
+        return $this->json("ok");
     }
 }

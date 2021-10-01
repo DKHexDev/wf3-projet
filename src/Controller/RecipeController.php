@@ -20,9 +20,7 @@ class RecipeController extends AbstractController
     {
         // Récupére toutes les recettes.
         $recipes = $repository->findLatest();
-
-        dump($recipes);
-
+        
         // Retourne la vue.
         return $this->render('recipe/index.html.twig', [
             'controller_name' => 'RecipeController',
