@@ -1,5 +1,5 @@
 <!-- Navbar -->
-<nav class="text-yellow-500">
+<nav class="text-yellow-500 font-bold text-lg px-4">
 
 	<!-- Structure Navbar-->
 	<div class="max-w-full mx-auto flex justify-between">
@@ -9,9 +9,7 @@
 			<!-- Logo -->
 			<div class="p-4">
 
-				<a href="#" class="flex"></a>
-				
-				<span class="text-4xl font-bold hover:text-yellow-200">M'Cooking</span>
+				<a href="{{ path('home') }}"><img src="{{ asset('assets_img/Mcooking.png') }}" alt="Logo" class ="h-20"></a>
 
 			</div>
 
@@ -20,7 +18,7 @@
 
 				<a href="{{ path('home') }}" class="py-4 px-3 hover:text-yellow-200">Accueil</a>
 
-				<a href="{{ path('recipe_list') }}" class="py-4 px-3 hover:text-yellow-200">Recherches</a>
+				<a href="{{ path('recipe_list') }}" class="py-4 px-3 hover:text-yellow-200">Recettes</a>
 
 				<a href="{{ path('contact') }}" class="py-4 px-3 hover:text-yellow-200">Contact</a>
 
@@ -52,15 +50,15 @@
 	<!-- Mobile Menu -->
 	<div class="mobile-menu hidden md:hidden">
 
-		<a href="#" class="block py-2 px-4 text-sm hover:bg-gray-900">Accueil</a>
+		<a href="#" class="block py-2 px-4 text-sm hover:bg-gray-700">Accueil</a>
 
-		<a href="#" class="block py-2 px-4 text-sm hover:bg-gray-900">Recherches</a>
+		<a href="#" class="block py-2 px-4 text-sm hover:bg-gray-700">Recherches</a>
 
-		<a href="#" class="block py-2 px-4 text-sm hover:bg-gray-900">Contacts</a>
+		<a href="#" class="block py-2 px-4 text-sm hover:bg-gray-700">Contacts</a>
 
-		<a href="#" class="block py-2 px-4 text-sm hover:bg-gray-900">Mon Compte</a>
+		<a href="#" class="block py-2 px-4 text-sm hover:bg-gray-700">Mon Compte</a>
 
-		<a href="#" class="block py-2 px-4 text-sm hover:bg-gray-900">Inscription</a>
+		<a href="#" class="block py-2 px-4 text-sm hover:bg-gray-700">Inscription</a>
 
 	</div>
 
