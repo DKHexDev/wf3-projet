@@ -15,8 +15,6 @@ class AppFixtures extends Fixture
     {
         $faker = Factory::create('fr_FR');
 
-        $seasons = ["Hiver", "Printemps", "Été", "Automne"];
-
         // Génération dynamique des recettes et ingrédients.
         for ($i = 0; $i < 100; $i++)
         {
@@ -29,7 +27,6 @@ class AppFixtures extends Fixture
                 'autumn',
                 'winter'
             ];
-            $seasonRand= array_rand($season);
 
             $event = [
                 'christmas',
@@ -46,7 +43,7 @@ class AppFixtures extends Fixture
             $recipe->setCreatedAt(\DateTimeImmutable::createFromMutable($faker->dateTimeBetween('-30 days')));
             
             //$recipe->setBackground();
-            $recipe->setSeason($seasons[array_rand($seasons)]);
+            $recipe->setSeason($season[array_rand($season)]);
             $recipe->addTag($tags);
 
             $manager->persist($recipe);
