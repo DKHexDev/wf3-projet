@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mon compte{% endblock %}
+
+{% block body %}
+
+    Email de l'utilisateur : <b>{{ user.email }}</b><br>
+    Roles de l'utilisateur : 
+    {% for role in user.roles %}
+        <b>{{ role }}</b>,
+    {% endfor %}<br>
+    Pseudo de l'utilisateur : <b>{{ user.pseudo }}</b>
+{% endblock %}
