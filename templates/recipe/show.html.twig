@@ -4,20 +4,23 @@
 
 {% block body %}
 
-    Titre de la recette : {{ recipe.name }}<br>
-    Description de la recette : {{ recipe.description }}<br>
+    Titre de la recette : {{ recipe.name }}<br> {# Pour récupérer le titre de la recette #}
+    Description de la recette : {{ recipe.description }}<br> {# Pour récupérer la description de la recette #}
 
-    Saison de la recette : {{ recipe.season }}<br>
+    Saison de la recette : {{ recipe.season }}<br> {# Pour récupérer la saison de la recette #}
 
     {% if recipe.event %}
-        Évènement de la recette : {{ recipe.name }}<br>
+        Évènement de la recette : {{ recipe.name }}<br> {# Pour récupérer le nom de la recette #}
     {% else %}
         Il n'y a pas d'évènement pour cette recette.<br>
     {% endif %}
 
-    Date de création de la recette : {{ recipe.createdAt|date('d-m-Y') }}
+    Date de création de la recette : {{ recipe.createdAt|date('d-m-Y') }}<br><br> {# Pour récupérer la date de création de la recette #}
 
 
+    {% for tag in recipe.tags %} {# Pour récupérer les ingrédients de la recette #}
+        {{ tag }}<br>
+    {% endfor %}
 
 {% endblock %}
 
