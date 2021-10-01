@@ -134,9 +134,6 @@ class RecipeController extends AbstractController
             throw $this->createNotFoundException('Cette recette n\'existe pas');
         }
 
-        dump($recipe->getTags());
-
-        
         // Retourne la vue.
         return $this->render('recipe/show.html.twig', [
             'recipe' => $recipe,
