@@ -24,21 +24,31 @@
         <label for="summer"> Eté </label>
         <input id="summer" name="season[]" value="summer" type="checkbox" class="m-4 check">
 
-        <input id="christmas" name="event[]" value="christmas" type="checkbox" class="m-4 check">
+        <!-- <input id="christmas" name="event[]" value="christmas" type="checkbox" class="m-4 check">
         <input id="nationalDay" name="event[]" value="nationalDay" type="checkbox" class="m-4 check">
         <input id="halloween" name="event[]" value="halloween" type="checkbox" class="m-4 check">
-        <input id="easter" name="event[]" value="easter" type="checkbox" class="m-4 check">
+        <input id="easter" name="event[]" value="easter" type="checkbox" class="m-4 check"> -->
 
     </form>
 
-    <ul class="grid xl:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-2 max-w-6xl" id="product-list">
+    <div class="flex flex-col-reverse">
+        <div class="zone flex">
+            <ul class="grid xl:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-2 max-w-6xl" id="product-list">
 
-        {%  for recipe in recipes %}
+                {%for recipe in recipes %}
 
-            <li class="flex flex-col bg-gray-200 rounded-lg p-4 m-2 recipe"> {{ recipe.name }} </li>
-            
-        {% endfor %}
-    <ul>
+                    <div id="{{ recipe.name }}" class="myDraggableElement object " draggable="true">
+                        <li class="flex flex-col bg-gray-200 rounded-lg p-4 m-2 recipe"> {{ recipe.name }} </li>
+                    </div>
+                    
+                {% endfor %}
 
+            <ul>
+        </div>
+
+        <div class="dropzone zone bg-green-200 w-100 h-36" id="menu">
+            <h2> Menu </h2>
+        </div>
+    </div>
 </div>
 {% endblock %}
