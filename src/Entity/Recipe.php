@@ -10,6 +10,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 use App\Tag\Taggable;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=RecipeRepository::class)
@@ -24,6 +25,7 @@ class Recipe
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @Groups({"public_favorites_json"})
      */
     private $id;
 
