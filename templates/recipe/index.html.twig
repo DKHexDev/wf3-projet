@@ -37,11 +37,27 @@
 
                 {%for recipe in recipes %}
 
-                    <div id="{{ recipe.name }}" class="myDraggableElement object " draggable="true">
-                        <li class="flex flex-col bg-gray-200 rounded-lg p-4 m-2 recipe"> {{ recipe.name }} </li>
-                    </div>
-                    
-                {% endfor %}
+            <li class="flex flex-col bg-gray-200 rounded-lg p-4 m-2 recipe"> {{ recipe.name }} </li>
+            
+        {% endfor %}
+    <ul>
+    
+    {# {% for recipe in recipes %}
+    <div class="flex flex-row">
+    Recette {{ recipe.name }}
+
+    {% set statusFav = "far" %}
+    {% if app.user %}
+    {% for favorite in app.user.favorites %}
+    {% if recipe.id == favorite.id %}
+    {% set statusFav = "fas" %}
+    {% endif %}
+    {% endfor %}
+    {% endif %}
+    <span class="fav"><i data-recipe="{{ recipe.id }}" class="{{ statusFav }} fa-star"></i></span>
+
+    </div><br>>
+    {% endfor %} #}
 
             <ul>
         </div>

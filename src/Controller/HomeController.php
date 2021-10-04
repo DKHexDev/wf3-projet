@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-use App\Filter\today\Today;
+use App\Filter\Today;
 use App\Repository\RecipeRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
