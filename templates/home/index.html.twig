@@ -1,22 +1,79 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Recettes{% endblock %}
+{% block title %}Recettes
+{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
 
-<div class="example-wrapper">
-    <h1 class="text-red-500">Hello {{ controller_name }}! ✅</h1>
+	<!-- Welcome -->
+	<div class="bg-yellow-200 shadow-lg border-2 border-yellow-500 rounded-lg max-w-full max-h-full mx-4 px-4 shadow-2xl divide-y divide-yellow-500">
+		<div class="py-4 flex flex-col text-center items-center">
+			<img src="{{ asset('assets_img/Mcooking_complet.png') }}" class="h-2/4 w-2/4 pb-4" alt="Logo complet site">
+			<p class="text-center py-4 italic">“La bonne cuisine est honnête, sincère et simple.”
+				<br>Elisabeth David</p>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/Users/thoma/Desktop/Project/wf3-projet/src/Controller/HomeController.php'|file_link(0) }}">src/Controller/HomeController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/Users/thoma/Desktop/Project/wf3-projet/templates/home/index.html.twig'|file_link(0) }}">templates/home/index.html.twig</a></code></li>
-    </ul>
+			<p>Bienvenue novices comme passionnées de cuisine sur votre nouvel outil pour réussir vos plats ou continuer votre apprentissage dans cet art culinaire.</p>
+			<p>Selon vos désirs, vous pourrez faire plaisir à tous les membres de la famille, vos amis ou votre partenaire.</p>
+		</div>
 
-    <button class="btn-exemple">Exemple customisation class Tailwind</button>
-</div>
+		<div class= "mx-auto flex flex-col items-center ">
+			<h3 class="text-center py-4">Nouveautés</h3>
+
+			<div class="h-2/4 w-2/4 md:h-full md:w-full my-2 flex flex-col md:flex-row gap-2">
+
+				<div class="relative">
+					<a class="absolute inset-0 z-10 bg-white text-center flex flex-col items-center justify-center opacity-0 hover:opacity-100 bg-opacity-25 duration-300 rounded-lg">
+						<h1 class="tracking-wider">Title</h1>
+						<p class="mx-auto">Description</p>
+					</a>
+					<a href="#" class="relative">
+						<div>
+							<img src="{{ asset('assets_img/default_img.jpg') }}" class=" object-cover border-2 border-yellow-500 rounded-lg hover:opacity-50" alt="">
+						</div>
+					</a>
+				</div>
+
+				<div class="relative ">
+					<a class="absolute inset-0 z-10 bg-white text-center flex flex-col items-center justify-center opacity-0 hover:opacity-100 bg-opacity-25 duration-300 rounded-lg">
+						<h1 class="tracking-wider">Title</h1>
+						<p class="mx-auto">Description</p>
+					</a>
+					<a href="#" class="relative">
+						<div>
+							<img src="{{ asset('assets_img/default_img.jpg') }}" class=" object-cover border-2 border-yellow-500 rounded-lg hover:opacity-50" alt="">
+						</div>
+					</a>
+				</div>
+
+				<div class="relative">
+					<a class="absolute inset-0 z-10 bg-white text-center flex flex-col items-center justify-center opacity-0 hover:opacity-100 bg-opacity-25 duration-300 rounded-lg">
+						<h1 class="tracking-wider">Title</h1>
+						<p class="mx-auto">Description</p>
+					</a>
+					<a href="#" class="relative">
+						<div>
+							<img src="{{ asset('assets_img/default_img.jpg') }}" class=" object-cover border-2 border-yellow-500 rounded-lg hover:opacity-50" alt="">
+						</div>
+					</a>
+				</div>
+
+				<div class="relative">
+					<a class="absolute inset-0 z-10 bg-white text-center flex flex-col items-center justify-center opacity-0 hover:opacity-100 bg-opacity-25 duration-300 rounded-lg">
+						<h1 class="tracking-wider">Title</h1>
+						<p class="mx-auto">Description</p>
+					</a>
+					<a href="#" class="relative">
+						<div>
+							<img src="{{ asset('assets_img/default_img.jpg') }}" class=" object-cover border-2 border-yellow-500 rounded-lg hover:opacity-50" alt="">
+						</div>
+					</a>
+				</div>
+
+			</div>
+
+		</div>
+
+
+	</div>
+
 {% endblock %}
