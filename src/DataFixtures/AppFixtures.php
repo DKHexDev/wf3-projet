@@ -14,6 +14,7 @@ class AppFixtures extends Fixture
     public function load(ObjectManager $manager)
     {
         $faker = Factory::create('fr_FR');
+        $recipes = [];
 
         // Génération dynamique des recettes et ingrédients.
         for ($i = 0; $i < 100; $i++)
@@ -46,6 +47,8 @@ class AppFixtures extends Fixture
             $recipe->setSeason($season[array_rand($season)]);
             $recipe->addTag($tags);
 
+            array_push($recipes, $recipe);
+
             $manager->persist($recipe);
         }
 
@@ -54,6 +57,11 @@ class AppFixtures extends Fixture
         $user->setPseudo('Johnny');
         $user->setRoles(["ROLE_ADMIN"]);
         $user->setPassword('$2y$13$hXnyavUYmiknXaBQjuYKTekUuW.1tbrQ7/E1.zgBCPUu8I3TsBe4G'); // Mdp : password
+
+        for($i = 0; $i < 10; $i++)
+        {
+            $user->addFavorite($recipes[array_rand($recipes)]);
+        }
 
         $manager->persist($user);
 

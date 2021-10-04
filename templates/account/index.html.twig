@@ -9,5 +9,19 @@
     {% for role in user.roles %}
         <b>{{ role }}</b>,
     {% endfor %}<br>
-    Pseudo de l'utilisateur : <b>{{ user.pseudo }}</b>
+    Pseudo de l'utilisateur : <b>{{ user.pseudo }}</b><br><br>
+
+    Vos favoris :<br><br>
+    {% for favorite in user.favorites %}
+        <div class="border-2">
+            Nom de la recette : <b>{{ favorite.name }}</b><br>
+            Description de la recette : <b>{{ favorite.description }}</b><br>
+            Description de la recette : <b>{{ favorite.description }}</b><br>
+            Saison de la recette : <b>{{ favorite.season }}</b><br>
+            {% if (favorite.event) %}
+                Évènement de la recette : <b>{{ favorite.event }}</b><br>
+            {% endif %}
+            Date de création de la recette : {{ favorite.createdAt|date('d-m-Y') }}<br>
+        </div><br>
+    {% endfor %}
 {% endblock %}
