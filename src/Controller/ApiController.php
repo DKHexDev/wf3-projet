@@ -17,33 +17,40 @@ class ApiController extends AbstractController
     public function index(Request $request, RecipeRepository $repository): Response
     {
 
-        $seasons[]   = $request->get('season');
-        $events[]    = $request->get('event');
+        $seasons  = $request->get('season', []) ;
+        $events   = $request->get('event', []);
         $recipeBySeason = [];
         $recipeByEvent = [];
 
-        /* @todo : le programme n'entre jamais dans cette condition 
-        et ne renvoie donc jamais toutes les données */
-        if(count($seasons) == '0' && count($events) == '0'){
+        if(count($seasons) == 0 && count($events) == 0){
 
-            $recipes = $repository->findLatest();
+            $recipes = $repository->findAll();
 
             return $this->json($recipes, 200, [], ['groups' => ['public_json']]);
         }
+
         else{
 
-            foreach($seasons as $season){
+            if(count($seasons) > 0 ){
 
-                $recipeBySeason += $repository->findBy(['season' => $season]);
+                foreach($seasons as $season){
+
+                    $newRecipeBySeason = $repository->findBy(['season' => $season]);
+                    $recipeBySeason = array_merge($recipeBySeason, $newRecipeBySeason);
+                }
             }
-            foreach($events as $event){
+            
+            if(count($events) > 0 ){
 
-                $recipeByEvent += $repository->findBy(['event' => $event]);
+                foreach($events as $event){
+
+                    $newRecipeByEvent = $repository->findBy(['event' => $event]);
+                    $recipeByEvent = array_merge($recipeByEvent, $newRecipeByEvent);
+                }
             }
 
             $recipes = array_merge($recipeBySeason, $recipeByEvent);
 
-            dump('ok');
             return $this->json($recipes, 200, [], ['groups' => ['public_json']]);
         }
 
