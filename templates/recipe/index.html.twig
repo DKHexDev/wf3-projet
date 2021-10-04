@@ -33,17 +33,17 @@
     <div class="flex flex-row">
         Recette {{ recipe.name }}
 
-        { # Pour le système des boutons favoris # }
         {% set statusFav = "far" %}
-        {% for favorite in app.user.favorites %}
-            {% if recipe.id == favorite.id %}
-                {% set statusFav = "fas" %}
-            {% endif %}
-        {% endfor %}
-        <i data-recipe="{{ recipe.id }}" class="{{ statusFav }} fa-star"></i>
-
-    </div><br><br>
-{% endfor %}  #}
+        {% if app.user %}
+            {% for favorite in app.user.favorites %}
+                {% if recipe.id == favorite.id %}
+                    {% set statusFav = "fas" %}
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+        <span class="fav"><i data-recipe="{{ recipe.id }}" class="{{ statusFav }} fa-star"></i></span>
+    </div><br>>
+{% endfor %} #}
 
 
 {% endblock %}

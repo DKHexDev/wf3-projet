@@ -35,13 +35,11 @@ class AccountController extends AbstractController
         $user = $this->getUser();
 
         // Si la recette n'est pas trouvée, on redirige vers la 404.
-        if (!$recipe) {
-            throw $this->createNotFoundException('Cette recette n\'existe pas');
-        }
+        if (!$recipe) return $this->json(["color" => "red", "message" => "Cette recette n'existe pas.", "changeClass" => false]);
 
         // Si l'utilisateur n'est pas connecté, on le renvoie sur
         // la page de connexion.
-        if (!$user) return $this->redirectToRoute('app_login');
+        if (!$user) return $this->json(["color" => "red", "message" => "Impossible, vous devez avoir un compte pour ajouter une recette à vos favoris.", "changeClass" => false]);
 
         // Ajoute la recette qui est correspondant à l'id dans la route
         // dans les favoris.
@@ -51,7 +49,7 @@ class AccountController extends AbstractController
         $manager->persist($user);
         $manager->flush();
 
-        return $this->json("La recette a bien été ajoutée aux favoris.");
+        return $this->json(["color" => "green", "message" => "La recette a bien été ajoutée aux favoris.", "changeClass" => true]);
     }
 
     /**
@@ -63,13 +61,11 @@ class AccountController extends AbstractController
         $user = $this->getUser();
 
         // Si la recette n'est pas trouvée, on redirige vers la 404.
-        if (!$recipe) {
-            throw $this->createNotFoundException('Cette recette n\'existe pas');
-        }
+        if (!$recipe) return $this->json(["color" => "red", "message" => "Cette recette n'existe pas.", "changeClass" => false]);
 
         // Si l'utilisateur n'est pas connecté, on le renvoie sur
         // la page de connexion.
-        if (!$user) return $this->redirectToRoute('app_login');
+        if (!$user) return $this->json(["color" => "red", "message" => "Impossible, vous devez avoir un compte pour ajouter une recette à vos favoris.", "changeClass" => false]);
 
         // Ajoute la recette qui est correspondant à l'id dans la route
         // dans les favoris.
@@ -79,7 +75,7 @@ class AccountController extends AbstractController
         $manager->persist($user);
         $manager->flush();
 
-        return $this->json("La recette a bien été supprimée des favoris.");   
+        return $this->json(["color" => "red", "message" => "La recette a bien été supprimée des favoris.", "changeClass" => true]);   
     }
 
 }
