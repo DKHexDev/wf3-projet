@@ -10,6 +10,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 use App\Tag\Taggable;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=RecipeRepository::class)
@@ -24,6 +25,8 @@ class Recipe
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @Groups({"public_json"})
+     * @Groups({"public_favorites_json"})
      */
     private $id;
 
@@ -31,12 +34,14 @@ class Recipe
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank
      * @Assert\Length(min=5, max=255)
+     * @Groups({"public_json"})
      */
     private $name;
 
     /**
      * @ORM\Column(type="text")
      * @Assert\NotBlank
+     * @Groups({"public_json"})
      */
     private $description;
 
@@ -44,43 +49,53 @@ class Recipe
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank
      * @Assert\Length(min=2, max=255)
+     * @Groups({"public_json"})
      */
     private $season;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Assert\Length(min=2, max=255)
+     * @Groups({"public_json"})
      */
     private $event;
 
     /**
      * 
      * @Vich\UploadableField(mapping="recipes", fileNameProperty="background")
-     * 
      * @var File|null
      */
     private $imageFile;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups({"public_json"})
      */
     private $background;
 
     /**
      * @ORM\Column(type="datetime_immutable")
+     * 
      */
     private $createdAt;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * 
      */
     private $slug;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=User::class, mappedBy="favorites")
+     */
+    private $users;
 
     
 
     public function __construct()
     {
         $this->tags = new ArrayCollection();
+        $this->users = new ArrayCollection();
     }
 
 
@@ -188,6 +203,33 @@ class Recipe
     public function getImageFile(): ?File
     {
         return $this->imageFile;
+    }
+
+    /**
+     * @return Collection|User[]
+     */
+    public function getUsers(): Collection
+    {
+        return $this->users;
+    }
+
+    public function addUser(User $user): self
+    {
+        if (!$this->users->contains($user)) {
+            $this->users[] = $user;
+            $user->addFavorite($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUser(User $user): self
+    {
+        if ($this->users->removeElement($user)) {
+            $user->removeFavorite($this);
+        }
+
+        return $this;
     }
 
 

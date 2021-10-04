@@ -8,34 +8,54 @@
     .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
 </style>
 
-<div>
+<div class="flex">
+
+    <form class="flex flex-col bg-blue-200 rounded-lg p-4 m-2 text-center" id="filtres">
+
+        <label for="autumn"> Automne </label>
+        <input id="autumn" name="season[]" value="autumn" type="checkbox" class="m-4 check">
+
+        <label for="winter"> Hiver </label>
+        <input id="winter" name="season[]" value="winter" type="checkbox" class=" m-4 check">
+
+        <label for="spring"> Printemps </label>
+        <input id="spring" name="season[]" value="spring" type="checkbox" class="m-4 check">
+
+        <label for="summer"> Eté </label>
+        <input id="summer" name="season[]" value="summer" type="checkbox" class="m-4 check">
+
+        <input id="christmas" name="event[]" value="christmas" type="checkbox" class="m-4 check">
+        <input id="nationalDay" name="event[]" value="nationalDay" type="checkbox" class="m-4 check">
+        <input id="halloween" name="event[]" value="halloween" type="checkbox" class="m-4 check">
+        <input id="easter" name="event[]" value="easter" type="checkbox" class="m-4 check">
+
+    </form>
+
+    <ul class="grid xl:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-2 max-w-6xl" id="product-list">
+
+        {%  for recipe in recipes %}
+
+            <li class="flex flex-col bg-gray-200 rounded-lg p-4 m-2 recipe"> {{ recipe.name }} </li>
+            
+        {% endfor %}
+    <ul>
+    
+    {# {% for recipe in recipes %}
+      <div class="flex flex-row">
+          Recette {{ recipe.name }}
+
+          {% set statusFav = "far" %}
+          {% if app.user %}
+              {% for favorite in app.user.favorites %}
+                  {% if recipe.id == favorite.id %}
+                      {% set statusFav = "fas" %}
+                  {% endif %}
+              {% endfor %}
+          {% endif %}
+          <span class="fav"><i data-recipe="{{ recipe.id }}" class="{{ statusFav }} fa-star"></i></span>
+
+      </div><br>>
+    {% endfor %} #}
 
 </div>
-
-<form id="filtres">
-    <input name="season[]" value="autumn" type="checkbox" class="check">
-    <input name="season[]" value="winter" type="checkbox" class="check">
-    <input name="season[]" value="spring" type="checkbox" class="check">
-    <input name="season[]" value="summer" type="checkbox" class="check">
-
-    <input name="event[]" value="christmas" type="checkbox" class="check">
-    <input name="event[]" value="nationalDay" type="checkbox" class="check">
-    <input name="event[]" value="halloween" type="checkbox" class="check">
-    <input name="event[]" value="easter" type="checkbox" class="check">
-
-</form>
-
-<div id="product-list">
-
-</div>
-{#
-{% for recipe in recipes %}
-    <div>
-    {% for tag in recipe.tags %}
-        {{ tag }}<br>
-    {% endfor %}
-    </div><br><br>
-{% endfor %} 
-#}
-
 {% endblock %}
