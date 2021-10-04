@@ -19,8 +19,10 @@ class RecipeController extends AbstractController
     public function index(RecipeRepository $repository): Response
     {
         // Récupére toutes les recettes.
-        $recipes = $repository->findLatest();
+
+        $recipes = $repository->findAll();
         
+
         // Retourne la vue.
         return $this->render('recipe/index.html.twig', [
             'controller_name' => 'RecipeController',
