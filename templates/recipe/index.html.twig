@@ -28,14 +28,25 @@
 <div id="product-list">
 
 </div>
-{#
-{% for recipe in recipes %}
-    <div>
-    {% for tag in recipe.tags %}
-        {{ tag }}<br>
-    {% endfor %}
-    </div><br><br>
-{% endfor %} 
-#}
+
+{# {% for recipe in recipes %}
+    <div class="flex flex-row">
+        Recette {{ recipe.name }}
+
+        /---- Système de favoris (étoile) ----/
+        {% set statusFav = "far" %}
+        {% if app.user %}
+            {% for favorite in app.user.favorites %}
+                {% if recipe.id == favorite.id %}
+                    {% set statusFav = "fas" %}
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+        <span class="fav"><i data-recipe="{{ recipe.id }}" class="{{ statusFav }} fa-star"></i></span>
+        /-------------------------------------/
+
+    </div><br>>
+{% endfor %} #}
+
 
 {% endblock %}
