@@ -1,5 +1,6 @@
 // Filtrage des produitsgetscript("dragNdrop.js", function(){
-    setDragDrop();
+$(document).ready( setDragDrop );
+
 $('.check').change(function (){
 
         // On récupère les valeurs du formulaire 'filtres'
