@@ -19,8 +19,7 @@ class RecipeController extends AbstractController
     public function index(RecipeRepository $repository): Response
     {
         // Récupére toutes les recettes.
-
-        $recipes = $repository->findAll();
+        $recipes = $repository->findLatest();
         
 
         // Retourne la vue.
