@@ -4,9 +4,14 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Entity\Recipe;
+use App\Form\AccountSettingsType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Security\LoginFormAuthenticator;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Symfony\Component\Security\Http\Authentication\UserAuthenticatorInterface;
 
 class AccountController extends AbstractController
 {
@@ -76,6 +81,52 @@ class AccountController extends AbstractController
         $manager->flush();
 
         return $this->json(["color" => "red", "message" => "La recette a bien été supprimée des favoris.", "changeClass" => true]);   
+    }
+
+    /**
+     * @Route("/account/settings", name="account_settings")
+     */
+    public function AccountSettings(
+        Request $request,
+        UserPasswordEncoderInterface $passwordEncoder,
+        UserAuthenticatorInterface $guard,
+        LoginFormAuthenticator $authenticator
+    )
+    {
+        /** @var User $user */
+        $user = $this->getUser();
+
+        // Si l'utilisateur n'est pas connecté, on le renvoie sur
+        // la page de connexion.
+        if (!$user) return $this->redirectToRoute('app_login');
+
+        $form = $this->createForm(AccountSettingsType::class, $user);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            if ($form->get('pseudo')->getData() && $form->get('password')->getData() == null)
+            {
+                $user->setPassword($user->getPassword());
+            }
+            else if ($form->get('pseudo')->getData() && $form->get('password')->getData() != null)
+            {
+                $user->setPassword(
+                    $passwordEncoder->encodePassword(
+                        $user,
+                        $form->get('password')->getData()
+                    )
+                );    
+            }
+
+            $this->getDoctrine()->getManager()->flush();
+
+            $this->addFlash('green', 'Vos informations ont été mis à jour.');
+        }
+
+        return $this->render('account/settings.html.twig', [
+            'form' => $form->createView(),
+        ]);
     }
 
 }
