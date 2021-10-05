@@ -17,59 +17,27 @@
 				<br>Elisabeth David</p>
 		</div>
 
-		<div class= "mx-auto flex flex-col items-center ">
+		<div class="mx-auto flex flex-col items-center ">
 			<h3 class="text-center py-4">Nouveautés</h3>
 
-			<div class="h-2/4 w-2/4 md:h-full md:w-full my-2 flex flex-col md:flex-row gap-2">
+			<div class="md:h-full md:w-full flex items-center md:flex-row my-2 gap-2">
 
-				<div class="relative">
-					<a class="absolute inset-0 z-10 bg-white text-center flex flex-col items-center justify-center opacity-0 hover:opacity-100 bg-opacity-25 duration-300 rounded-lg">
-						<h1 class="tracking-wider">Title</h1>
-						<p class="mx-auto">Description</p>
-					</a>
-					<a href="#" class="relative">
-						<div>
-							<img src="{{ asset('assets_img/default_img.jpg') }}" class=" object-cover border-2 border-yellow-500 rounded-lg hover:opacity-50" alt="">
+				{% for recipe in lastRecipes %}
+
+					<div class="relative w-1/4 h-1/4">
+						<div class="absolute inset-0 z-10 bg-white text-center flex flex-col items-center justify-center opacity-0 hover:opacity-100 bg-opacity-25 duration-300 rounded-lg">
+							<h1 class="tracking-wider font-extrabold text-xl text-indigo-800">{{ recipe.name }}</h1>
+							<p class="mx-auto text-white">{{ recipe.description }}</p>
 						</div>
-					</a>
-				</div>
+						<a href="/recipe/{{ recipe.slug }}" class="relative">
+							<div>
+								<img src="{{ recipe.background ? asset('upload/recipes/' ~ recipe.background) : asset('assets_img/default_img.jpg') }}" class="object-cover border-2 border-yellow-500 rounded-lg hover:opacity-50" alt="{{ recipe.name }}">
+							</div>
+						</a>
+					</div>
 
-				<div class="relative ">
-					<a class="absolute inset-0 z-10 bg-white text-center flex flex-col items-center justify-center opacity-0 hover:opacity-100 bg-opacity-25 duration-300 rounded-lg">
-						<h1 class="tracking-wider">Title</h1>
-						<p class="mx-auto">Description</p>
-					</a>
-					<a href="#" class="relative">
-						<div>
-							<img src="{{ asset('assets_img/default_img.jpg') }}" class=" object-cover border-2 border-yellow-500 rounded-lg hover:opacity-50" alt="">
-						</div>
-					</a>
-				</div>
 
-				<div class="relative">
-					<a class="absolute inset-0 z-10 bg-white text-center flex flex-col items-center justify-center opacity-0 hover:opacity-100 bg-opacity-25 duration-300 rounded-lg">
-						<h1 class="tracking-wider">Title</h1>
-						<p class="mx-auto">Description</p>
-					</a>
-					<a href="#" class="relative">
-						<div>
-							<img src="{{ asset('assets_img/default_img.jpg') }}" class=" object-cover border-2 border-yellow-500 rounded-lg hover:opacity-50" alt="">
-						</div>
-					</a>
-				</div>
-
-				<div class="relative">
-					<a class="absolute inset-0 z-10 bg-white text-center flex flex-col items-center justify-center opacity-0 hover:opacity-100 bg-opacity-25 duration-300 rounded-lg">
-						<h1 class="tracking-wider">Title</h1>
-						<p class="mx-auto">Description</p>
-					</a>
-					<a href="#" class="relative">
-						<div>
-							<img src="{{ asset('assets_img/default_img.jpg') }}" class=" object-cover border-2 border-yellow-500 rounded-lg hover:opacity-50" alt="">
-						</div>
-					</a>
-				</div>
-
+				{% endfor %}
 			</div>
 
 		</div>
