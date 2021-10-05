@@ -1,20 +1,84 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello ContactController!{% endblock %}
+{% block title %}Contact
+{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+	<div class="bg-yellow-300 shadow-lg border-2 border-yellow-500 rounded-lg max-w-full max-h-full mx-7 px-6 shadow-2xl divide-y divide-yellow-500">
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/Users/thoma/Desktop/Project/wf3-projet/src/Controller/ContactController.php'|file_link(0) }}">src/Controller/ContactController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/Users/thoma/Desktop/Project/wf3-projet/templates/contact/index.html.twig'|file_link(0) }}">templates/contact/index.html.twig</a></code></li>
-    </ul>
-</div>
+		<div class="py-4">
+			<!-- Team -->
+			<h2 class="text-3xl text-center font-bold uppercase p-4 pb-4">equipe</h2>
+
+			<div class="flex justify-around ">
+
+				<div class="text-center">
+					<img src="{{ asset('assets_img/Unknowm.jpg') }}" alt="Thomas" class="rounded-full p-4 max-h-80">
+					<h3>Thomas</h3>
+					<p>Le délégué</p>
+				</div>
+
+				<div class="text-center">
+					<img src="{{ asset('assets_img/Unknowm.jpg') }}" alt="Ulrick" class="rounded-full p-4 max-h-80">
+					<h3>Ulrick</h3>
+					<p>Membre de l'équipe</p>
+				</div>
+
+				<div class="text-center">
+					<img src="{{ asset('assets_img/Unknowm.jpg') }}" alt="Aline" class="rounded-full p-4 max-h-80">
+					<h3>Aline</h3>
+					<p>Membre de l'équipe</p>
+				</div>
+
+			</div>
+		</div>
+
+		<div class="py-4">
+			<!-- Find us -->
+			<h2 class="text-3xl text-center font-bold uppercase p-4 pb-4">nous trouver</h2>
+
+			<div class="flex md:justify-around justify-center py-4 justify-between">
+
+				<div>
+					<i class="fas fa-phone-square-alt fa-3x p-3 mx-2"></i>
+					<h3 class="text-center font-bold capitalize">Telephone</h3>
+					<p>0 805 62 23 45</p>
+				</div>
+
+				<div>
+					<i class="fas fa-envelope fa-3x p-3 mx-2"></i>
+					<h3 class="text-center font-bold capitalize">Adresse Mail</h3>
+					<p>privacy@wf3.fr</p>
+				</div>
+
+				<div>
+					<i class="fab fa-instagram fa-3x p-3 mx-2"></i>
+					<h3 class="text-center font-bold capitalize">Instagram</h3>
+					<p>webforce3</p>
+				</div>
+
+				<div>
+					<i class="fab fa-facebook fa-3x p-3 mx-2"></i>
+					<h3 class="text-center font-bold capitalize">Facebook</h3>
+					<p>webforce3</p>
+				</div>
+
+				<div>
+					<i class="fab fa-linkedin-in fa-3x p-3 mx-2"></i>
+					<h3 class="text-center font-bold capitalize">Linkedin</h3>
+					<p>WebForce3</p>
+				</div>
+
+				<div>
+					<i class="fab fa-twitter fa-3x p-3 mx-2"></i>
+					<h3 class="text-center font-bold capitalize">Twitter</h3>
+					<p>WebForce3</p>
+				</div>
+
+			</div>
+		</div>
+
+	</div>
+
 {% endblock %}

@@ -12,8 +12,8 @@
         {% endblock %}
 
     </head>
-    <body>
-        {% include('partials/_header.html.twig') %}
+    <body class="bg-gray-600">
+        <header class="bg-gradient-to-b from-gray-800 to-gray-600">{% include('partials/_header.html.twig') %}</header>
 
         <div id="FlashMessage" class="container mx-auto">
             {% for label, messages in app.flashes %}
@@ -28,7 +28,7 @@
 
         {% block body %}{% endblock %}
 
-        {% include('partials/_footer.html.twig') %}
+        <footer class="bg-gradient-to-t from-gray-800 to-gray-600 pt-8">{% include('partials/_footer.html.twig') %}</footer>
 
         {% block javascripts %}
             {{ encore_entry_script_tags('app') }}
@@ -40,8 +40,9 @@
             <script src="{{ asset("js/tagsinput/bootstrap-tagsinput.min.js") }}"></script>
             <script src="{{ asset("js/typehead.js") }}"></script>
             <script src="{{ asset("js/main.js") }}"></script>
-            <script src="{{ asset("script/dragNdrop.js") }}"></script>
+            <script src="{{ asset("js/_header.js") }}"></script>
             <script src="{{ asset("script/ajax.js") }}"></script>
+            <script src="{{ asset("script/dragNdrop.js") }}"></script>
             <script src="{{ asset("js/favorites.js") }}"></script>
         {% endblock %}
     </body>

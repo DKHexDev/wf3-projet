@@ -88,3 +88,5 @@ npm run build
 Sinon, toutes les classes de Tailwind sont déjà disponible et prêt à l'utilisation dans les fichiers .html.twig si une compilation à été faîtes.
 
 Documentation de Tailwind CSS : https://tailwindcss.com/docs
+
+aline
