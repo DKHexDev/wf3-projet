@@ -24,13 +24,14 @@ class HomeController extends AbstractController
 
         //dump($interval);
         
-        $lastRecipes    = $repository->findBy(['description' => !'null'], ['createdAt' => 'DESC'], 3);
+        $lastRecipes    = $repository->findBy([], ['createdAt' => 'DESC'], 4);
         $seasonRecipes  = $repository->findBy(['season' => $season], null, 3);
         $eventRecipes  = $repository->findBy(['event' => $event], null, 3);
 
         //dump($event);
         return $this->render('home/index.html.twig', [
             'controller_name' => 'HomeController',
+            'lastRecipes' => $lastRecipes,
         ]);
     }
 }

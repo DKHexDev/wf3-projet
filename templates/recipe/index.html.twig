@@ -35,31 +35,30 @@
         <div class="zone flex">
             <ul class="grid xl:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-2 max-w-6xl" id="product-list">
 
-                {%for recipe in recipes %}
+              {% for recipe in recipes %}
+                <li class="flex flex-col bg-gray-200 rounded-lg p-4 m-2 recipe"> {{ recipe.name }} </li>
+              {% endfor %}
 
-            <li class="flex flex-col bg-gray-200 rounded-lg p-4 m-2 recipe"> {{ recipe.name }} </li>
+            </ul>
             
+        {# {% for recipe in recipes %}
+        <div class="flex flex-row">
+        Recette {{ recipe.name }}
+
+        {% set statusFav = "far" %}
+        {% if app.user %}
+        {% for favorite in app.user.favorites %}
+        {% if recipe.id == favorite.id %}
+        {% set statusFav = "fas" %}
+        {% endif %}
         {% endfor %}
-    <ul>
-    
-    {# {% for recipe in recipes %}
-    <div class="flex flex-row">
-    Recette {{ recipe.name }}
+        {% endif %}
+        <span class="fav"><i data-recipe="{{ recipe.id }}" class="{{ statusFav }} fa-star"></i></span>
 
-    {% set statusFav = "far" %}
-    {% if app.user %}
-    {% for favorite in app.user.favorites %}
-    {% if recipe.id == favorite.id %}
-    {% set statusFav = "fas" %}
-    {% endif %}
-    {% endfor %}
-    {% endif %}
-    <span class="fav"><i data-recipe="{{ recipe.id }}" class="{{ statusFav }} fa-star"></i></span>
+        </div><br>>
+        {% endfor %} #}
 
-    </div><br>>
-    {% endfor %} #}
 
-            <ul>
         </div>
 
         <div class="dropzone zone bg-green-200 w-100 h-36" id="menu">
