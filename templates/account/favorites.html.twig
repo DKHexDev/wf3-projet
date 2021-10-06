@@ -14,20 +14,23 @@
         </ul>
     </nav>
 
-    <div class="w-full h-full flex flex-col justify-center p-8">
-        {{ form_start(form, {
-            attr: {
-                class: 'h-full flex flex-col justify-evenly'
-            }
-        }) }}
-            {{ form_row(form.oldPassword) }}
-            {{ form_row(form.pseudo) }}
-            {{ form_row(form.password, {
-                label: 'Mot de passe'
-            }) }}
+    <div class="w-full h-full p-10 flex flex-col gap-4 overflow-auto">
 
-            <button type="submit" class="btn btn-lg btn-primary py-2 px-6 bg-blue-700 hover:bg-blue-900 border-2 border-blue-900 hover:border-gray-800 text-white font-bold rounded focus:outline-none focus:shadow-outline w-full" formnovalidate>Modifier les informations</button>
-        {{ form_end(form) }}
+        {% for recipe in favorites %}
+            
+			<article class="relative w-full h-40 bg-white rounded-lg">
+                <img class="w-full h-full object-cover rounded-lg" src="{{ recipe.background ? asset('upload/recipes/' ~ recipe.background) : asset('assets_img/default_img.jpg') }}" alt="{{ recipe.name }}">
+
+                <span class="fav absolute top-0 z-20 mt-3 ml-3"><i data-recipe="{{ recipe.id }}" class="fas fa-star text-yellow-500 text-lg"></i></span>
+
+				<a href="{{ path('recipe_show', {'slug': recipe.slug}) }}" class="absolute w-full h-full z-5 inset-0 bg-black text-center flex flex-col items-center justify-center opacity-0 hover:opacity-100 bg-opacity-50 duration-300 rounded-lg">
+                    <h1 class="tracking-wider font-extrabold text-xl text-yellow-500">{{ recipe.name }}</h1>
+					<p class="mx-auto text-white">{{ recipe.description|u.truncate(80, '...', false) }}</p>    
+				</a>
+            </article>
+
+        {% endfor %}
+
     </div>
 
 </section>
