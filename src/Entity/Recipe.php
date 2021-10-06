@@ -90,8 +90,18 @@ class Recipe
      */
     private $users;
 
-    
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $culture;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $createdBy;
+
+    
+    /** @var User $user */
     public function __construct()
     {
         $this->tags = new ArrayCollection();
@@ -228,6 +238,30 @@ class Recipe
         if ($this->users->removeElement($user)) {
             $user->removeFavorite($this);
         }
+
+        return $this;
+    }
+
+    public function getCulture(): ?string
+    {
+        return $this->culture;
+    }
+
+    public function setCulture(?string $culture): self
+    {
+        $this->culture = $culture;
+
+        return $this;
+    }
+
+    public function getCreatedBy(): ?string
+    {
+        return $this->createdBy;
+    }
+
+    public function setCreatedBy(string $createdBy): self
+    {
+        $this->createdBy = $createdBy;
 
         return $this;
     }
