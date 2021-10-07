@@ -19,10 +19,15 @@ class ApiController extends AbstractController
 
         $seasons  = $request->get('season', []) ;
         $events   = $request->get('event', []);
+        $cultures = $request->get('culture', []);
+        $types    = $request->get('type',[]);
+
         $recipeBySeason = [];
         $recipeByEvent = [];
+        $recipeByCulture = [];
+        $recipeByType = [];
 
-        if(count($seasons) == 0 && count($events) == 0){
+        if((count($seasons) + count($events) + count($cultures) + count($types)) == 0){
 
             $recipes = $repository->findAll();
 
@@ -49,7 +54,25 @@ class ApiController extends AbstractController
                 }
             }
 
-            $recipes = array_merge($recipeBySeason, $recipeByEvent);
+            if(count($cultures) > 0 ){
+
+                foreach($cultures as $culture){
+
+                    $newRecipeByCulture = $repository->findLatestBy(['culture' => $culture], 'culture');
+                    $recipeByCulture = array_merge($recipeByCulture, $newRecipeByCulture);
+                }
+            }
+
+            if(count($types) > 0 ){
+
+                foreach($types as $type){
+
+                    $newRecipeByType = $repository->findBy(['type' => $type]);
+                    $recipeByType = array_merge($recipeByType, $newRecipeByType);
+                }
+            }
+
+            $recipes = array_merge($recipeBySeason, $recipeByEvent, $recipeByCulture, $recipeByType);
 
             return $this->json($recipes, 200, [], ['groups' => ['public_json']]);
         }

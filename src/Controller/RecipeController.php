@@ -36,6 +36,9 @@ class RecipeController extends AbstractController
     {
         // Autorisation pour aller sur la page.
         $this->denyAccessUnlessGranted('ROLE_ADMIN');
+        
+        /** @var User $user */
+        $user = $this->getUser();
 
         $recipe = new Recipe();
 
@@ -52,6 +55,8 @@ class RecipeController extends AbstractController
 
             // Définition de la date de création.
             $recipe->setCreatedAt(new \DateTimeImmutable());
+            
+            $recipe->setCreatedBy($user->getPseudo());
         
             $manager = $this->getDoctrine()->getManager();
             $manager->persist($recipe);

@@ -1,5 +1,9 @@
+
 function setDragDrop(){
+
 var draggableElements = document.getElementsByClassName("myDraggableElement");
+
+console.log(draggableElements);
 
 for(let drag of draggableElements){
 
@@ -41,6 +45,7 @@ for (const dropzone of document.querySelectorAll(".zone")){
     
         let newDragElement = droppedElement.cloneNode(true);
         dropzone.appendChild(newDragElement);
+        newDragElement.classList.add('w-3/12')
         //newDragElement.querySelector('.cross').classList.remove('d-none');
         //newDragElement.id +="Clone";
         }

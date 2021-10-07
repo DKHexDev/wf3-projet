@@ -42,6 +42,7 @@ class RecipeType extends AbstractType
                     ])
                 ]
             ])
+
             // Saison de la recette.
             ->add('season', ChoiceType::class, [
                 'label' => 'Saison',
@@ -52,11 +53,39 @@ class RecipeType extends AbstractType
                     'Automne' => 'autumn'
                 ]
             ])
+
             // Évènement de la recette.
-            ->add('event', TextType::class, [
+            ->add('event',  ChoiceType::class, [
                 'label' => 'Évènement',
-                'attr' => [
-                    'placeholder' => 'Évènement',
+                'choices' => [
+                    'Fêtes de fin d\'année' => 'chistmas',
+                    'Pâques' => 'easter',
+                    'Halloween' => 'halloween',
+                    'Anniversaire' => 'bday',
+                    'Saint-Valentin' => 'valentineday',
+                ]
+            ])
+
+            // Culture de la recette.
+            ->add('culture',  ChoiceType::class, [
+                'label' => 'Culture',
+                'choices' => [
+                    'Africaine' => 'african',
+                    'Américaine'=> 'american',
+                    'Asiatique' => 'asia',
+                    'Française' => 'france',
+                    'Italienne' => 'italian',
+                    'Méxicaine' => 'mexican'
+                ]
+            ])
+
+            // Type de recette.
+            ->add('type',  ChoiceType::class, [
+                'label' => 'Type',
+                'choices' => [
+                    'Entrée' => 'starter',
+                    'Plat' => 'dish',
+                    'Dessert' => 'dessert'
                 ]
             ])
             // Image de couverture.
