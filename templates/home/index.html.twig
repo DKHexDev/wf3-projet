@@ -17,30 +17,47 @@
 				<br>Elisabeth David</p>
 		</div>
 
-		<div class="mx-auto flex flex-col items-center ">
-			<h3 class="text-center py-4">Nouveautés</h3>
+		<div>
+			<h3>Nouveautés</h3>
+			<div>
+			{% for recipe in lastRecipes %}
+			<article class="relative w-full h-40 bg-white rounded-lg">
+                <img class="w-full h-full object-cover rounded-lg" src="{{ recipe.background ? asset('upload/recipes/' ~ recipe.background) : asset('assets_img/default_img.jpg') }}" alt="{{ recipe.name }}">
 
-			<div class="md:h-full md:w-full flex items-center md:flex-row my-2 gap-2">
-
-				{% for recipe in lastRecipes %}
-
-					<div class="relative w-1/4 h-1/4">
-						<div class="absolute inset-0 z-10 bg-white text-center flex flex-col items-center justify-center opacity-0 hover:opacity-100 bg-opacity-25 duration-300 rounded-lg">
-							<h1 class="tracking-wider font-extrabold text-xl text-indigo-800">{{ recipe.name }}</h1>
-							<p class="mx-auto text-white">{{ recipe.description }}</p>
-						</div>
-						<a href="/recipe/{{ recipe.slug }}" class="relative">
-							<div>
-								<img src="{{ recipe.background ? asset('upload/recipes/' ~ recipe.background) : asset('assets_img/default_img.jpg') }}" class="object-cover border-2 border-yellow-500 rounded-lg hover:opacity-50" alt="{{ recipe.name }}">
-							</div>
-						</a>
-					</div>
-
-
-				{% endfor %}
+                <a href="{{ path('recipe_show', {'slug': recipe.slug}) }}" class="absolute w-full h-full z-5 inset-0 bg-black text-center flex flex-col items-center justify-center opacity-0 hover:opacity-100 bg-opacity-50 duration-300 rounded-lg">
+                    <h1 class="tracking-wider font-extrabold text-xl text-yellow-500">{{ recipe.name }}</h1>
+                    <p class="mx-auto text-white">{{ recipe.description|u.truncate(80, '...', false) }}</p>    
+                </a>
+</article>
+{% endfor %}
 			</div>
-
 		</div>
+
+
+		<!--<div class="mx-auto flex flex-col items-center ">
+					<h3 class="text-center py-4">Nouveautés</h3>
+		
+					<div class="md:h-full md:w-full flex items-center md:flex-row my-2 gap-2">
+		
+						{% for recipe in lastRecipes %}
+		
+							<div class="relative w-1/4 h-1/4">
+								<div class="absolute inset-0 z-10 bg-white text-center flex flex-col items-center justify-center opacity-0 hover:opacity-100 bg-opacity-25 duration-300 rounded-lg">
+									<h1 class="tracking-wider font-extrabold text-xl text-indigo-800">{{ recipe.name }}</h1>
+									<p class="mx-auto text-white">{{ recipe.description }}</p>
+								</div>
+								<a href="/recipe/{{ recipe.slug }}" class="relative">
+									<div>
+										<img src="{{ recipe.background ? asset('upload/recipes/' ~ recipe.background) : asset('assets_img/default_img.jpg') }}" class="object-cover border-2 border-yellow-500 rounded-lg hover:opacity-50" alt="{{ recipe.name }}">
+									</div>
+								</a>
+							</div>
+		
+		
+						{% endfor %}
+					</div>
+		
+				</div>-->
 
 
 	</div>
