@@ -6,7 +6,7 @@
 {% block body %}
 
 	<!-- Welcome -->
-	<div class="bg-yellow-300 shadow-lg border-2 border-yellow-500 rounded-lg max-w-full max-h-full mx-7 px-6 shadow-2xl divide-y divide-yellow-500">
+	<div class="bg-white shadow-lg border-2 border-gray-500 rounded-lg max-w-full max-h-full mx-7 px-6 shadow-2xl divide-y divide-gray-500">
 		<div class="py-4 flex flex-col text-center items-center">
 			<img src="{{ asset('assets_img/Mcooking_complet.png') }}" class="h-2/4 w-2/4 pb-5 md:p-6" alt="Logo complet site">
 
@@ -32,33 +32,6 @@
 {% endfor %}
 			</div>
 		</div>
-
-
-		<!--<div class="mx-auto flex flex-col items-center ">
-					<h3 class="text-center py-4">Nouveautés</h3>
-		
-					<div class="md:h-full md:w-full flex items-center md:flex-row my-2 gap-2">
-		
-						{% for recipe in lastRecipes %}
-		
-							<div class="relative w-1/4 h-1/4">
-								<div class="absolute inset-0 z-10 bg-white text-center flex flex-col items-center justify-center opacity-0 hover:opacity-100 bg-opacity-25 duration-300 rounded-lg">
-									<h1 class="tracking-wider font-extrabold text-xl text-indigo-800">{{ recipe.name }}</h1>
-									<p class="mx-auto text-white">{{ recipe.description }}</p>
-								</div>
-								<a href="/recipe/{{ recipe.slug }}" class="relative">
-									<div>
-										<img src="{{ recipe.background ? asset('upload/recipes/' ~ recipe.background) : asset('assets_img/default_img.jpg') }}" class="object-cover border-2 border-yellow-500 rounded-lg hover:opacity-50" alt="{{ recipe.name }}">
-									</div>
-								</a>
-							</div>
-		
-		
-						{% endfor %}
-					</div>
-		
-				</div>-->
-
 
 	</div>
 
