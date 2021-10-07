@@ -5,29 +5,29 @@
 
 {% block body %}
 
-	<div class="max-w-full max-h-full mx-7 px-6 divide-y divide-white">
+	<div class="max-w-full max-h-full mx-5 md:mx-7 md:px-6 divide-y divide-gray-400">
 
-		<div class="py-4 flex flex-col items-center">
+		<div class="py-4 flex flex-col">
 			<!-- Team -->
-			<h2 class="uppercase text-center  text-xl leading-3 text-gray-600 font-bold">equipe</h2>
+			<h2 class="uppercase text-center text-xl leading-3 text-gray-600 font-bold my-6">equipe</h2>
 
-			<div class="flex justify-around ">
+			<div class="flex justify-around text-center gap-4">
 
-				<div class="text-center">
-					<img src="{{ asset('assets_img/Unknowm.jpg') }}" alt="Thomas" class="rounded-full p-4 max-h-80">
-					<h3>Thomas</h3>
-					<p>Le délégué</p>
+				<div>
+					<img src="{{ asset('assets_img/Unknowm.jpg') }}" alt="Thomas" class="rounded-full border border-gray-200 shadow-lg max-h-80 my-4">
+					<h3  class="uppercase text-center text-l leading-3 text-yellow-600 font-bold">Thomas</h3>
+					<p>Memre de l'équipe</p>
 				</div>
 
-				<div class="text-center">
-					<img src="{{ asset('assets_img/Unknowm.jpg') }}" alt="Ulrick" class="rounded-full p-4 max-h-80">
-					<h3>Ulrick</h3>
+				<div>
+					<img src="{{ asset('assets_img/Unknowm.jpg') }}" alt="Ulrick" class="rounded-full border border-gray-200 shadow-lg max-h-80 my-4">
+					<h3  class="uppercase text-center text-l leading-3 text-yellow-600 font-bold">Ulrick</h3>
 					<p>Membre de l'équipe</p>
 				</div>
 
-				<div class="text-center">
-					<img src="{{ asset('assets_img/Unknowm.jpg') }}" alt="Aline" class="rounded-full p-4 max-h-80">
-					<h3>Aline</h3>
+				<div>
+					<img src="{{ asset('assets_img/Unknowm.jpg') }}" alt="Aline" class="rounded-full border border-gray-200 shadow-lg max-h-80 my-4">
+					<h3  class="uppercase text-center text-l leading-3 text-yellow-600 font-bold">Aline</h3>
 					<p>Membre de l'équipe</p>
 				</div>
 
@@ -36,44 +36,44 @@
 
 		<div class="py-4">
 			<!-- Find us -->
-			<h2 class="uppercase text-center text-xl leading-3 text-gray-600 font-bold">nous trouver</h2>
+			<h2 class="uppercase text-center text-xl leading-3 text-gray-600 font-bold my-6">nous trouver</h2>
 
-			<div class="flex md:justify-around justify-center py-4 justify-between">
+			<div class="py-4 flex md:flex md:justify-between gap-8">
 
-				<div>
-					<i class="fas fa-phone-square-alt fa-3x p-3 mx-2 "></i>
-					<h3 class="text-center font-bold capitalize">Telephone</h3>
-					<p>0 805 62 23 45</p>
+				<div class= "flex flex-col items-center">
+					<i class="fas fa-phone-square-alt fa-3x"></i>
+					<h3 class="text-center font-bold capitalize text-sm md:text-lg">Telephone</h3>
+					<p class="text-center text-sm md:text-lg">0 805 62 23 45</p>
 				</div>
 
-				<div>
-					<i class="fas fa-envelope fa-3x p-3 mx-2"></i>
-					<h3 class="text-center font-bold capitalize">Adresse Mail</h3>
-					<p>privacy@wf3.fr</p>
+				<div class= "flex flex-col items-center">
+					<i class="fas fa-envelope fa-3x"></i>
+					<h3 class="text-center font-bold capitalize text-sm md:text-lg">Adresse Mail</h3>
+					<p class="text-center text-sm md:text-lg">privacy@wf3.fr</p>
 				</div>
 
-				<div>
-					<i class="fab fa-instagram fa-3x p-3 mx-2"></i>
-					<h3 class="text-center font-bold capitalize">Instagram</h3>
-					<p>webforce3</p>
+				<div class= "flex flex-col items-center">
+					<i class="fab fa-instagram fa-3x"></i>
+					<h3 class="text-center font-bold capitalize text-sm md:text-lg">Instagram</h3>
+					<p class="text-center text-sm md:text-lg">webforce3</p>
 				</div>
 
-				<div>
-					<i class="fab fa-facebook fa-3x p-3 mx-2"></i>
-					<h3 class="text-center font-bold capitalize">Facebook</h3>
-					<p>webforce3</p>
+				<div class= "flex flex-col items-center">
+					<i class="fab fa-facebook fa-3x"></i>
+					<h3 class="text-center font-bold capitalize text-sm md:text-lg">Facebook</h3>
+					<p class="text-center text-sm md:text-lg">webforce3</p>
 				</div>
 
-				<div>
-					<i class="fab fa-linkedin-in fa-3x p-3 mx-2"></i>
-					<h3 class="text-center font-bold capitalize">Linkedin</h3>
-					<p>WebForce3</p>
+				<div class= "flex flex-col items-center">
+					<i class="fab fa-linkedin-in fa-3x"></i>
+					<h3 class="text-center font-bold capitalize text-sm md:text-lg">Linkedin</h3>
+					<p class="text-center text-sm md:text-lg">WebForce3</p>
 				</div>
 
-				<div>
-					<i class="fab fa-twitter fa-3x p-3 mx-2"></i>
-					<h3 class="text-center font-bold capitalize">Twitter</h3>
-					<p>WebForce3</p>
+				<div class= "flex flex-col items-center">
+					<i class="fab fa-twitter fa-3x"></i>
+					<h3 class="text-center font-bold capitalize text-sm md:text-lg">Twitter</h3>
+					<p class="text-center text-sm md:text-lg">WebForce3</p>
 				</div>
 
 			</div>
