@@ -129,4 +129,23 @@ class AccountController extends AbstractController
         ]);
     }
 
+    /**
+     * @Route("/account/favorites", name="account_favorites")
+     */
+    public function AccountFavorites(): Response
+    {
+        /** @var User $user */
+        $user = $this->getUser();
+
+        // Si l'utilisateur n'est pas connecté, on le renvoie sur
+        // la page de connexion.
+        if (!$user) return $this->redirectToRoute('app_login');
+
+        $recipesFavorite = $user->getFavorites();
+
+        return $this->render('account/favorites.html.twig', [
+            'favorites' => $recipesFavorite,
+        ]);
+    }
+
 }
