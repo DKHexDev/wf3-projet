@@ -12,13 +12,13 @@ $('.check').change(function (){
 
             $('#product-list').html(" ");
             console.log(response);
+
             response.forEach(recipeF => {
-                
                 let newrecipe = $('#product-list')
                 .append(' <div id="'+ recipeF['name'] +'" class="myDraggableElement object" draggable="true"><li class="flex flex-col flex-space bg-gray-200 rounded-lg p-4 m-2 recipe">' +
                 recipeF['name']  +
                 ','             +
-                recipeF['season']+
+                recipeF['tags'][0].name+
                 '</li> </div>'); 
             });
             setDragDrop();

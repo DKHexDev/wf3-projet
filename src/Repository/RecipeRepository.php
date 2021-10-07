@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Recipe;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\Common\Collections\Criteria;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -31,19 +32,31 @@ class RecipeRepository extends ServiceEntityRepository
     // /**
     //  * @return Recipe[] Returns an array of Recipe objects
     //  */
-    /*
-    public function findByExampleField($value)
+
+
+    public function findLatestBy(array $criteria, string $field){
+        
+
+        return $this->createQueryBuilder('r')
+            ->andWhere('r.'.$field.' = :val')
+            ->setParameter('val', $criteria[$field])
+            ->join('r.tags', 't')
+            ->select('r, t')
+            ->getQuery()
+            ->getResult();
+    }
+
+    /*public function findByField($value)
     {
         return $this->createQueryBuilder('r')
-            ->andWhere('r.exampleField = :val')
+            ->andWhere('r.Field = :val')
             ->setParameter('val', $value)
             ->orderBy('r.id', 'ASC')
             ->setMaxResults(10)
             ->getQuery()
             ->getResult()
         ;
-    }
-    */
+    }*/
 
     /*
     public function findOneBySomeField($value): ?Recipe

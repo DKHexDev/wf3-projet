@@ -98,7 +98,7 @@ class Recipe
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $createdBy;
+    private $type;
 
     
     /** @var User $user */
@@ -254,14 +254,14 @@ class Recipe
         return $this;
     }
 
-    public function getCreatedBy(): ?string
+    public function getType(): ?string
     {
-        return $this->createdBy;
+        return $this->type;
     }
 
-    public function setCreatedBy(string $createdBy): self
+    public function setType(string $type): self
     {
-        $this->createdBy = $createdBy;
+        $this->type = $type;
 
         return $this;
     }
