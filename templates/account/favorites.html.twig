@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mon compte{% endblock %}
+
+{% block body %}
+
+<section class="container m-2 h-screen mx-auto bg-yellow-300 border-2 border-yellow-500 rounded-lg flex flex-row">
+
+    <nav class="w-1/6 h-auto border-r-2 border-yellow-500 text-lg pt-2 pb-2">
+        <ul class="flex flex-col gap-2 pl-1 h-full">
+            <li class="bg-gray-600 rounded-l-3xl p-2 pl-4 text-yellow-400 uppercase font-mono hover:bg-gray-800 font-bold tracking-wider"><a href="{{ path('account') }}" class="w-full h-full"><i class="fas fa-user w-4 h-4 mr-3"></i>Compte</a></li>
+            <li class="bg-gray-600 rounded-l-3xl p-2 pl-4 text-yellow-400 uppercase font-mono hover:bg-gray-800 font-bold tracking-wider"><a href="{{ path('account_settings') }}"><i class="fas fa-user-cog w-4 h-4 mr-3"></i>Paramètres</a></li>
+            <li class="bg-gray-600 rounded-l-3xl p-2 pl-4 text-yellow-400 uppercase font-mono hover:bg-gray-800 font-bold tracking-wider"><a href="{{ path('account_favorites') }}"><i class="fas fa-user-check w-4 h-4 mr-3"></i>Favoris</a></li>
+        </ul>
+    </nav>
+
+    <div class="w-full h-full p-10 flex flex-col gap-4 overflow-auto">
+
+        {% for recipe in favorites %}
+            
+			<article class="relative w-full h-40 bg-white rounded-lg">
+                <img class="w-full h-full object-cover rounded-lg" src="{{ recipe.background ? asset('upload/recipes/' ~ recipe.background) : asset('assets_img/default_img.jpg') }}" alt="{{ recipe.name }}">
+
+                <span class="fav absolute top-0 z-20 mt-3 ml-3"><i data-recipe="{{ recipe.id }}" class="fas fa-star text-yellow-500 text-lg rounded-full p-2 bg-gray-600 border border-gray-500"></i></span>
+
+				<a href="{{ path('recipe_show', {'slug': recipe.slug}) }}" class="absolute w-full h-full z-5 inset-0 bg-black text-center flex flex-col items-center justify-center opacity-0 hover:opacity-100 bg-opacity-50 duration-300 rounded-lg">
+                    <h1 class="tracking-wider font-extrabold text-xl text-yellow-500">{{ recipe.name }}</h1>
+					<p class="mx-auto text-white">{{ recipe.description|u.truncate(80, '...', false) }}</p>    
+				</a>
+            </article>
+
+        {% endfor %}
+
+    </div>
+
+</section>
+
+{% endblock %}

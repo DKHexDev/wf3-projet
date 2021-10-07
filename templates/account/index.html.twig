@@ -4,24 +4,51 @@
 
 {% block body %}
 
-    Email de l'utilisateur : <b>{{ user.email }}</b><br>
-    Roles de l'utilisateur : 
-    {% for role in user.roles %}
-        <b>{{ role }}</b>,
-    {% endfor %}<br>
-    Pseudo de l'utilisateur : <b>{{ user.pseudo }}</b><br><br>
+<section class="container m-2 h-screen mx-auto bg-yellow-300 border-2 border-yellow-500 rounded-lg flex flex-row">
 
-    Vos favoris :<br><br>
-    {% for favorite in user.favorites %}
-        <div class="border-2">
-            Nom de la recette : <b>{{ favorite.name }}</b><br>
-            Description de la recette : <b>{{ favorite.description }}</b><br>
-            Description de la recette : <b>{{ favorite.description }}</b><br>
-            Saison de la recette : <b>{{ favorite.season }}</b><br>
-            {% if (favorite.event) %}
-                Évènement de la recette : <b>{{ favorite.event }}</b><br>
-            {% endif %}
-            Date de création de la recette : {{ favorite.createdAt|date('d-m-Y') }}<br>
-        </div><br>
-    {% endfor %}
+    <nav class="w-1/6 h-auto border-r-2 border-yellow-500 text-lg pt-2 pb-2">
+        <ul class="flex flex-col gap-2 pl-1 h-full">
+            <li class="bg-gray-600 rounded-l-3xl p-2 pl-4 text-yellow-400 uppercase font-mono hover:bg-gray-800 font-bold tracking-wider"><a href="{{ path('account') }}" class="w-full h-full"><i class="fas fa-user w-4 h-4 mr-3"></i>Compte</a></li>
+            <li class="bg-gray-600 rounded-l-3xl p-2 pl-4 text-yellow-400 uppercase font-mono hover:bg-gray-800 font-bold tracking-wider"><a href="{{ path('account_settings') }}"><i class="fas fa-user-cog w-4 h-4 mr-3"></i>Paramètres</a></li>
+            <li class="bg-gray-600 rounded-l-3xl p-2 pl-4 text-yellow-400 uppercase font-mono hover:bg-gray-800 font-bold tracking-wider"><a href="{{ path('account_favorites') }}"><i class="fas fa-user-check w-4 h-4 mr-3"></i>Favoris</a></li>
+        </ul>
+    </nav>
+
+    <div class="w-full h-full flex justify-center p-8 gap-3">
+
+
+        <div class="border-2 border-yellow-500 h-full w-3/5 flex flex-col justify-evenly items-center p-2">
+
+            <img class="rounded-full border-gray-800 border-2 h-1/4 w-1/4 object-cover" src="{{ asset('/assets_img/avatar_default.png') }}" alt="Avatar de {{ user.pseudo }}">
+
+            <div class="flex flex-col gap-1 w-2/5">
+                <span class="text-lg border-b-2 border-yellow-500 text-center">Email</span>   
+                <span class="text-md text-center font-bold">{{ user.email }}</span>   
+            </div>
+            
+            <div class="flex flex-col gap-1 w-2/5">
+                <span class="text-lg border-b-2 border-yellow-500 text-center">Pseudonyme</span>   
+                <span class="text-md text-center font-bold">{{ user.pseudo }}</span>   
+            </div>
+
+            <div class="flex flex-col gap-1 w-2/5">
+                <span class="text-lg border-b-2 border-yellow-500 text-center">Permissions</span>
+                {% for role in user.roles %}    
+
+                    {% if role == "ROLE_USER" %}
+                        <span class="text-md text-center font-bold">Utilisateur</span>   
+                    {% elseif role == "ROLE_ADMIN" %}
+                        <span class="text-md text-center font-bold">Administrateur</span> 
+                    {% else %}
+                        <span class="text-md text-center font-bold">{{ role }}</span>   
+                    {% endif %}
+                    
+                {% endfor %}
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
 {% endblock %}

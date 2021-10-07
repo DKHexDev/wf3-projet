@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Recettes
+{% endblock %}
+
+{% block body %}
+
+	<!-- Welcome -->
+	<div class="max-w-full max-h-full mx-7 px-6 divide-y divide-white">
+		<div class="py-4 flex flex-col text-center items-center">
+			<img src="{{ asset('assets_img/Mcooking_complet.png') }}" class="object-cover h-1/4 w-1/4 pb-5 md:p-6" alt="Logo complet site">
+
+			<p>Bienvenue novices comme passionnées de cuisine sur votre nouvel outil pour réussir vos plats ou continuer votre apprentissage dans cet art culinaire.</p>
+			<p>Selon vos désirs, vous pourrez faire plaisir à tous les membres de la famille, vos amis ou votre partenaire.</p>
+
+			<p class="text-center py-4 italic">“La bonne cuisine est honnête, sincère et simple.”
+				<br>Elisabeth David</p>
+		</div>
+
+		<h3 class="uppercase text-left text-xl leading-3 text-gray-500 font-bold">Nouveautés</h3>
+		<div class= "mx-auto flex flex-col items-center ">
+
+			<div class="h-2/4 w-2/4 md:h-full md:w-full my-2 flex flex-col md:flex-row md:justify-center gap-4 py-10 border-t-2 border-b-2 border-gray-300">
+
+				{% for recipe in lastRecipes %}
+					
+					<article class="relative w-1/4 h-80 bg-white rounded-lg">
+						<img class="w-full h-full object-cover rounded-lg" src="{{ recipe.background ? asset('upload/recipes/' ~ recipe.background) : asset('assets_img/default_img.jpg') }}" alt="{{ recipe.name }}">
+
+				          {% set statusFav = "far" %}
+				          {% if app.user %}
+				              {% for favorite in app.user.favorites %}
+				                  {% if recipe.id == favorite.id %}
+				                      {% set statusFav = "fas" %}
+				                  {% endif %}
+				              {% endfor %}
+				          {% endif %}
+                			<span class="fav absolute top-0 z-20 mt-3 ml-3"><i data-recipe="{{ recipe.id }}" class="{{ statusFav }} fa-star text-yellow-500 text-lg rounded-full p-2 bg-gray-600 border border-gray-500"></i></span>
+
+						<a href="{{ path('recipe_show', {'slug': recipe.slug}) }}" class="absolute w-full h-full z-5 inset-0 bg-black text-center flex flex-col items-center justify-center opacity-0 hover:opacity-100 bg-opacity-50 duration-300 rounded-lg">
+							<h1 class="tracking-wider font-extrabold text-xl text-yellow-500">{{ recipe.name }}</h1>
+							<p class="mx-auto text-white">{{ recipe.description|u.truncate(80, '...', false) }}</p>    
+						</a>
+					</article>
+
+				{% endfor %}
+
+				
+			</div>
+
+		</div>
+
+
+	</div>
+
+{% endblock %}

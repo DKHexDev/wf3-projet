@@ -4,6 +4,7 @@
 {% endblock %}
 
 {% block body %}
+<<<<<<< HEAD
 <style>
     .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
     .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
@@ -130,3 +131,88 @@
     </div>
 </div>
 {% endblock %}
+=======
+	<style>
+		.example-wrapper {
+			margin: 1em auto;
+			max-width: 800px;
+			width: 95%;
+			font: 18px / 1.5 sans-serif;
+		}
+		.example-wrapper code {
+			background: #F5F5F5;
+			padding: 2px 6px;
+		}
+	</style>
+
+	<div class="flex">
+
+		<form class="flex flex-col p-4 m-2 bg-yellow-300 shadow-lg border-2 border-yellow-500 rounded-lg max-w-full max-h-full mx-4 px-4 shadow-2xl text-center" id="filtres">
+
+			<div>
+				<h2>Saisons</h2>
+				<label for="autumn">
+					Automne
+				</label>
+				<input id="autumn" name="season[]" value="autumn" type="checkbox" class="m-4 check">
+
+				<label for="winter">
+					Hiver
+				</label>
+				<input id="winter" name="season[]" value="winter" type="checkbox" class="m-4 check">
+
+				<label for="spring">
+					Printemps
+				</label>
+				<input id="spring" name="season[]" value="spring" type="checkbox" class="m-4 check">
+
+				<label for="summer">
+					Eté
+				</label>
+				<input id="summer" name="season[]" value="summer" type="checkbox" class="m-4 check">
+			</div>
+			<div>
+				<h2>Célébrations</h2>
+				<input id="christmas" name="event[]" value="christmas" type="checkbox" class="m-4 check">
+				<input id="nationalDay" name="event[]" value="nationalDay" type="checkbox" class="m-4 check">
+				<input id="halloween" name="event[]" value="halloween" type="checkbox" class="m-4 check">
+				<input id="easter" name="event[]" value="easter" type="checkbox" class="m-4 check">
+			</div>
+			<div>
+				<h2>Cultures</h2>
+			</div>
+
+
+		</form>
+
+		<ul class="grid xl:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-2 max-w-6xl" id="product-list">
+
+			{%  for recipe in recipes %}
+
+				<li class="flex flex-col bg-yellow-200 shadow-lg border-2 border-yellow-500 rounded-lg p-4 m-2 recipe">
+					{{ recipe.name }}
+				</li>
+
+			{% endfor %}
+			<ul>
+
+				{# {% for recipe in recipes %}
+				      <div class="flex flex-row">
+				          Recette {{ recipe.name }}
+				
+				          {% set statusFav = "far" %}
+				          {% if app.user %}
+				              {% for favorite in app.user.favorites %}
+				                  {% if recipe.id == favorite.id %}
+				                      {% set statusFav = "fas" %}
+				                  {% endif %}
+				              {% endfor %}
+				          {% endif %}
+				          <span class="fav"><i data-recipe="{{ recipe.id }}" class="{{ statusFav }} fa-star"></i></span>
+				
+				      </div><br>>
+				    {% endfor %} #}
+
+	</div>
+		{% endblock %}
+>>>>>>> 047cac20bbef5495f7137745a6c2353c92981f63
