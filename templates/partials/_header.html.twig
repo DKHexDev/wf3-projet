@@ -16,7 +16,8 @@
 			<!-- Link Site -->
 			<div class="hidden md:flex items-center space-x-2">
 
-				<a href="{{ path('home') }}" class="py-4 px-3 hover:text-yellow-600 hover:underline">Accueil</a>
+				<a href="{{ path('home') }}" class="py-4 px-3 hover:text-yellow-600 hover:underline
+				">Accueil</a>
 
 				<a href="{{ path('recipe_list') }}" class="py-4 px-3 hover:text-yellow-600 hover:underline">Recettes</a>
 
@@ -48,17 +49,17 @@
 	</div>
 
 	<!-- Mobile Menu -->
-	<div class="mobile-menu absolute max-w-full max-h-full mx-4 hidden w-11/12 md:hidden bg-yellow-600 text-gray-900 rounded-lg">
+	<div class="mobile-menu absolute max-w-full max-h-full mx-4 hidden w-11/12 md:hidden bg-white rounded-lg border border-gray-300 shadow-lg ">
 
-		<a href="{{ path('home') }}" class="block py-2 px-4 text-sm hover:bg-yellow-600">Accueil</a>
+		<a href="{{ path('home') }}" class="block py-2 px-4 hover:text-yellow-600">Accueil</a>
 
-		<a href="{{ path('recipe_list') }}" class="block py-2 px-4 text-sm hover:bg-yellow-600">Recettes</a>
+		<a href="{{ path('recipe_list') }}" class="block py-2 px-4 hover:text-yellow-600">Recettes</a>
 
-		<a href="#" class="block py-2 px-4 text-sm hover:bg-yellow-600">Contacts</a>
+		<a href="{{ path('contact') }}" class="block py-2 px-4 hover:text-yellow-600">Contacts</a>
 
-		<a href="#" class="block py-2 px-4 text-sm hover:bg-yellow-600">Mon Compte</a>
+		<a href="{{ path('app_login') }}" class="block py-2 px-4 hover:text-yellow-600">Mon Compte</a>
 
-		<a href="#" class="block py-2 px-4 text-sm hover:bg-yellow-600">Inscription</a>
+		<a href="{{ path('app_register') }}" class="block py-2 px-4 hover:text-yellow-600">Inscription</a>
 
 	</div>
 
