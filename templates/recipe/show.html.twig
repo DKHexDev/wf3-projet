@@ -126,6 +126,27 @@
 
 </div>
 
+    <hr>
+
+    {% for message in recipe.messages %}
+        <div class="bg-gray-300 text-white">
+            <span>{{ message.author.pseudo }}</span>
+            <p>{{ message.message }}</p>
+        </div> 
+    {% endfor %}
+
+    <hr>
+
+    {% if app.user %}    
+        {{ form_start(form) }}
+            {{ form_widget(form) }}
+
+            <button type="submit" class="bg-green-500 hover:bg-green-700 text-white font-bold rounded focus:outline-none focus:shadow-outline py-3 px-6 w-full" formnovalidate>Envoyer le message</button>
+        {{ form_end(form) }}
+    {% endif %}
+
+</div>
+
 {% endblock %}
 
 
