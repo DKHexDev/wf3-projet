@@ -17,10 +17,15 @@ class AppFixtures extends Fixture
         $recipes = [];
         $tagsArray = [];
 
-        for($i =0; $i< 5; $i++){
+        $tagCollection =[
+            'Carottes', 'Patates', 'Poulet', 'Oignons', 'Pain', 'Saucisse', 'Pâtes feuillettée'
+        ];
+
+        foreach($tagCollection as $tag){
 
             $tags = new Tag();
-            $tags->setName($faker->sentence(1));
+            $tags->setName($tag);
+            
             $manager->persist($tags);
 
             array_push($tagsArray, $tags);

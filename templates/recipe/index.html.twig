@@ -89,7 +89,8 @@
 
     </form>
 
-    <div class="flex flex-col-reverse">
+    <div class="flex items-center flex-col-reverse">
+
         <div class="zone flex">
             <ul class="grid xl:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-2 max-w-6xl" id="product-list">
 
@@ -97,36 +98,20 @@
 
             <div id={{ recipe.id }} class="m-2 myDraggableElement object" draggable='true'>
 
-                <li class="flex flex-col bg-gray-200 rounded-lg p-4 m-2 recipe"> {{ recipe.name }} {{recipe.tags[0]}} </li>
+                <li class="flex flex-col bg-gray-200 rounded-lg p-4 m-2 recipe"> {{ recipe.name }} {{ recipe.description }}</li>
 
             </div>
 
             {% endfor %}
-    <ul>
-    
-    {# {% for recipe in recipes %}
-    <div class="flex flex-row">
-    Recette {{ recipe.name }}
 
-    {% set statusFav = "far" %}
-    {% if app.user %}
-    {% for favorite in app.user.favorites %}
-    {% if recipe.id == favorite.id %}
-    {% set statusFav = "fas" %}
-    {% endif %}
-    {% endfor %}
-    {% endif %}
-    <span class="fav"><i data-recipe="{{ recipe.id }}" class="{{ statusFav }} fa-star"></i></span>
-
-    </div><br>>
-    {% endfor %} #}
-
-            <ul>
         </div>
 
+        <button id="generate" type="button" class="w-32 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"> Générer la liste </button>
         <div class="flex dropzone rounded-lg zone bg-green-200 w-100 h-36" id="menu">
             <h2> Menu </h2>
+            
         </div>
+
     </div>
 </div>
 {% endblock %}
