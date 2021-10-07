@@ -27,4 +27,4 @@ yarn-error.log
 ###< symfony/webpack-encore-bundle ###
 
 
-/upload/
+/public/upload/
