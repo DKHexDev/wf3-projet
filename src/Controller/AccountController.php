@@ -10,6 +10,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Security\LoginFormAuthenticator;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Http\Authentication\UserAuthenticatorInterface;
 
@@ -29,6 +30,30 @@ class AccountController extends AbstractController
         return $this->render('account/index.html.twig', [
             'user' => $user,
         ]);
+    }
+
+    /**
+     * @Route("/account/delete", name="account_delete")
+     */
+    public function AccountDelete(TokenStorageInterface $tokenStorage): Response
+    {
+        /** @var User $user */
+        $user = $this->getUser();
+
+        // Si l'utilisateur n'est pas connecté, on le renvoie sur
+        // la page de connexion.
+        if (!$user) return $this->redirectToRoute('app_login');
+
+        
+
+        $manager = $this->getDoctrine()->getManager();
+        $manager->remove($user);
+        $manager->flush();
+        $tokenStorage->setToken(null);
+
+        $this->addFlash('red', 'Votre compte à été clôturer.');
+
+        return $this->redirectToRoute('home');
     }
 
     /**
