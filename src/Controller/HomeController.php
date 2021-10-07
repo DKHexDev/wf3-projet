@@ -24,7 +24,7 @@ class HomeController extends AbstractController
 
         //dump($interval);
         
-        $lastRecipes    = $repository->findBy([], ['createdAt' => 'DESC'], 4);
+        $lastRecipes    = $repository->findBy([], ['createdAt' => 'DESC'], 3);
         $seasonRecipes  = $repository->findBy(['season' => $season], null, 3);
         $eventRecipes  = $repository->findBy(['event' => $event], null, 3);
 
