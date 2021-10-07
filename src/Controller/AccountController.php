@@ -126,6 +126,7 @@ class AccountController extends AbstractController
 
         return $this->render('account/settings.html.twig', [
             'form' => $form->createView(),
+            'user' => $user,
         ]);
     }
 
