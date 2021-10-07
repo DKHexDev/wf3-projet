@@ -1,5 +1,5 @@
 <!-- Navbar -->
-<nav class="text-yellow-500 font-bold text-lg px-4">
+<nav class="text-gray-500 font-bold text-lg px-4">
 
 	<!-- Structure Navbar-->
 	<div class="max-w-full mx-auto flex justify-between">
@@ -9,18 +9,18 @@
 			<!-- Logo -->
 			<div class="p-4">
 
-				<a href="{{ path('home') }}"><img src="{{ asset('assets_img/Mcooking.png') }}" alt="Logo" class ="h-20"></a>
+				<a href="{{ path('home') }}"><img src="{{ asset('assets_img/Mcooking.png') }}" alt="Logo" class ="h-12"></a>
 
 			</div>
 
 			<!-- Link Site -->
 			<div class="hidden md:flex items-center space-x-2">
 
-				<a href="{{ path('home') }}" class="py-4 px-3 hover:text-yellow-200">Accueil</a>
+				<a href="{{ path('home') }}" class="py-4 px-3 hover:text-yellow-600 hover:underline">Accueil</a>
 
-				<a href="{{ path('recipe_list') }}" class="py-4 px-3 hover:text-yellow-200">Recettes</a>
+				<a href="{{ path('recipe_list') }}" class="py-4 px-3 hover:text-yellow-600 hover:underline">Recettes</a>
 
-				<a href="{{ path('contact') }}" class="py-4 px-3 hover:text-yellow-200">Contact</a>
+				<a href="{{ path('contact') }}" class="py-4 px-3 hover:text-yellow-600 hover:underline">Contact</a>
 
 			</div>
 
@@ -30,10 +30,10 @@
 		<div class="hidden md:flex items-center space-x-1">
 
 		{% if app.user %} 
-			<a href="#" class="py-2 px-3 hover:text-yellow-200">{{ app.user.email }}</a>
+			<a href="#" class="py-2 px-3 hover:text-yellow-600">{{ app.user.email }}</a>
 		{% else %}
-			<a href="{{ path('app_login') }}" class="py-2 px-3 hover:text-yellow-200">Se connecter</a>
-			<a href="{{ path('app_register') }}" class="py-2 px-3 border border-yellow-400 bg-gray-800 hover:bg-gray-900 hover:text-yellow-400 transition duration-300 rounded">Inscription</a>
+			<a href="{{ path('app_login') }}" class="py-2 px-3 hover:text-yellow-600">Se connecter</a>
+			<a href="{{ path('app_register') }}" class="py-1 px-2 border-2 border-gray-500 hover:border-yellow-600 hover:text-yellow-600 transition duration-300 rounded">Inscription</a>
 		{% endif %}
 
 		</div>
@@ -48,17 +48,17 @@
 	</div>
 
 	<!-- Mobile Menu -->
-	<div class="mobile-menu absolute max-w-full max-h-full mx-4 hidden w-11/12 md:hidden bg-yellow-500 text-gray-900 rounded-lg">
+	<div class="mobile-menu absolute max-w-full max-h-full mx-4 hidden w-11/12 md:hidden bg-yellow-600 text-gray-900 rounded-lg">
 
-		<a href="{{ path('home') }}" class="block py-2 px-4 text-sm hover:bg-yellow-300">Accueil</a>
+		<a href="{{ path('home') }}" class="block py-2 px-4 text-sm hover:bg-yellow-600">Accueil</a>
 
-		<a href="{{ path('recipe_list') }}" class="block py-2 px-4 text-sm hover:bg-yellow-300">Recettes</a>
+		<a href="{{ path('recipe_list') }}" class="block py-2 px-4 text-sm hover:bg-yellow-600">Recettes</a>
 
-		<a href="#" class="block py-2 px-4 text-sm hover:bg-yellow-300">Contacts</a>
+		<a href="#" class="block py-2 px-4 text-sm hover:bg-yellow-600">Contacts</a>
 
-		<a href="#" class="block py-2 px-4 text-sm hover:bg-yellow-300">Mon Compte</a>
+		<a href="#" class="block py-2 px-4 text-sm hover:bg-yellow-600">Mon Compte</a>
 
-		<a href="#" class="block py-2 px-4 text-sm hover:bg-yellow-300">Inscription</a>
+		<a href="#" class="block py-2 px-4 text-sm hover:bg-yellow-600">Inscription</a>
 
 	</div>
 
