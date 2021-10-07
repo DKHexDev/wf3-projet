@@ -47,9 +47,21 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $favorites;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Recipe::class, mappedBy="createdBy")
+     */
+    private $recipes;
+
+    /**
+     * @ORM\OneToMany(targetEntity=MessageRecipe::class, mappedBy="author", orphanRemoval=true)
+     */
+    private $messageRecipes;
+
     public function __construct()
     {
         $this->favorites = new ArrayCollection();
+        $this->recipes = new ArrayCollection();
+        $this->messageRecipes = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -173,6 +185,66 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function removeFavorite(Recipe $favorite): self
     {
         $this->favorites->removeElement($favorite);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Recipe[]
+     */
+    public function getRecipes(): Collection
+    {
+        return $this->recipes;
+    }
+
+    public function addRecipe(Recipe $recipe): self
+    {
+        if (!$this->recipes->contains($recipe)) {
+            $this->recipes[] = $recipe;
+            $recipe->setCreatedBy($this);
+        }
+
+        return $this;
+    }
+
+    public function removeRecipe(Recipe $recipe): self
+    {
+        if ($this->recipes->removeElement($recipe)) {
+            // set the owning side to null (unless already changed)
+            if ($recipe->getCreatedBy() === $this) {
+                $recipe->setCreatedBy(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|MessageRecipe[]
+     */
+    public function getMessageRecipes(): Collection
+    {
+        return $this->messageRecipes;
+    }
+
+    public function addMessageRecipe(MessageRecipe $messageRecipe): self
+    {
+        if (!$this->messageRecipes->contains($messageRecipe)) {
+            $this->messageRecipes[] = $messageRecipe;
+            $messageRecipe->setAuthor($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMessageRecipe(MessageRecipe $messageRecipe): self
+    {
+        if ($this->messageRecipes->removeElement($messageRecipe)) {
+            // set the owning side to null (unless already changed)
+            if ($messageRecipe->getAuthor() === $this) {
+                $messageRecipe->setAuthor(null);
+            }
+        }
 
         return $this;
     }

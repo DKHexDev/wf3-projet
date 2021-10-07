@@ -4,23 +4,89 @@
 
 {% block body %}
 
-    Titre de la recette : {{ recipe.name }}<br> {# Pour récupérer le titre de la recette #}
-    Description de la recette : {{ recipe.description }}<br> {# Pour récupérer la description de la recette #}
+<div class="container mx-auto mt-10 pt-10 pb-10 border-t-2 border-b-2 border-gray-300">
 
-    Saison de la recette : {{ recipe.season }}<br> {# Pour récupérer la saison de la recette #}
+    <div class="flex flex-row justify-evenly h-96">
 
-    {% if recipe.event %}
-        Évènement de la recette : {{ recipe.name }}<br> {# Pour récupérer le nom de la recette #}
-    {% else %}
-        Il n'y a pas d'évènement pour cette recette.<br>
-    {% endif %}
+        <img class="object-cover h-full w-1/2 rounded-lg" src="{{ recipe.background ? asset('upload/recipes/' ~ recipe.background) : asset('assets_img/default_img.jpg') }}" alt="{{ recipe.name }}">
 
-    Date de création de la recette : {{ recipe.createdAt|date('d-m-Y') }}<br><br> {# Pour récupérer la date de création de la recette #}
+        <div class="h-full w-1/2 flex flex-col p-4 justify-between">
+
+            <div class="w-full h-auto flex flex-col gap-2">
+                <div class="uppercase border-b-2 border-gray-300 w-full font-semibold tracking-wider text-md">Titre</div>
+                <h1 class="text-md">{{ recipe.name }}</h1>
+            </div>
+
+            <div class="w-full h-auto flex flex-col gap-2">
+                <div class="uppercase border-b-2 border-gray-300 w-full font-semibold tracking-wider text-md">Description</div>
+                <h1 class="text-md">{{ recipe.description }}</h1>
+            </div>
+
+            <div class="w-full h-auto flex flex-col gap-2">
+                <div class="uppercase border-b-2 border-gray-300 w-full font-semibold tracking-wider text-md">Saison</div>
+                <h1 class="text-md">{{ recipe.season }}</h1>
+            </div>
+
+            <div class="w-full h-auto flex flex-col gap-2">
+                <div class="uppercase border-b-2 border-gray-300 w-full font-semibold tracking-wider text-md">Évènement</div>
+                <h1 class="text-md">{{ recipe.event }}</h1>
+            </div>
+
+        </div>
+
+    </div>
+    
+    <div class="flex flex-row gap-5 h-16 mt-5">
+
+        <div class="rounded-lg w-1/3 h-full bg-gray-500 pt-4 pb-4 flex flex-row justify-center">
+            <div class="flex flex-row gap-2 h-full w-1/2 justify-center items-center">
+                <img class="object-cover rounded-full h-full" src="{{ asset('/assets_img/avatar_default.png') }}" alt="Avatar de {{ recipe.createdBy.pseudo }}">
+                <h1 class="text-lg text-white uppercase font-semibold tracking-wider">Publié par {{ recipe.createdBy.pseudo }}</h1>
+            </div>
+        </div>
+
+        <div class="rounded-lg w-1/3 h-full bg-gray-500 pt-4 pb-4 flex flex-row justify-center">
+            <div class="flex flex-row gap-2 h-full w-1/2 justify-center items-center">
+                <i class="fas fa-calendar-alt text-white text-lg"></i>
+                <h1 class="text-lg text-white uppercase font-semibold tracking-wider">Publié le {{ recipe.createdAt|date('d-m-Y') }}</h1>
+            </div>
+        </div>
+
+        <a href="#" class="rounded-lg w-1/3 h-full bg-gray-500 pt-4 pb-4 flex flex-row justify-center">
+            <div class="flex flex-row gap-2 h-full w-1/2 justify-center items-center">
+                <i class="fas fa-star text-white text-lg"></i>
+                <h1 class="text-lg text-white uppercase font-semibold tracking-wider">Ajouter aux favoris</h1>
+            </div>
+        </a>
+
+    </div>
 
 
+    Ingrédients : <br>
     {% for tag in recipe.tags %} {# Pour récupérer les ingrédients de la recette #}
         {{ tag }}<br>
     {% endfor %}
+
+    <hr>
+
+    {% for message in recipe.messages %}
+        <div class="bg-gray-300 text-white">
+            <span>{{ message.author.pseudo }}</span>
+            <p>{{ message.message }}</p>
+        </div> 
+    {% endfor %}
+
+    <hr>
+
+    {% if app.user %}    
+        {{ form_start(form) }}
+            {{ form_widget(form) }}
+
+            <button type="submit" class="bg-green-500 hover:bg-green-700 text-white font-bold rounded focus:outline-none focus:shadow-outline py-3 px-6 w-full" formnovalidate>Envoyer le message</button>
+        {{ form_end(form) }}
+    {% endif %}
+
+</div>
 
 {% endblock %}
 
