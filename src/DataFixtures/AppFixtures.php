@@ -17,6 +17,14 @@ class AppFixtures extends Fixture
         $recipes = [];
         $tagsArray = [];
 
+
+        $user = new User();
+        $user->setEmail("john.doe@doe.com");
+        $user->setPseudo('Johnny');
+        $user->setRoles(["ROLE_ADMIN"]);
+        $user->setPassword('$2y$13$hXnyavUYmiknXaBQjuYKTekUuW.1tbrQ7/E1.zgBCPUu8I3TsBe4G'); // Mdp : password
+        $user->setAvatar("avatar_default.png");
+
         for($i =0; $i< 5; $i++){
 
             $tags = new Tag();
@@ -78,17 +86,13 @@ class AppFixtures extends Fixture
             $recipe->addTag($tagsArray[array_rand($tagsArray)]);
             //$recipe->addTag($tagsArray[array_rand($tagsArray)]);
             //$recipe->addTag($tagsArray[array_rand($tagsArray)]);
+          
+            $recipe->setCreatedBy($user);
 
             array_push($recipes, $recipe);
 
             $manager->persist($recipe);
         }
-
-        $user = new User();
-        $user->setEmail("john.doe@doe.com");
-        $user->setPseudo('Johnny');
-        $user->setRoles(["ROLE_ADMIN"]);
-        $user->setPassword('$2y$13$hXnyavUYmiknXaBQjuYKTekUuW.1tbrQ7/E1.zgBCPUu8I3TsBe4G'); // Mdp : password
 
         for($i = 0; $i < 10; $i++)
         {

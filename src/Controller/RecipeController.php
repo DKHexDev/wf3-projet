@@ -2,7 +2,9 @@
 
 namespace App\Controller;
 
+use App\Entity\MessageRecipe;
 use App\Entity\Recipe;
+use App\Form\MessageRecipeType;
 use App\Form\RecipeType;
 use App\Repository\RecipeRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -36,9 +38,6 @@ class RecipeController extends AbstractController
     {
         // Autorisation pour aller sur la page.
         $this->denyAccessUnlessGranted('ROLE_ADMIN');
-        
-        /** @var User $user */
-        $user = $this->getUser();
 
         $recipe = new Recipe();
 
@@ -56,7 +55,7 @@ class RecipeController extends AbstractController
             // Définition de la date de création.
             $recipe->setCreatedAt(new \DateTimeImmutable());
             
-            $recipe->setCreatedBy($user->getPseudo());
+            $recipe->setCreatedBy($this->getUser());
         
             $manager = $this->getDoctrine()->getManager();
             $manager->persist($recipe);
@@ -133,16 +132,41 @@ class RecipeController extends AbstractController
     /**
      * @Route("/recipe/{slug}", name="recipe_show")
      */
-    public function show(Recipe $recipe)
+    public function show(Recipe $recipe, Request $request)
     {
         // Si la recette n'est pas trouvée, on redirige vers la 404.
         if (!$recipe) {
             throw $this->createNotFoundException('Cette recette n\'existe pas');
         }
 
+        $messageRecipe = new MessageRecipe();
+        
+        $form = $this->createForm(MessageRecipeType::class, $messageRecipe);
+        $form->handleRequest($request);
+        
+        // Vérification si le formulaire est soumis et valide
+        if($form->isSubmitted() && $form->isValid())
+        {
+            if (!$this->getUser())
+            {
+                $this->addFlash('red', 'Un problème est survenue lors de l\'envoi de votre message, veuillez vous connecter.');
+                return $this->redirectToRoute('app_login');
+            }
+
+            $messageRecipe->setAuthor($this->getUser());
+            $messageRecipe->addRecipe($recipe);
+
+            $manager = $this->getDoctrine()->getManager();
+            $manager->persist($messageRecipe);
+            $manager->flush();
+        
+            $this->addFlash('green', 'Le message a bien été envoyé.');
+        }
+
         // Retourne la vue.
         return $this->render('recipe/show.html.twig', [
             'recipe' => $recipe,
+            'form' => $form->createView(),
         ]);
     }
 
