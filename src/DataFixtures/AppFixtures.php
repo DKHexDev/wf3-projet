@@ -76,8 +76,8 @@ class AppFixtures extends Fixture
             // Ajouter entre 2 et 10 ingrédients à une recette
 
             $recipe->addTag($tagsArray[array_rand($tagsArray)]);
-            $recipe->addTag($tagsArray[array_rand($tagsArray)]);
-            $recipe->addTag($tagsArray[array_rand($tagsArray)]);
+            //$recipe->addTag($tagsArray[array_rand($tagsArray)]);
+            //$recipe->addTag($tagsArray[array_rand($tagsArray)]);
 
             array_push($recipes, $recipe);
 
