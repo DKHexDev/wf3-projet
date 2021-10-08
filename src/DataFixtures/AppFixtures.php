@@ -86,7 +86,7 @@ class AppFixtures extends Fixture
             $recipe->addTag($tagsArray[array_rand($tagsArray)]);
             //$recipe->addTag($tagsArray[array_rand($tagsArray)]);
             //$recipe->addTag($tagsArray[array_rand($tagsArray)]);
-
+          
             $recipe->setCreatedBy($user);
 
             array_push($recipes, $recipe);
