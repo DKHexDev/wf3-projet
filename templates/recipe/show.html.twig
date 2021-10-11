@@ -140,7 +140,7 @@
 
 {# MODAL POPUP } #}
 {% for message in recipe.messages %}
-<div class="scale-in-center hidden overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none justify-center items-center" id="{{ message.id }}">
+<div class="scale-in-center hidden overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none justify-center items-center" id="modal{{ message.id }}">
 	<div
 		class="relative w-auto my-6 mx-auto max-w-3xl">
 		<!--content-->
@@ -151,7 +151,7 @@
 				<h3 class="text-2xl font-semibold">
 					Les utilisateurs qui ont aimé le message de {{ message.author.pseudo }}
 				</h3>
-				<button class="p-1 ml-auto bg-transparent border-0 text-black opacity-5 float-right text-3xl leading-none font-semibold outline-none focus:outline-none" onclick="toggleModal('{{ message.id }}')">
+				<button class="btnModal p-1 ml-auto bg-transparent border-0 text-black opacity-5 float-right text-3xl leading-none font-semibold outline-none focus:outline-none" data-message="modal{{ message.id }}">
 					<span class="bg-transparent text-black opacity-5 h-6 w-6 text-2xl block outline-none focus:outline-none">
 						×
 					</span>
@@ -168,7 +168,7 @@
 			</div>
 			<!--footer-->
 			<div class="flex items-center justify-end p-6 border-t border-solid border-blueGray-200 rounded-b">
-				<button class="text-yellow-600 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button" onclick="toggleModal('{{ message.id }}')">
+				<button class="btnModal text-yellow-600 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button" data-message="{{ message.id }}">
 					Fermer
 				</button>
 			</div>

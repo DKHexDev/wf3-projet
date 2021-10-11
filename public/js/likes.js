@@ -33,8 +33,8 @@ $('.liked').click(function (){
             {
                 ThumbLike.removeClass("far");
                 ThumbLike.addClass("fas");
-                ListAllUserModal = $(`div#alluser`).html()
-                $(`div#alluser`).html(`
+                ListAllUserModal = $(`#modal${response.messageID}`).find(`#alluser`).html();
+                $(`#modal${response.messageID}`).find(`#alluser`).html(`
                     ${ListAllUserModal}
 
                     <div id="user${response.userPseudo}" class="flex flex-row gap-2 border border-gray-300 shadow-lg items-center w-full p-4">
@@ -76,7 +76,7 @@ $('.liked').click(function (){
             {
                 ThumbLike.removeClass("fas");
                 ThumbLike.addClass("far");
-                $(`#${response.messageID}`).find(`div#user${response.userPseudo}`).remove();
+                $(`#modal${response.messageID}`).find(`div#user${response.userPseudo}`).remove();
             }
     
             setTimeout(() => {
