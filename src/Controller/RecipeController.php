@@ -156,6 +156,7 @@ class RecipeController extends AbstractController
 
             $messageRecipe->setAuthor($this->getUser());
             $messageRecipe->addRecipe($recipe);
+            $messageRecipe->setCreatedAt(new \DateTimeImmutable());
 
             $manager = $this->getDoctrine()->getManager();
             $manager->persist($messageRecipe);

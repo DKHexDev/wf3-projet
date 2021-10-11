@@ -43,6 +43,11 @@ class MessageRecipe
      */
     private $likes;
 
+    /**
+     * @ORM\Column(type="datetime_immutable")
+     */
+    private $createdAt;
+
     public function __construct()
     {
         $this->recipe = new ArrayCollection();
@@ -125,6 +130,18 @@ class MessageRecipe
     public function removeLike(User $like): self
     {
         $this->likes->removeElement($like);
+
+        return $this;
+    }
+
+    public function getCreatedAt(): ?\DateTimeImmutable
+    {
+        return $this->createdAt;
+    }
+
+    public function setCreatedAt(\DateTimeImmutable $createdAt): self
+    {
+        $this->createdAt = $createdAt;
 
         return $this;
     }
