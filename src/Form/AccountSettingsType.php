@@ -12,6 +12,7 @@ use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Security\Core\Validator\Constraints\UserPassword;
+use Vich\UploaderBundle\Form\Type\VichImageType;
 
 class AccountSettingsType extends AbstractType
 {
@@ -73,6 +74,13 @@ class AccountSettingsType extends AbstractType
                         'max' => 4096,
                     ]),
                 ],
+            ])
+            // Avatar.
+            ->add('imageFile', VichImageType::class, [
+                'label' => 'Avatar',
+                'attr' => [
+                    'placeholder' => 'Avatar'
+                ]
             ])
         ;
     }
