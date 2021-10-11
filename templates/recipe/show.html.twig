@@ -73,7 +73,19 @@
 
             <div class="flex flex-row border border-gray-300 shadow-lg px-4 py-2 h-auto">
 
-                    <img class="object-cover rounded-full h-12 self-start" src="{{ asset('/upload/users/' ~ message.author.avatar ) }}" alt="Avatar de {{ message.author.pseudo }}">
+                    <div class="flex flex-col gap-2">
+                        <img class="object-cover rounded-full h-12 self-start" src="{{ asset('/upload/users/' ~ message.author.avatar ) }}" alt="Avatar de {{ message.author.pseudo }}">
+                        
+                        {% set statusLiked = "far" %}
+                        {% if app.user %}
+                            {% for userLiked in message.likes %}
+                                {% if app.user.id == userLiked.id %}
+                                    {% set statusLiked = "fas" %}
+                                {% endif %}
+                            {% endfor %}
+                        {% endif %}
+                        <span class="flex flex-row items-center justify-center gap-1 text-yellow-600"><i data-message="{{ message.id }}" class="{{ statusLiked }} fa-thumbs-up cursor-pointer liked"></i> <button class="btnModal scale-in-center" data-message="{{ message.id }}">{{ message.likes|length }}</button></span>
+                    </div>
 
                     <div class="w-full flex flex-col flex-wrap overflow-ellipsis overflow-hidden self-center">
 
@@ -83,7 +95,7 @@
 
                         <p class="flex flex-wrap px-3 max-w-full h-auto overflow-ellipsis overflow-hidden mb-2 mt-2">
                             {{ message.message }}
-                        </p>
+                        </p>       
                         
                     </div>
             </div>
@@ -125,6 +137,48 @@
     {% endif %}
 
 </div>
+
+{# MODAL POPUP } #}
+{% for message in recipe.messages %}
+<div class="scale-in-center hidden overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none justify-center items-center" id="{{ message.id }}">
+	<div
+		class="relative w-auto my-6 mx-auto max-w-3xl">
+		<!--content-->
+		<div
+			class="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
+			<!--header-->
+			<div class="flex items-start justify-between p-5 border-b border-solid border-blueGray-200 rounded-t">
+				<h3 class="text-2xl font-semibold">
+					Les utilisateurs qui ont aimé le message de {{ message.author.pseudo }}
+				</h3>
+				<button class="p-1 ml-auto bg-transparent border-0 text-black opacity-5 float-right text-3xl leading-none font-semibold outline-none focus:outline-none" onclick="toggleModal('{{ message.id }}')">
+					<span class="bg-transparent text-black opacity-5 h-6 w-6 text-2xl block outline-none focus:outline-none">
+						×
+					</span>
+				</button>
+			</div>
+			<!--body-->
+			<div id="alluser" class="relative p-6 flex-auto flex flex-col gap-4">
+                {% for like in message.likes %}    
+				<div id="user{{ like.pseudo }}" class="flex flex-row gap-2 border border-gray-300 shadow-lg items-center w-full p-4">
+                    <img class="object-cover rounded-full h-12 self-start" src="{{ asset('/upload/users/' ~ like.avatar ) }}" alt="Avatar de {{ like.pseudo }}">
+                    <span class="text-2xl">{{ like.pseudo }} a aimé</span>
+                </div>
+                {% endfor %}
+			</div>
+			<!--footer-->
+			<div class="flex items-center justify-end p-6 border-t border-solid border-blueGray-200 rounded-b">
+				<button class="text-yellow-600 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button" onclick="toggleModal('{{ message.id }}')">
+					Fermer
+				</button>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="hidden opacity-25 fixed inset-0 z-40 bg-black" id="{{ message.id }}-backdrop"></div>   
+{% endfor %}
+
+
 {% endblock %}
 
 
