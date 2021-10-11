@@ -23,6 +23,13 @@ class AppFixtures extends Fixture
             'Carottes', 'Patates', 'Poulet', 'Oignons', 'Pain', 'Saucisse', 'Pâtes feuillettée'
         ];
 
+        $user = new User();
+        $user->setEmail("john.doe@doe.com");
+        $user->setPseudo('Johnny');
+        $user->setRoles(["ROLE_ADMIN"]);
+        $user->setPassword('$2y$13$hXnyavUYmiknXaBQjuYKTekUuW.1tbrQ7/E1.zgBCPUu8I3TsBe4G'); // Mdp : password
+        $user->setAvatar("avatar_default.png");
+
         foreach($tagCollection as $tag){
 
             $tags = new Tag();
@@ -37,7 +44,6 @@ class AppFixtures extends Fixture
         for ($i = 0; $i < 100; $i++)
         {
 
-            $user = new User();
             $seasons = [
                 'spring',
                 'summer',

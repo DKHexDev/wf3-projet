@@ -58,7 +58,7 @@ class ApiController extends AbstractController
 
                 foreach($cultures as $culture){
 
-                    $newRecipeByCulture = $repository->findBy(['culture' => $culture], 'culture');
+                    $newRecipeByCulture = $repository->findBy(['culture' => $culture]);
                     $recipeByCulture = array_merge($recipeByCulture, $newRecipeByCulture);
                 }
             }
