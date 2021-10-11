@@ -1,6 +1,6 @@
 const generateButton = document.querySelector('#generate');
 const menu = document.querySelector('#menu');
-
+const liste = document.querySelector('#divListe');
 
 generateButton.addEventListener('click', generateList);
 
@@ -13,12 +13,25 @@ function generateList(){
         
         id.push(element.id);
     });
-
+    
+    sendAjax(id);
 }
 
-function sendAjax(){
+function sendAjax(id){
 
-    let request = new XMLHttpRequest();
-    request.open('POST', '/api/recipe/list', true);
-    request.setRequestHeader('Content-Type', 'application/x')
+    let obj = {"id" : id};
+
+    $.ajax({
+        type:'POST',
+        url: 'http://localhost:8000/api/recipes/list',
+        data: obj
+    })
+    .then(function(response){
+        $('#liste').html(' ');
+        liste.classList.remove('hidden');
+        response.forEach(ingredient => {
+
+            $('#liste').append('<li>' + ingredient.name + '</li>');
+        });
+    });
 }

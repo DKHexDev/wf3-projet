@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Entity\Recipe;
 use App\Repository\RecipeRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -14,10 +15,9 @@ class ApiController extends AbstractController
      * @Route("/api/recipes", name="api_recipe_list")
      * 
      */
-    public function index(Request $request, RecipeRepository $repository): Response
-    {
+    public function index(Request $request, RecipeRepository $repository): Response{
 
-        $seasons  = $request->get('season', []) ;
+        $seasons  = $request->get('season', []);
         $events   = $request->get('event', []);
         $cultures = $request->get('culture', []);
         $types    = $request->get('type',[]);
@@ -58,7 +58,7 @@ class ApiController extends AbstractController
 
                 foreach($cultures as $culture){
 
-                    $newRecipeByCulture = $repository->findLatestBy(['culture' => $culture], 'culture');
+                    $newRecipeByCulture = $repository->findBy(['culture' => $culture], 'culture');
                     $recipeByCulture = array_merge($recipeByCulture, $newRecipeByCulture);
                 }
             }
@@ -77,5 +77,33 @@ class ApiController extends AbstractController
             return $this->json($recipes, 200, [], ['groups' => ['public_json']]);
         }
 
+    }
+
+    /**
+     * @Route("/api/recipes/list", name="api_recipes_courseslist")
+     * 
+     */
+    public function generate(Request $request, RecipeRepository $repository) : Response{
+
+        $idList = $request->get('id', []);
+
+        $ingredientList = [];
+
+        foreach($idList as $id){
+
+            $recipe = $repository->findBy(['id' => $id]);
+            $ingredientCollection =  $recipe[0]->getTags();
+            $ingredients = $ingredientCollection->getValues();
+
+            foreach($ingredients as $ingredient){
+
+                if(!in_array($ingredient, $ingredientList)){
+
+                    array_push($ingredientList, $ingredient);
+                }
+            }
+        }
+
+        return $this->json($ingredientList, 200, [], ['groups' => 'public_json']);
     }
 }

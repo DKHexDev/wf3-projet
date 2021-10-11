@@ -55,8 +55,6 @@ class RecipeController extends AbstractController
 
             // Définition de la date de création.
             $recipe->setCreatedAt(new \DateTimeImmutable());
-            
-            $recipe->setCreatedBy($user->getPseudo());
         
             $manager = $this->getDoctrine()->getManager();
             $manager->persist($recipe);
