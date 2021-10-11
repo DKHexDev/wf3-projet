@@ -32,8 +32,28 @@ $(document).ready(function() {
 
 // Popup de confirmation
 function toggleModal(modalID){
-    document.getElementById(modalID).classList.toggle("hidden");
-    document.getElementById(modalID + "-backdrop").classList.toggle("hidden");
-    document.getElementById(modalID).classList.toggle("flex");
-    document.getElementById(modalID + "-backdrop").classList.toggle("flex");
+
+    $(`#${modalID}`).toggleClass("hidden");
+    $(`#${modalID}-backdrop`).toggleClass("hidden");
+    $(`#${modalID}`).toggleClass("flex");
+    $(`#${modalID}-backdrop`).toggleClass("flex");
 }
+
+$('.btnModal').click(function (){
+
+    btnModal = $(this);
+    
+    if (btnModal.attr('data-modal'))
+    {
+        modalID = btnModal.attr('data-modal');
+    }
+    else if (btnModal.attr('data-message'))
+    {
+        modalID = btnModal.attr('data-message');
+    }
+
+    $(`#modal${modalID}`).toggleClass("hidden");
+    $(`#${modalID}-backdrop`).toggleClass("hidden");
+    $(`#modal${modalID}`).toggleClass("flex");
+    $(`#${modalID}-backdrop`).toggleClass("flex");
+});
