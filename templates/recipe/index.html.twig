@@ -10,120 +10,71 @@
 
 		<form class="flex flex-col border-2 bg-gray-200 border-gray-400 rounded shadow-lg rounded-lg w-3/12 p-6 m-4 text-center" id="filtres">
 
-			<h2 class="uppercase md:text-xl text-gray-600 font-bold my-6">saisons</h2>
+			<h2 class="uppercase text-sm md:text-xl text-gray-600 font-bold my-6">saisons</h2>
 
-			<div class="grid grid-cols-2 md:gap-2 items-center text-sm md:text-base">
+			<!--Seasons-->
 
-					<label for="autumn">
-						Automne
-					</label>
-					<input id="autumn" name="season[]" value="autumn" type="checkbox" class="m-6 md:m-4 check">
+			<div class="grid grid-cols-2 gap-4 md:gap-8 items-center text-xs md:text-base">
 
-					<label for="winter">
-						Hiver
-					</label>
-					<input id="winter" name="season[]" value="winter" type="checkbox" class=" m-6 md:m-4 check">
+				<button id="autumn" name="season[]" value="autumn" class="check bg-gray-300 border-b-2 border-r-2 border-gray-400 shadow rounded-lg text-2xl md:text-3xl" title="Automne">&#127809;</button>
 
-					<label for="spring">
-						Printemps
-					</label>
-					<input id="spring" name="season[]" value="spring" type="checkbox" class="m-6 md:m-4 check">
+				<button id="winter" name="season[]" value="winter" class="check bg-gray-300 border-b-2 border-r-2 border-gray-400 shadow rounded-lg text-2xl md:text-3xl" title="Hiver">&#9924;</button>
 
-					<label for="summer">
-						Eté
-					</label>
-					<input id="summer" name="season[]" value="summer" type="checkbox" class="m-6 md:m-4 check">
+				<button id="spring" name="season[]" value="spring" class="check bg-gray-300 border-b-2 border-r-2 border-gray-400 shadow rounded-lg text-2xl md:text-3xl" title="Printemps">&#127793;</button>
+
+				<button id="summer" name="season[]" value="summer" class="check bg-gray-300 border-b-2 border-r-2 border-gray-400 shadow rounded-lg text-2xl md:text-3xl" title="Été">&#127958;</button>
 
 			</div>
 
 			<!-- Events -->
 
-			<h2 class="uppercase text-l md:text-xl text-gray-600 font-bold my-6">célébrations</h2>
+			<h2 class="uppercase text-sm md:text-xl text-gray-600 font-bold my-6">célébrations</h2>
 
-			<div class="grid grid-cols-2 md:gap-2 items-center text-sm md:text-base">
+			<div class="grid grid-cols-2 gap-4 md:gap-8 items-center text-xs md:text-base">
 
-				<label for="christmas">
-					Fin d'année
-				</label>
-				<input id="christmas" name="event[]" value="christmas" type="checkbox" class="m-6 md:m-4 check">
+				<button id="christmas" name="event[]" value="christmas" class="check bg-gray-300 border-b-2 border-r-2 border-gray-400 shadow rounded-lg text-2xl md:text-3xl" title="Fête de fin d'année">&#127876;</button>
 
-				<label for="easter">
-					Pâques
-				</label>
-				<input id="easter" name="event[]" value="easter" type="checkbox" class="m-6 md:m-4 check">
+				<button id="easter" name="event[]" value="easter" class="check bg-gray-300 border-b-2 border-r-2 border-gray-400 shadow rounded-lg text-2xl md:text-3xl" title="Pâques">&#127851;</button>
 
-				<label for="halloween">
-					Halloween
-				</label>
-				<input id="halloween" name="event[]" value="halloween" type="checkbox" class="m-6 md:m-4 check">
+				<button id="halloween" name="event[]" value="halloween" class="check bg-gray-300 border-b-2 border-r-2 border-gray-400 shadow rounded-lg text-2xl md:text-3xl" title="Halloween">&#127875;</button>
 
-				<label for="bday">
-					Anniversaire
-				</label>
-				<input id="bday" name="event[]" value="bday" type="checkbox" class="m-6 md:m-4 check">
+				<button id="bday" name="event[]" value="bday" class="check bg-gray-300 border-b-2 border-r-2 border-gray-400 shadow rounded-lg text-2xl md:text-3xl" title="Anniversaire">&#127874;</button>
 
-				<label for="valentineday">
-					Saint-Valentin
-				</label>
-				<input id="valentineday" name="event[]" value="valentineday" type="checkbox" class="m-6 md:m-4 check">
+				<button id="valentineday" name="event[]" value="valentineday" class="check bg-gray-300 border-b-2 border-r-2 border-gray-400 shadow rounded-lg text-2xl md:text-3xl" title="Saint-Valentin">&#128140;</button>
+
 			</div>
 
 			<!-- Cultures -->
 
-			<h2 class="uppercase text-l md:text-xl text-gray-600 font-bold my-6">pays</h2>
-			<div class="grid grid-cols-2 gap-2 items-center text-sm md:text-base">
+			<h2 class="uppercase text-sm md:text-xl text-gray-600 font-bold my-6">pays</h2>
 
-				<label for="african">
-					Africain
-				</label>
-				<input id="african" name="culture[]" value="african" type="checkbox" class="m-6 md:m-4 check">
+			<div class="grid grid-cols-2 gap-4 md:gap-8 items-center text-xs md:text-base">
 
-				<label for="american">
-					Américain
-				</label>
-				<input id="american" name="culture[]" value="american" type="checkbox" class="m-6 md:m-4 check">
+				<button  id="african" name="culture[]" value="african" class="check bg-gray-300 border-b-2 border-r-2 border-gray-400 shadow rounded-lg text-2xl md:text-3xl" title="Cameroun">🇨🇲</button>
 
-				<label for="asia">
-					Asiatique
-				</label>
-				<input id="asia" name="culture[]" value="asia" type="checkbox" class="m-6 md:m-4 check">
+				<button id="american" name="culture[]" value="american" class="check bg-gray-300 border-b-2 border-r-2 border-gray-400 shadow rounded-lg text-2xl md:text-3xl" title="États-Unis">🇺🇸</button>
 
-				<label for="france">
-					Français
-				</label>
-				<input id="france" name="culture[]" value="france" type="checkbox" class="m-6 md:m-4 check">
+				<button id="asia" name="culture[]" value="asia" class="check bg-gray-300 border-b-2 border-r-2 border-gray-400 shadow rounded-lg text-2xl md:text-3xl" title="Japon">🇯🇵</button>
 
-				<label for="italian">
-					Italien
-				</label>
-				<input id="italian" name="culture[]" value="italian" type="checkbox" class="m-6 md:m-4 check">
+				<button id="france" name="culture[]" value="france" class="check bg-gray-300 border-b-2 border-r-2 border-gray-400 shadow rounded-lg text-2xl md:text-3xl" title="France">🇫🇷</button>
 
-				<label for="mexican">
-					Mexicain
-				</label>
-				<input id="mexican" name="culture[]" value="mexican" type="checkbox" class="m-6 md:m-4 check">
+				<button id="italian" name="culture[]" value="italian" class="check bg-gray-300 border-b-2 border-r-2 border-gray-400 shadow rounded-lg text-2xl md:text-3xl" title="Italie">🇮🇹</button>
+
+				<button id="mexican" name="culture[]" value="mexican" class="check bg-gray-300 border-b-2 border-r-2 border-gray-400 shadow rounded-lg text-2xl md:text-3xl" title="Mexique">🇲🇽</button>
 
 			</div>
 
 			<!-- Type -->
 
-			<h2 class="uppercase text-l md:text-xl text-gray-600 font-bold my-6">Menu</h2>
-			<div class="grid grid-cols-2 gap-2 items-center text-sm md:text-base">
+			<h2 class="uppercase text-sm md:text-xl text-gray-600 font-bold my-6">Menu</h2>
 
-				<label for="starter">
-					Entrée
-				</label>
-				<input id="starter" name="type[]" value="starter" type="checkbox" class="m-6 md:m-4 check">
+			<div class="grid grid-cols-2 gap-4 md:gap-8 items-center text-xs md:text-base">
 
-				<label for="dish">
-					Plat
-				</label>
-				<input id="dish" name="type[]" value="dish" type="checkbox" class="m-6 md:m-4 check">
+				<button  id="starter" name="type[]" value="starter" class="check bg-gray-300 border-b-2 border-r-2 border-gray-400 shadow rounded-lg text-2xl md:text-3xl" title="Entrée">🥗</button>
 
-				<label for="dessert">
-					Dessert
-				</label>
-				<input id="dessert" name="type[]" value="dessert" type="checkbox" class="m-6 md:m-4 check">
+				<button id="dish" name="type[]" value="dish" class="check bg-gray-300 border-b-2 border-r-2 border-gray-400 shadow rounded-lg text-2xl md:text-3xl" title="Plat">🍲</button>
+
+				<button id="dessert" name="type[]" value="dessert" class="check bg-gray-300 border-b-2 border-r-2 border-gray-400 shadow rounded-lg text-2xl md:text-3xl" title="Desser">🥞</button>
 
 			</div>
 
@@ -137,7 +88,7 @@
 
 						<div id={{ recipe.id }} class="m-2 myDraggableElement object" draggable='true'>
 
-							<li class="flex flex-col border-2 border-gray-400 rounded shadow-lg rounded-lg text-center h-full p-4 m-2 recipe">
+							<li class="flex flex-col border-2 border-gray-400 rounded shadow-lg rounded-lg text-center h-full p-4 m-2 text-sm recipe">
 								{{ recipe.name }}
 								{{recipe.tags[0]}}
 							</li>
@@ -148,24 +99,24 @@
 					<ul>
 
 						{# {% for recipe in recipes %}
-						    <div class="flex flex-row">
-						    Recette {{ recipe.name }}
-						    {% set statusFav = "far" %}
-						    {% if app.user %}
-						    {% for favorite in app.user.favorites %}
-						    {% if recipe.id == favorite.id %}
-						    {% set statusFav = "fas" %}
-						    {% endif %}
-						    {% endfor %}
-						    {% endif %}
-						    <span class="fav"><i data-recipe="{{ recipe.id }}" class="{{ statusFav }} fa-star"></i></span>
-						    </div><br>>
-						    {% endfor %} #}
+												    <div class="flex flex-row">
+												    Recette {{ recipe.name }}
+												    {% set statusFav = "far" %}
+												    {% if app.user %}
+												    {% for favorite in app.user.favorites %}
+												    {% if recipe.id == favorite.id %}
+												    {% set statusFav = "fas" %}
+												    {% endif %}
+												    {% endfor %}
+												    {% endif %}
+												    <span class="fav"><i data-recipe="{{ recipe.id }}" class="{{ statusFav }} fa-star"></i></span>
+												    </div><br>>
+												    {% endfor %} #}
 
 						<ul></div>
 
 						<div class="flex dropzone rounded-lg zone border-2 bg-gray-200 border-gray-400 rounded shadow-lg rounded-lg w-100 h-36 p-6 m-4" id="menu">
-							<h2 class="uppercase text-l md:text-xl text-gray-600 font-bold my-6">
+							<h2 class="uppercase text-sm md:text-xl text-gray-600 font-bold my-6">
 								Votre Séléction
 							</h2>
 						</div>
