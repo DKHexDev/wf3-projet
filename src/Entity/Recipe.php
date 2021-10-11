@@ -100,12 +100,24 @@ class Recipe
      */
     private $type;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="recipes")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $createdBy;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=MessageRecipe::class, inversedBy="recipe")
+     */
+    private $messages;
+
     
     /** @var User $user */
     public function __construct()
     {
         $this->tags = new ArrayCollection();
         $this->users = new ArrayCollection();
+        $this->messages = new ArrayCollection();
     }
 
 
@@ -262,6 +274,42 @@ class Recipe
     public function setType(string $type): self
     {
         $this->type = $type;
+
+        return $this;
+    }
+
+    public function getCreatedBy(): ?User
+    {
+        return $this->createdBy;
+    }
+
+    public function setCreatedBy(?User $createdBy): self
+    {
+        $this->createdBy = $createdBy;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|MessageRecipe[]
+     */
+    public function getMessages(): Collection
+    {
+        return $this->messages;
+    }
+
+    public function addMessage(MessageRecipe $message): self
+    {
+        if (!$this->messages->contains($message)) {
+            $this->messages[] = $message;
+        }
+
+        return $this;
+    }
+
+    public function removeMessage(MessageRecipe $message): self
+    {
+        $this->messages->removeElement($message);
 
         return $this;
     }

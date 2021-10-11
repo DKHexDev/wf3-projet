@@ -4,13 +4,13 @@
 
 {% block body %}
 
-<section class="container m-2 h-screen mx-auto bg-yellow-300 border-2 border-yellow-500 rounded-lg flex flex-row">
+<section class="container m-2 h-screen mx-auto border-2 border-gray-400 shadow-lg rounded-lg flex flex-row">
 
-    <nav class="w-1/6 h-auto border-r-2 border-yellow-500 text-lg pt-2 pb-2">
+    <nav class="w-1/6 h-auto border-r-2 bg-gray-300 border-gray-400 text-lg pt-2 pb-2">
         <ul class="flex flex-col gap-2 pl-1 h-full">
-            <li class="bg-gray-600 rounded-l-3xl p-2 pl-4 text-yellow-400 uppercase font-mono hover:bg-gray-800 font-bold tracking-wider"><a href="{{ path('account') }}" class="w-full h-full"><i class="fas fa-user w-4 h-4 mr-3"></i>Compte</a></li>
-            <li class="bg-gray-600 rounded-l-3xl p-2 pl-4 text-yellow-400 uppercase font-mono hover:bg-gray-800 font-bold tracking-wider"><a href="{{ path('account_settings') }}"><i class="fas fa-user-cog w-4 h-4 mr-3"></i>Paramètres</a></li>
-            <li class="bg-gray-600 rounded-l-3xl p-2 pl-4 text-yellow-400 uppercase font-mono hover:bg-gray-800 font-bold tracking-wider"><a href="{{ path('account_favorites') }}"><i class="fas fa-user-check w-4 h-4 mr-3"></i>Favoris</a></li>
+            <li class="bg-gray-500 rounded-l-3xl p-2 pl-4 text-yellow-400 uppercase font-mono hover:bg-gray-800 font-bold tracking-wider"><a href="{{ path('account') }}" class="w-full h-full"><i class="fas fa-user w-4 h-4 mr-3"></i>Compte</a></li>
+            <li class="bg-gray-500 rounded-l-3xl p-2 pl-4 text-yellow-400 uppercase font-mono hover:bg-gray-800 font-bold tracking-wider"><a href="{{ path('account_settings') }}"><i class="fas fa-user-cog w-4 h-4 mr-3"></i>Paramètres</a></li>
+            <li class="bg-gray-500 rounded-l-3xl p-2 pl-4 text-yellow-400 uppercase font-mono hover:bg-gray-800 font-bold tracking-wider"><a href="{{ path('account_favorites') }}"><i class="fas fa-user-check w-4 h-4 mr-3"></i>Favoris</a></li>
         </ul>
     </nav>
 
@@ -27,17 +27,17 @@
             }) }}
 
             {# <button type="submit" class="btn btn-lg btn-primary py-2 px-6 bg-blue-700 hover:bg-blue-900 border-2 border-blue-900 hover:border-gray-800 text-white font-bold rounded focus:outline-none focus:shadow-outline w-full" formnovalidate>Modifier les informations</button> #}
-            <button type="submit" class="bg-green-500 text-white hover:bg-green-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button" onclick="toggleModal('modal-id')">
+            <button formnovalidate type="submit" class="bg-green-500 text-white hover:bg-green-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button" onclick="toggleModal('modal-id')">
                 Modifier mes informations
             </button>
         {{ form_end(form) }}
 
-        <button class="bg-red-500 text-white hover:bg-red-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button" onclick="toggleModal('modal-id')">
+        <button class="bg-red-500 text-white hover:bg-red-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button" onclick="toggleModal('1')">
             Clôturer mon compte
         </button>
 
         {# MODAL POPUP #}
-        <div class="hidden overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none justify-center items-center" id="modal-id">
+        <div class="hidden overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none justify-center items-center" id="1">
             <div
                 class="relative w-auto my-6 mx-auto max-w-3xl">
                 <!--content-->
@@ -48,7 +48,7 @@
                         <h3 class="text-2xl font-semibold">
                             Confirmez la fermeture de votre compte
                         </h3>
-                        <button class="p-1 ml-auto bg-transparent border-0 text-black opacity-5 float-right text-3xl leading-none font-semibold outline-none focus:outline-none" onclick="toggleModal('modal-id')">
+                        <button class="p-1 ml-auto bg-transparent border-0 text-black opacity-5 float-right text-3xl leading-none font-semibold outline-none focus:outline-none" onclick="toggleModal('1')">
                             <span class="bg-transparent text-black opacity-5 h-6 w-6 text-2xl block outline-none focus:outline-none">
                                 ×
                             </span>
@@ -64,7 +64,7 @@
                     </div>
                     <!--footer-->
                     <div class="flex items-center justify-end p-6 border-t border-solid border-blueGray-200 rounded-b">
-                        <button class="text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button" onclick="toggleModal('modal-id')">
+                        <button class="text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button" onclick="toggleModal('1')">
                             Annuler
                         </button>
                         <a href="{{ path('account_delete') }}" class="bg-red-500 text-white active:bg-emerald-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button" onclick="toggleModal('modal-id')">
@@ -74,7 +74,7 @@
                 </div>
             </div>
         </div>
-        <div class="hidden opacity-25 fixed inset-0 z-40 bg-black" id="modal-id-backdrop"></div>
+        <div class="hidden opacity-25 fixed inset-0 z-40 bg-black" id="1-backdrop"></div>
 
 
 

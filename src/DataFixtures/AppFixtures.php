@@ -11,8 +11,10 @@ use Faker\Factory;
 
 class AppFixtures extends Fixture
 {
+
     public function load(ObjectManager $manager)
     {
+
         $faker = Factory::create('fr_FR');
         $recipes = [];
         $tagsArray = [];
@@ -35,6 +37,7 @@ class AppFixtures extends Fixture
         for ($i = 0; $i < 100; $i++)
         {
 
+            $user = new User();
             $seasons = [
                 'spring',
                 'summer',
@@ -81,19 +84,15 @@ class AppFixtures extends Fixture
             // Ajouter entre 2 et 10 ingrédients à une recette
 
             $recipe->addTag($tagsArray[array_rand($tagsArray)]);
-            $recipe->addTag($tagsArray[array_rand($tagsArray)]);
-            $recipe->addTag($tagsArray[array_rand($tagsArray)]);
+            //$recipe->addTag($tagsArray[array_rand($tagsArray)]);
+            //$recipe->addTag($tagsArray[array_rand($tagsArray)]);
+
+            $recipe->setCreatedBy($user);
 
             array_push($recipes, $recipe);
 
             $manager->persist($recipe);
         }
-
-        $user = new User();
-        $user->setEmail("john.doe@doe.com");
-        $user->setPseudo('Johnny');
-        $user->setRoles(["ROLE_ADMIN"]);
-        $user->setPassword('$2y$13$hXnyavUYmiknXaBQjuYKTekUuW.1tbrQ7/E1.zgBCPUu8I3TsBe4G'); // Mdp : password
 
         for($i = 0; $i < 10; $i++)
         {

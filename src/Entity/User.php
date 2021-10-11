@@ -8,11 +8,15 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Serializable;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
+ * @Vich\Uploadable
  */
-class User implements UserInterface, PasswordAuthenticatedUserInterface
+class User implements UserInterface, PasswordAuthenticatedUserInterface, Serializable
 {
     /**
      * @ORM\Id
@@ -47,9 +51,33 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $favorites;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Recipe::class, mappedBy="createdBy")
+     */
+    private $recipes;
+
+    /**
+     * @ORM\OneToMany(targetEntity=MessageRecipe::class, mappedBy="author", orphanRemoval=true)
+     */
+    private $messageRecipes;
+
+    /**
+     * 
+     * @Vich\UploadableField(mapping="users", fileNameProperty="avatar")
+     * @var File|null
+     */
+    private $imageFile;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $avatar;
+
     public function __construct()
     {
         $this->favorites = new ArrayCollection();
+        $this->recipes = new ArrayCollection();
+        $this->messageRecipes = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -176,4 +204,110 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
+
+    /**
+     * @return Collection|Recipe[]
+     */
+    public function getRecipes(): Collection
+    {
+        return $this->recipes;
+    }
+
+    public function addRecipe(Recipe $recipe): self
+    {
+        if (!$this->recipes->contains($recipe)) {
+            $this->recipes[] = $recipe;
+            $recipe->setCreatedBy($this);
+        }
+
+        return $this;
+    }
+
+    public function removeRecipe(Recipe $recipe): self
+    {
+        if ($this->recipes->removeElement($recipe)) {
+            // set the owning side to null (unless already changed)
+            if ($recipe->getCreatedBy() === $this) {
+                $recipe->setCreatedBy(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|MessageRecipe[]
+     */
+    public function getMessageRecipes(): Collection
+    {
+        return $this->messageRecipes;
+    }
+
+    public function addMessageRecipe(MessageRecipe $messageRecipe): self
+    {
+        if (!$this->messageRecipes->contains($messageRecipe)) {
+            $this->messageRecipes[] = $messageRecipe;
+            $messageRecipe->setAuthor($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMessageRecipe(MessageRecipe $messageRecipe): self
+    {
+        if ($this->messageRecipes->removeElement($messageRecipe)) {
+            // set the owning side to null (unless already changed)
+            if ($messageRecipe->getAuthor() === $this) {
+                $messageRecipe->setAuthor(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function setImageFile(?File $imageFile = null): void
+    {
+        $this->imageFile = $imageFile;
+
+        if (null !== $imageFile) {
+            // It is required that at least one field changes if you are using doctrine
+            // otherwise the event listeners won't be called and the file is lost
+        }
+    }
+
+    public function getImageFile(): ?File
+    {
+        return $this->imageFile;
+    }
+
+    public function getAvatar(): ?string
+    {
+        return $this->avatar;
+    }
+
+    public function setAvatar(?string $avatar): self
+    {
+        $this->avatar = $avatar;
+
+        return $this;
+    }
+
+    public function serialize()
+    {
+        return serialize(array(
+            $this->id,
+            $this->email,
+            $this->password,
+        ));
+    }
+    
+    public function unserialize($serialized)
+    {
+        list (
+            $this->id,
+            $this->email,
+            $this->password,
+        ) = unserialize($serialized);
+    }
+    
 }

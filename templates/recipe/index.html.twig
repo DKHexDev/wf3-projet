@@ -1,17 +1,10 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello RecipeController!
+{% block title %}Recettes
 {% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-    #menu { height: 20vh ;width : 60vw; overflow-x: scroll; overflow-x: scroll; }
-    .object { min-width : 15rem;}
-</style>
 
-<div class="flex">
 
     <div id="divListe" class="hidden absolute object-center bg-white rounded justify-items-center w-1/3">
 
@@ -24,80 +17,106 @@
 
     <form class="flex flex-col bg-blue-200 rounded-lg w-1/3 p-4 m-2 text-center" id="filtres">
 
-        <div class="flex flex-wrap m-4">
-            <label for="autumn"> Automne </label>
-            <input id="autumn" name="season[]" value="autumn" type="checkbox" class="m-4 check">
+		<form class="flex flex-col border-2 bg-gray-200 border-gray-400 rounded shadow-lg rounded-lg w-3/12 p-6 m-4 text-center" id="filtres">
 
-            <label for="winter"> Hiver </label>
-            <input id="winter" name="season[]" value="winter" type="checkbox" class=" m-4 check">
+			<h2 class="uppercase md:text-xl text-gray-600 font-bold my-6">saisons</h2>
 
-            <label for="spring"> Printemps </label>
-            <input id="spring" name="season[]" value="spring" type="checkbox" class="m-4 check">
+			<div class="grid grid-cols-2 md:gap-2 items-center text-sm md:text-base">
 
-            <label for="summer"> Eté </label>
-            <input id="summer" name="season[]" value="summer" type="checkbox" class="m-4 check">
-        </div>
+					<label for="autumn">
+						Automne
+					</label>
+					<input id="autumn" name="season[]" value="autumn" type="checkbox" class="m-6 md:m-4 check">
 
-            <!-- Events --> 
+					<label for="winter">
+						Hiver
+					</label>
+					<input id="winter" name="season[]" value="winter" type="checkbox" class=" m-6 md:m-4 check">
 
-        <div class="flex flex-wrap m-4">
-            <label for="christmas"> Fêtes de fin d'année </label>
-            <input id="christmas" name="event[]" value="christmas" type="checkbox" class="m-4 check">
+					<label for="spring">
+						Printemps
+					</label>
+					<input id="spring" name="season[]" value="spring" type="checkbox" class="m-6 md:m-4 check">
 
-            <label for="easter"> Pâques </label>
-            <input id="easter" name="event[]" value="easter" type="checkbox" class="m-4 check">
+					<label for="summer">
+						Eté
+					</label>
+					<input id="summer" name="season[]" value="summer" type="checkbox" class="m-6 md:m-4 check">
 
-            <label for="halloween"> Halloween </label>
-            <input id="halloween" name="event[]" value="halloween" type="checkbox" class="m-4 check">
+			</div>
 
-            <label for="bday"> Anniversaire </label>
-            <input id="bday" name="event[]" value="bday" type="checkbox" class="m-4 check">
+			<!-- Events -->
 
-            <label for="valentineday"> Saint-Valentin </label>
-            <input id="valentineday" name="event[]" value="valentineday" type="checkbox" class="m-4 check">
-        </div>
+			<h2 class="uppercase text-l md:text-xl text-gray-600 font-bold my-6">célébrations</h2>
 
-            <!-- Cultures -->
+			<div class="grid grid-cols-2 md:gap-2 items-center text-sm md:text-base">
 
-        <div class="flex flex-wrap m-4">
+				<label for="christmas">
+					Fin d'année
+				</label>
+				<input id="christmas" name="event[]" value="christmas" type="checkbox" class="m-6 md:m-4 check">
 
-            <label for="african"> Afrique </label>
-            <input id="african" name="culture[]" value="african" type="checkbox" class="m-4 check">
+				<label for="easter">
+					Pâques
+				</label>
+				<input id="easter" name="event[]" value="easter" type="checkbox" class="m-6 md:m-4 check">
 
-            <label for="american"> Etats-unis </label>
-            <input id="american" name="culture[]" value="american" type="checkbox" class="m-4 check">
+				<label for="halloween">
+					Halloween
+				</label>
+				<input id="halloween" name="event[]" value="halloween" type="checkbox" class="m-6 md:m-4 check">
 
-            <label for="asia"> Asiatique </label>
-            <input id="asia" name="culture[]" value="asia" type="checkbox" class="m-4 check">
+				<label for="bday">
+					Anniversaire
+				</label>
+				<input id="bday" name="event[]" value="bday" type="checkbox" class="m-6 md:m-4 check">
 
-            <label for="france"> Française </label>
-            <input id="france" name="culture[]" value="france" type="checkbox" class="m-4 check">
+				<label for="valentineday">
+					Saint-Valentin
+				</label>
+				<input id="valentineday" name="event[]" value="valentineday" type="checkbox" class="m-6 md:m-4 check">
+			</div>
 
-            <label for="italian"> Italienne </label>
-            <input id="italian" name="culture[]" value="italian" type="checkbox" class="m-4 check">
+			<!-- Cultures -->
 
-            <label for="mexican"> Mexicaine </label>
-            <input id="mexican" name="culture[]" value="mexican" type="checkbox" class="m-4 check">
+			<h2 class="uppercase text-l md:text-xl text-gray-600 font-bold my-6">pays</h2>
+			<div class="grid grid-cols-2 gap-2 items-center text-sm md:text-base">
 
-        </div>
+				<label for="african">
+					Africain
+				</label>
+				<input id="african" name="culture[]" value="african" type="checkbox" class="m-6 md:m-4 check">
 
-            <!-- Type -->
+				<label for="american">
+					Américain
+				</label>
+				<input id="american" name="culture[]" value="american" type="checkbox" class="m-6 md:m-4 check">
 
-        <div class="flex flex-wrap">
+				<label for="asia">
+					Asiatique
+				</label>
+				<input id="asia" name="culture[]" value="asia" type="checkbox" class="m-6 md:m-4 check">
 
-            <label for="starter"> Entrée </label>
-            <input id="starter" name="type[]" value="starter" type="checkbox" class="m-4 check">
+				<label for="france">
+					Français
+				</label>
+				<input id="france" name="culture[]" value="france" type="checkbox" class="m-6 md:m-4 check">
 
-            <label for="dish"> Plat </label>
-            <input id="dish"    name="type[]" value="dish"    type="checkbox" class="m-4 check">
+				<label for="italian">
+					Italien
+				</label>
+				<input id="italian" name="culture[]" value="italian" type="checkbox" class="m-6 md:m-4 check">
 
-            <label for="dessert"> Dessert </label>
-            <input id="dessert" name="type[]" value="dessert" type="checkbox" class="m-4 check">
+				<label for="mexican">
+					Mexicain
+				</label>
+				<input id="mexican" name="culture[]" value="mexican" type="checkbox" class="m-6 md:m-4 check">
 
-        </div>
+			</div>
 
-    </form>
+			<!-- Type -->
 
+<<<<<<< HEAD
     <div class="flex items-center flex-col-reverse">
 
         <div class="zone flex">
@@ -123,3 +142,70 @@
     </div>
 </div>
 {% endblock %}
+=======
+			<h2 class="uppercase text-l md:text-xl text-gray-600 font-bold my-6">Menu</h2>
+			<div class="grid grid-cols-2 gap-2 items-center text-sm md:text-base">
+
+				<label for="starter">
+					Entrée
+				</label>
+				<input id="starter" name="type[]" value="starter" type="checkbox" class="m-6 md:m-4 check">
+
+				<label for="dish">
+					Plat
+				</label>
+				<input id="dish" name="type[]" value="dish" type="checkbox" class="m-6 md:m-4 check">
+
+				<label for="dessert">
+					Dessert
+				</label>
+				<input id="dessert" name="type[]" value="dessert" type="checkbox" class="m-6 md:m-4 check">
+
+			</div>
+
+		</form>
+
+		<div class="flex flex-col-reverse w-full">
+			<div class="zone flex">
+				<ul class="grid xl:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-2 max-w-8xl" id="product-list">
+
+					{%for recipe in recipes %}
+
+						<div id={{ recipe.id }} class="m-2 myDraggableElement object" draggable='true'>
+
+							<li class="flex flex-col border-2 border-gray-400 rounded shadow-lg rounded-lg text-center h-full p-4 m-2 recipe">
+								{{ recipe.name }}
+								{{recipe.tags[0]}}
+							</li>
+
+						</div>
+
+					{% endfor %}
+					<ul>
+
+						{# {% for recipe in recipes %}
+						    <div class="flex flex-row">
+						    Recette {{ recipe.name }}
+						    {% set statusFav = "far" %}
+						    {% if app.user %}
+						    {% for favorite in app.user.favorites %}
+						    {% if recipe.id == favorite.id %}
+						    {% set statusFav = "fas" %}
+						    {% endif %}
+						    {% endfor %}
+						    {% endif %}
+						    <span class="fav"><i data-recipe="{{ recipe.id }}" class="{{ statusFav }} fa-star"></i></span>
+						    </div><br>>
+						    {% endfor %} #}
+
+						<ul></div>
+
+						<div class="flex dropzone rounded-lg zone border-2 bg-gray-200 border-gray-400 rounded shadow-lg rounded-lg w-100 h-36 p-6 m-4" id="menu">
+							<h2 class="uppercase text-l md:text-xl text-gray-600 font-bold my-6">
+								Votre Séléction
+							</h2>
+						</div>
+					</div>
+				</div>
+			{% endblock %}
+>>>>>>> 96c5282ce1e1824b087422aff7635e2869729f13
