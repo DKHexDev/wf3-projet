@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\MessageRecipe;
 use App\Entity\Recipe;
+use App\Entity\User;
 use App\Form\MessageRecipeType;
 use App\Form\RecipeType;
 use App\Repository\RecipeRepository;
@@ -168,6 +169,58 @@ class RecipeController extends AbstractController
             'recipe' => $recipe,
             'form' => $form->createView(),
         ]);
+    }
+
+    /**
+     * @Route("/recipe/messages/likes/{id}/add", name="recipe_message_addLike")
+     */
+    public function RecipeMessageAddLike(MessageRecipe $message)
+    {
+        /** @var User $user */
+        $user = $this->getUser();
+
+        // Si la recette n'est pas trouvée, on redirige vers la 404.
+        if (!$message) return $this->json(["color" => "red", "message" => "Ce message n'existe pas.", "changeClass" => false]);
+
+        // Si l'utilisateur n'est pas connecté, on le renvoie sur
+        // la page de connexion.
+        if (!$user) return $this->json(["color" => "red", "message" => "Impossible, vous devez avoir un compte pour ajouter ou retirer un \"j'aime\".", "changeClass" => false]);
+
+        // Ajoute la recette qui est correspondant à l'id dans la route
+        // dans les favoris.
+        $message->addLike($user);
+
+        $manager = $this->getDoctrine()->getManager();
+        $manager->persist($message);
+        $manager->flush();
+
+        return $this->json(["color" => "green", "message" => "Vous avez aimé le message de " . $message->getAuthor()->getPseudo(), "changeClass" => true, "userPseudo" => $user->getPseudo(), "userAvatar" => $user->getAvatar(), "messageID" => $message->getId()]);
+    }
+
+    /**
+     * @Route("/recipe/messages/likes/{id}/remove", name="recipe_message_removeLike")
+     */
+    public function RecipeMessageRemoveLike(MessageRecipe $message)
+    {
+        /** @var User $user */
+        $user = $this->getUser();
+
+        // Si la recette n'est pas trouvée, on redirige vers la 404.
+        if (!$message) return $this->json(["color" => "red", "message" => "Cette message n'existe pas.", "changeClass" => false]);
+
+        // Si l'utilisateur n'est pas connecté, on le renvoie sur
+        // la page de connexion.
+        if (!$user) return $this->json(["color" => "red", "message" => "Impossible, vous devez avoir un compte pour ajouter ou retirer un \"j'aime\".", "changeClass" => false]);
+
+        // Ajoute la recette qui est correspondant à l'id dans la route
+        // dans les favoris.
+        $message->removeLike($user);
+
+        $manager = $this->getDoctrine()->getManager();
+        $manager->persist($message);
+        $manager->flush();
+
+        return $this->json(["color" => "red", "message" => "Vous avez retiré le j'aime du message de " . $message->getAuthor()->getPseudo(), "changeClass" => true, "userPseudo" => $user->getPseudo(), "messageID" => $message->getId()]);   
     }
 
 }
