@@ -52,8 +52,8 @@ $('.btnModal').click(function (){
         modalID = btnModal.attr('data-message');
     }
 
-    $(`#${modalID}`).toggleClass("hidden");
+    $(`#modal${modalID}`).toggleClass("hidden");
     $(`#${modalID}-backdrop`).toggleClass("hidden");
-    $(`#${modalID}`).toggleClass("flex");
+    $(`#modal${modalID}`).toggleClass("flex");
     $(`#${modalID}-backdrop`).toggleClass("flex");
 });
