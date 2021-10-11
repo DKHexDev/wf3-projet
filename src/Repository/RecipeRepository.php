@@ -34,12 +34,11 @@ class RecipeRepository extends ServiceEntityRepository
     //  */
 
 
-    public function findLatestBy(array $criteria, string $field){
+    public function findIngredientsByID(int $id){
         
-
         return $this->createQueryBuilder('r')
-            ->andWhere('r.'.$field.' = :val')
-            ->setParameter('val', $criteria[$field])
+            ->andWhere('r.id = :val')
+            ->setParameter('val', $id)
             ->join('r.tags', 't')
             ->select('r, t')
             ->getQuery()

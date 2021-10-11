@@ -11,12 +11,17 @@ use Faker\Factory;
 
 class AppFixtures extends Fixture
 {
+
     public function load(ObjectManager $manager)
     {
+
         $faker = Factory::create('fr_FR');
         $recipes = [];
         $tagsArray = [];
 
+        $tagCollection =[
+            'Carottes', 'Patates', 'Poulet', 'Oignons', 'Pain', 'Saucisse', 'Pâtes feuillettée'
+        ];
 
         $user = new User();
         $user->setEmail("john.doe@doe.com");
@@ -25,10 +30,11 @@ class AppFixtures extends Fixture
         $user->setPassword('$2y$13$hXnyavUYmiknXaBQjuYKTekUuW.1tbrQ7/E1.zgBCPUu8I3TsBe4G'); // Mdp : password
         $user->setAvatar("avatar_default.png");
 
-        for($i =0; $i< 5; $i++){
+        foreach($tagCollection as $tag){
 
             $tags = new Tag();
-            $tags->setName($faker->sentence(1));
+            $tags->setName($tag);
+            
             $manager->persist($tags);
 
             array_push($tagsArray, $tags);
@@ -86,7 +92,7 @@ class AppFixtures extends Fixture
             $recipe->addTag($tagsArray[array_rand($tagsArray)]);
             //$recipe->addTag($tagsArray[array_rand($tagsArray)]);
             //$recipe->addTag($tagsArray[array_rand($tagsArray)]);
-          
+
             $recipe->setCreatedBy($user);
 
             array_push($recipes, $recipe);
