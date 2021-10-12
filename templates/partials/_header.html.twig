@@ -1,15 +1,17 @@
 <!-- Navbar -->
-<nav class="text-gray-500 font-bold text-lg px-4">
+<nav
+	class="text-gray-500 font-bold text-lg px-4">
 
 	<!-- Structure Navbar-->
 	<div class="max-w-full mx-auto flex justify-between">
 
-		<div class="flex items-center space-x-4 ">
+		<div
+			class="flex items-center space-x-4 ">
 
 			<!-- Logo -->
 			<div class="p-4">
 
-				<a href="{{ path('home') }}"><img src="{{ asset('assets_img/Mcooking.png') }}" alt="Logo" class ="h-12"></a>
+				<a href="{{ path('home') }}"><img src="{{ asset('assets_img/Mcooking.png') }}" alt="Logo" class="h-12"></a>
 
 			</div>
 
@@ -17,7 +19,7 @@
 			<div class="hidden md:flex items-center space-x-2">
 
 				<a href="{{ path('home') }}" class="py-4 px-3 hover:text-yellow-600 hover:underline
-				">Accueil</a>
+									">Accueil</a>
 
 				<a href="{{ path('recipe_list') }}" class="py-4 px-3 hover:text-yellow-600 hover:underline">Recettes</a>
 
@@ -30,19 +32,21 @@
 		<!-- Link Account & Registration -->
 		<div class="hidden md:flex items-center space-x-1">
 
-		{% if app.user %} 
-			<a href="{{ path('account') }}" class="py-2 px-3 hover:text-yellow-600 account-menu-button">{{ app.user.email }}</a>
-		{% else %}
-			<a href="{{ path('app_login') }}" class="py-2 px-3 hover:text-yellow-600">Se connecter</a>
-			<a href="{{ path('app_register') }}" class="py-1 px-2 border-2 border-gray-500 hover:border-yellow-600 hover:text-yellow-600 transition duration-300 rounded">Inscription</a>
-		{% endif %}
+			{% if app.user %}
+				<a href="{{ path('account') }}" class="py-2 px-3 hover:text-yellow-600 account-menu-button">{{ app.user.email }}</a>
+			{% else %}
+				<a href="{{ path('app_login') }}" class="py-2 px-3 hover:text-yellow-600">Se connecter</a>
+				<a href="{{ path('app_register') }}" class="py-1 px-2 border-2 border-gray-500 hover:border-yellow-600 hover:text-yellow-600 transition duration-300 rounded">Inscription</a>
+			{% endif %}
 
 		</div>
 
 		<!--Button Menu -->
 		<div class="md:hidden flex items-center">
 
-			<button class = "mobile-menu-button px-3"><i class="fas fa-utensils fa-3x"></i></button>
+			<button class="mobile-menu-button px-3">
+				<i class="fas fa-utensils fa-3x"></i>
+			</button>
 
 		</div>
 
@@ -57,9 +61,12 @@
 
 		<a href="{{ path('contact') }}" class="block py-2 px-4 hover:text-yellow-600">Contacts</a>
 
-		<a href="{{ path('app_login') }}" class="block py-2 px-4 hover:text-yellow-600">Mon Compte</a>
-
-		<a href="{{ path('app_register') }}" class="block py-2 px-4 hover:text-yellow-600">Inscription</a>
+		{% if app.user %}
+			<a href="{{ path('account') }}" class="block py-2 px-4 hover:text-yellow-600">Mon Compte</a>
+		{% else %}
+			<a href="{{ path('app_login') }}" class="block py-2 px-4 hover:text-yellow-600">Se connecter</a>
+			<a href="{{ path('app_register') }}" class="block py-2 px-4 hover:text-yellow-600">Inscription</a>
+		{% endif %}
 
 	</div>
 
