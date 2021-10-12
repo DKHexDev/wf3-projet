@@ -11,83 +11,143 @@
 
 		<div id="divList" class="hidden flex justify-center fixed flex w-full h-full">
 			<div class="h-3/4 w-1/3 text-center rounded bg-gray-400">
-				<h2> Liste de course </h2>
+				<h2>
+					Liste de course
+				</h2>
 
-				<ul id="liste">
-				</ul>
+				<ul id="liste"></ul>
 
-				<button id="mail" class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded"> Recevoir par mail </button>
+				<button id="mail" class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded">
+					Recevoir par mail
+				</button>
 			</div>
 
 		</div>
 
 		<form class="flex flex-col border-2 bg-gray-200 border-gray-400 rounded shadow-lg rounded-lg w-3/12 p-6 m-4 text-center" id="filtres">
 
-			<h2 class="uppercase text-sm md:text-xl text-gray-600 font-bold my-6">saisons</h2>
+			<h2 class="uppercase text-sm md:text-xl text-gray-600 font-bold my-4">saisons</h2>
 
 			<!--Seasons-->
 
-			<div class="grid grid-cols-2 gap-4 md:gap-8 items-center text-xs md:text-base">
+			<div class="grid grid-cols-2 gap-4 md:gap-8 items-center text-xs md:text-base mt-2">
 
-				<button id="autumn" name="season[]" value="autumn" class="check bg-gray-300 border-b-2 border-r-2 border-gray-400 shadow rounded-lg text-2xl md:text-3xl" title="Automne">&#127809;</button>
+				<div class="relative">
+					<label for="winter" class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-xl text-xl md:text-3xl">&#9924;</label>
+					<input id="winter" name="season[]" value="winter" type="checkbox" class="cursor-pointer opacity-20 h-12 md:h-16 w-12 md:w-16 check bg-gray-400 border-b-2 border-r-2 border-gray-500 shadow rounded-lg" title="Hiver">
+				</div>
 
-				<button id="winter" name="season[]" value="winter" class="check bg-gray-300 border-b-2 border-r-2 border-gray-400 shadow rounded-lg text-2xl md:text-3xl" title="Hiver">&#9924;</button>
+				<div class="relative">
+					<label for="spring" class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-xl text-xl md:text-3xl">&#127793;</label>
+					<input id="spring" name="season[]" value="spring" type="checkbox" class="cursor-pointer opacity-20 h-12 md:h-16 w-12 md:w-16 check bg-gray-400 border-b-2 border-r-2 border-gray-500 shadow rounded-lg" title="Printemps">
+				</div>
 
-				<button id="spring" name="season[]" value="spring" class="check bg-gray-300 border-b-2 border-r-2 border-gray-400 shadow rounded-lg text-2xl md:text-3xl" title="Printemps">&#127793;</button>
+				<div class="relative">
+					<label for="summer" class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-xl text-xl md:text-3xl">&#127958;</label>
+					<input id="summer" name="season[]" value="summer" type="checkbox" class="cursor-pointer opacity-20 h-12 md:h-16 w-12 md:w-16 check bg-gray-400 border-b-2 border-r-2 border-gray-500 shadow rounded-lg" title="Été">
+				</div>
 
-				<button id="summer" name="season[]" value="summer" class="check bg-gray-300 border-b-2 border-r-2 border-gray-400 shadow rounded-lg text-2xl md:text-3xl" title="Été">&#127958;</button>
+				<div class="relative">
+					<label for="autumn" class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-xl text-xl md:text-3xl">&#127809;</label>
+					<input id="autumn" name="season[]" value="autumn"  type="checkbox" class="cursor-pointer opacity-20 h-12 md:h-16 w-12 md:w-16 check bg-gray-400 border-b-2 border-r-2 border-gray-500 shadow rounded-lg" title="Automne">
+				</div>
 
 			</div>
 
 			<!-- Events -->
 
-			<h2 class="uppercase text-sm md:text-xl text-gray-600 font-bold my-6">célébrations</h2>
+			<h2 class="uppercase text-sm md:text-xl text-gray-600 font-bold my-4">célébrations</h2>
 
-			<div class="grid grid-cols-2 gap-4 md:gap-8 items-center text-xs md:text-base">
+			<div class="grid grid-cols-2 gap-4 md:gap-8 items-center text-xs md:text-base mt-2">
 
-				<button id="christmas" name="event[]" value="christmas" class="check bg-gray-300 border-b-2 border-r-2 border-gray-400 shadow rounded-lg text-2xl md:text-3xl" title="Fête de fin d'année">&#127876;</button>
+				<div class="relative">
+					<label for="christmas" class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-xl text-xl md:text-3xl">&#127876;</label>
+					<input id="christmas" name="event[]" value="christmas" type="checkbox" class="cursor-pointer opacity-20 h-12 md:h-16 w-12 md:w-16 check bg-gray-400 border-b-2 border-r-2 border-gray-500 shadow rounded-lg" title="Fête de fin d'année">
+				</div>
 
-				<button id="easter" name="event[]" value="easter" class="check bg-gray-300 border-b-2 border-r-2 border-gray-400 shadow rounded-lg text-2xl md:text-3xl" title="Pâques">&#127851;</button>
+				<div class="relative">
+					<label for="easter" class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-xl text-xl md:text-3xl">&#127851;</label>
+					<input id="easter" name="event[]" value="easter" type="checkbox" class="cursor-pointer opacity-20 h-12 md:h-16 w-12 md:w-16 check bg-gray-400 border-b-2 border-r-2 border-gray-500 shadow rounded-lg" title="Pâques">
+				</div>
 
-				<button id="halloween" name="event[]" value="halloween" class="check bg-gray-300 border-b-2 border-r-2 border-gray-400 shadow rounded-lg text-2xl md:text-3xl" title="Halloween">&#127875;</button>
+				<div class="relative">
+					<label for="summer" class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-xl text-xl md:text-3xl">&#127875;</label>
+					<input id="summer" name="event[]" value="halloween" type="checkbox" class="cursor-pointer opacity-20 h-12 md:h-16 w-12 md:w-16 check bg-gray-400 border-b-2 border-r-2 border-gray-500 shadow rounded-lg" title="Halloween">
+				</div>
 
-				<button id="bday" name="event[]" value="bday" class="check bg-gray-300 border-b-2 border-r-2 border-gray-400 shadow rounded-lg text-2xl md:text-3xl" title="Anniversaire">&#127874;</button>
+				<div class="relative">
+					<label for="bday" class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-xl text-xl md:text-3xl">&#127874;</label>
+					<input id="bday" name="event[]" value="bday" type="checkbox" class="cursor-pointer opacity-20 h-12 md:h-16 w-12 md:w-16 check bg-gray-400 border-b-2 border-r-2 border-gray-500 shadow rounded-lg" title="Anniversaire">
+				</div>
 
-				<button id="valentineday" name="event[]" value="valentineday" class="check bg-gray-300 border-b-2 border-r-2 border-gray-400 shadow rounded-lg text-2xl md:text-3xl" title="Saint-Valentin">&#128140;</button>
+				<div class="relative">
+					<label for="valentineday" class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-xl text-xl md:text-3xl">&#128140;</label>
+					<input id="valentineday" name="event[]" value="valentineday" type="checkbox" class="cursor-pointer opacity-20 h-12 md:h-16 w-12 md:w-16 check bg-gray-400 border-b-2 border-r-2 border-gray-500 shadow rounded-lg" title="Saint-Valentin">
+				</div>
 
 			</div>
 
 			<!-- Cultures -->
 
-			<h2 class="uppercase text-sm md:text-xl text-gray-600 font-bold my-6">pays</h2>
+			<h2 class="uppercase text-sm md:text-xl text-gray-600 font-bold my-4">pays</h2>
 
-			<div class="grid grid-cols-2 gap-4 md:gap-8 items-center text-xs md:text-base">
+			<div class="grid grid-cols-2 gap-4 md:gap-8 items-center text-xs md:text-base mt-2">
 
-				<button  id="african" name="culture[]" value="african" class="check bg-gray-300 border-b-2 border-r-2 border-gray-400 shadow rounded-lg text-2xl md:text-3xl" title="Cameroun">🇨🇲</button>
+				<div class="relative">
+					<label for="african" class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-xl text-xl md:text-3xl">🇨🇲</label>
+					<input id="african" name="culture[]" value="african" type="checkbox" class="cursor-pointer opacity-20 h-12 md:h-16 w-12 md:w-16 check bg-gray-400 border-b-2 border-r-2 border-gray-500 shadow rounded-lg" title="Cameroun">
+				</div>
 
-				<button id="american" name="culture[]" value="american" class="check bg-gray-300 border-b-2 border-r-2 border-gray-400 shadow rounded-lg text-2xl md:text-3xl" title="États-Unis">🇺🇸</button>
+				<div class="relative">
+					<label for="american" class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-xl text-xl md:text-3xl">🇺🇸</label>
+					<input id="american" name="culture[]" value="american" type="checkbox" class="cursor-pointer opacity-20 h-12 md:h-16 w-12 md:w-16 check bg-gray-400 border-b-2 border-r-2 border-gray-500 shadow rounded-lg" title="États-Unis">
+				
+				</div>
 
-				<button id="asia" name="culture[]" value="asia" class="check bg-gray-300 border-b-2 border-r-2 border-gray-400 shadow rounded-lg text-2xl md:text-3xl" title="Japon">🇯🇵</button>
+				<div class="relative">
+					<label for="asia" class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-xl text-xl md:text-3xl">🇯🇵</label>
+					<input id="asia" name="culture[]" value="asia" type="checkbox" type="checkbox" class="cursor-pointer opacity-20 h-12 md:h-16 w-12 md:w-16 check bg-gray-400 border-b-2 border-r-2 border-gray-500 shadow rounded-lg" title="Japon">
+				
+				</div>
 
-				<button id="france" name="culture[]" value="france" class="check bg-gray-300 border-b-2 border-r-2 border-gray-400 shadow rounded-lg text-2xl md:text-3xl" title="France">🇫🇷</button>
+				<div class="relative">
+					<label for="france" class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-xl text-xl md:text-3xl">🇫🇷</label>
+					<input d="france" name="culture[]" value="france" type="checkbox" class="cursor-pointer opacity-20 h-12 md:h-16 w-12 md:w-16 check bg-gray-400 border-b-2 border-r-2 border-gray-500 shadow rounded-lg" title="France">
+				
+				</div>
 
-				<button id="italian" name="culture[]" value="italian" class="check bg-gray-300 border-b-2 border-r-2 border-gray-400 shadow rounded-lg text-2xl md:text-3xl" title="Italie">🇮🇹</button>
+				<div class="relative">
+					<label for="italian" class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-xl text-xl md:text-3xl">🇮🇹</label>
+					<input id="italian" name="culture[]" value="italian" type="checkbox" class="cursor-pointer opacity-20 h-12 md:h-16 w-12 md:w-16 check bg-gray-400 border-b-2 border-r-2 border-gray-500 shadow rounded-lg" title="Italie">
+				</div>
 
-				<button id="mexican" name="culture[]" value="mexican" class="check bg-gray-300 border-b-2 border-r-2 border-gray-400 shadow rounded-lg text-2xl md:text-3xl" title="Mexique">🇲🇽</button>
+				<div class="relative">
+					<label for="mexican" class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-xl text-xl md:text-3xl">🇲🇽</label>
+					<input id="mexican" name="culture[]" value="mexican" type="checkbox" class="cursor-pointer opacity-20 h-12 md:h-16 w-12 md:w-16 check bg-gray-400 border-b-2 border-r-2 border-gray-500 shadow rounded-lg" title="Mexique">
+				</div>
 
 			</div>
 
 			<!-- Type -->
 
-			<h2 class="uppercase text-sm md:text-xl text-gray-600 font-bold my-6">Menu</h2>
+			<h2 class="uppercase text-sm md:text-xl text-gray-600 font-bold my-4">Menu</h2>
 
-			<div class="grid grid-cols-2 gap-4 md:gap-8 items-center text-xs md:text-base">
+			<div class="grid grid-cols-2 gap-4 md:gap-8 items-center text-xs md:text-base mt-2">
 
-				<button  id="starter" name="type[]" value="starter" class="check bg-gray-300 border-b-2 border-r-2 border-gray-400 shadow rounded-lg text-2xl md:text-3xl" title="Entrée">🥗</button>
+				<div class="relative">
+					<label for="starter" class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-xl text-xl md:text-3xl">🥗</label>
+					<input id="starter" name="type[]" value="starter" type="checkbox" class="cursor-pointer opacity-20 h-12 md:h-16 w-12 md:w-16 check bg-gray-400 border-b-2 border-r-2 border-gray-500 shadow rounded-lg" title="Entrée">
+				</div>
 
-				<button id="dish" name="type[]" value="dish" class="check bg-gray-300 border-b-2 border-r-2 border-gray-400 shadow rounded-lg text-2xl md:text-3xl" title="Plat">🍲</button>
+				<div class="relative">
+					<label for="dish" class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-xl text-xl md:text-3xl">🍲</label>
+					<input id="dish" name="type[]" value="dish" type="checkbox" class="cursor-pointer opacity-20 h-12 md:h-16 w-12 md:w-16 check bg-gray-400 border-b-2 border-r-2 border-gray-500 shadow rounded-lg" title="Plat">
+				</div>
 
-				<button id="dessert" name="type[]" value="dessert" class="check bg-gray-300 border-b-2 border-r-2 border-gray-400 shadow rounded-lg text-2xl md:text-3xl" title="Desser">🥞</button>
+				<div class="relative">
+					<label for="dessert" class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-xl text-xl md:text-3xl">🥞</label>
+					<input id="dessert" name="type[]" value="dessert" type="checkbox" type="checkbox" class="cursor-pointer opacity-20 h-12 md:h-16 w-12 md:w-16 check bg-gray-400 border-b-2 border-r-2 border-gray-500 shadow rounded-lg" title="Dessert">
+				</div>
 
 			</div>
 
@@ -110,47 +170,25 @@
 						</div>
 
 					{% endfor %}
-<<<<<<< HEAD
-					<ul>
-
-						{# {% for recipe in recipes %}
-												    <div class="flex flex-row">
-												    Recette {{ recipe.name }}
-												    {% set statusFav = "far" %}
-												    {% if app.user %}
-												    {% for favorite in app.user.favorites %}
-												    {% if recipe.id == favorite.id %}
-												    {% set statusFav = "fas" %}
-												    {% endif %}
-												    {% endfor %}
-												    {% endif %}
-												    <span class="fav"><i data-recipe="{{ recipe.id }}" class="{{ statusFav }} fa-star"></i></span>
-												    </div><br>>
-												    {% endfor %} #}
-
-						<ul></div>
-
-						<div class="flex dropzone rounded-lg zone border-2 bg-gray-200 border-gray-400 rounded shadow-lg rounded-lg w-100 h-36 p-6 m-4" id="menu">
-							<h2 class="uppercase text-sm md:text-xl text-gray-600 font-bold my-6">
-=======
 
 
-					</ul>
-				</div>
-
-					<div class="flex dropzone rounded-lg zone border-2 bg-gray-200 border-gray-400 rounded shadow-lg rounded-lg w-100 h-36 p-6 m-4" id="menu">
-
-						<div class="text-center flex flex-col justify-center ">
-
-							<h2 class="uppercase text-l md:text-xl text-gray-600 font-bold my-6">
->>>>>>> 51f800dda591a3b8f90dfc769316b54e95a0ebd7
-								Votre Séléction
-							</h2>
-
-							<button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full" id="generate"> Créer liste </button>
-						</div>
-
-					</div>
-				</div>
+				</ul>
 			</div>
-			{% endblock %}
+
+			<div class="flex dropzone rounded-lg zone border-2 bg-gray-200 border-gray-400 rounded shadow-lg rounded-lg w-100 h-36 p-6 m-4" id="menu">
+
+				<div class="text-center flex flex-col justify-center ">
+
+					<h2 class="uppercase text-l md:text-xl text-gray-600 font-bold my-6">
+						Votre Séléction
+					</h2>
+
+					<button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full" id="generate">
+						Créer une liste
+					</button>
+				</div>
+
+			</div>
+		</div>
+	</div>
+{% endblock %}
