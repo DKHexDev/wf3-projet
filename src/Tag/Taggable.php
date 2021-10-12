@@ -19,6 +19,7 @@ trait Taggable {
 
     /**
      * @return Collection|Tag[]
+     * 
      */
     public function getTags()
     {

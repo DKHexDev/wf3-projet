@@ -34,14 +34,30 @@ $('.liked').click(function (){
                 ThumbLike.removeClass("far");
                 ThumbLike.addClass("fas");
                 ListAllUserModal = $(`#modal${response.messageID}`).find(`#alluser`).html();
-                $(`#modal${response.messageID}`).find(`#alluser`).html(`
-                    ${ListAllUserModal}
 
-                    <div id="user${response.userPseudo}" class="flex flex-row gap-2 border border-gray-300 shadow-lg items-center w-full p-4">
-                        <img class="object-cover rounded-full h-12 self-start" src="/upload/users/${response.userAvatar}" alt="Avatar de ${response.userPseudo}">
-                        <span class="text-2xl">${response.userPseudo} a aimé</span>
-                    </div>
-                `)
+                if (response.userAvatar !== null)
+                {
+                    $(`#modal${response.messageID}`).find(`#alluser`).html(`
+                        ${ListAllUserModal}
+
+                        <div id="user${response.userPseudo}" class="flex flex-row gap-2 border border-gray-300 shadow-lg items-center w-full p-4">
+                            <img class="object-cover rounded-full h-12 self-start" src="/upload/users/${response.userAvatar}" alt="Avatar de ${response.userPseudo}">
+                            <span class="text-2xl">${response.userPseudo} a aimé</span>
+                        </div>
+                    `)
+                }
+                else
+                {
+                    $(`#modal${response.messageID}`).find(`#alluser`).html(`
+                        ${ListAllUserModal}
+
+                        <div id="user${response.userPseudo}" class="flex flex-row gap-2 border border-gray-300 shadow-lg items-center w-full p-4">
+                            <img class="object-cover rounded-full h-12 self-start" src="/assets_img/avatar_default.png" alt="Avatar de ${response.userPseudo}">
+                            <span class="text-2xl">${response.userPseudo} a aimé</span>
+                        </div>
+                    `)     
+                }
+
             }
 
             setTimeout(() => {
