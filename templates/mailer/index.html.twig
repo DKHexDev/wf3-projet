@@ -1,20 +1,28 @@
-{% extends 'base.html.twig' %}
 
-{% block title %}Hello MailerController!{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+    <table style="" background="https://i.ibb.co/KsNsjVp/fruitsBG.png" width="100%" height="600px">
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/xampp/htdocs/wf3-projet/src/Controller/MailerController.php'|file_link(0) }}">src/Controller/MailerController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/xampp/htdocs/wf3-projet/templates/mailer/index.html.twig'|file_link(0) }}">templates/mailer/index.html.twig</a></code></li>
-    </ul>
-</div>
+        <tr>
+            <td>
+                <h1 style="text-align: center; font-size: 4rem;"> Votre liste de course </h1>
+
+                <div style="background:white; width:33%; min-height:30%; height:fit-content; border-radius:15px; padding:auto;padding-top:35px !important; margin:auto;">
+                <ul style="list-style: square;">
+                {%for ingredient in ingredients %}
+
+                    <li style="font-size:2em">{{ingredient}}</li>
+
+                {% endfor %}
+                </ul>
+            </td>
+        </tr>
+
+    </table>
+
+
+    
+
 {% endblock %}
+</div>

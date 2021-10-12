@@ -27,15 +27,15 @@
 					<article class="relative w-full h-full md:w-1/4 md:h-80 bg-white rounded-lg">
 						<img class="w-full h-full object-cover rounded-lg" src="{{ recipe.background ? asset('upload/recipes/' ~ recipe.background) : asset('assets_img/default_img.jpg') }}" alt="{{ recipe.name }}">
 
-				          {% set statusFav = "far" %}
-				          {% if app.user %}
-				              {% for favorite in app.user.favorites %}
-				                  {% if recipe.id == favorite.id %}
-				                      {% set statusFav = "fas" %}
-				                  {% endif %}
-				              {% endfor %}
-				          {% endif %}
-                			<span class="fav absolute top-0 z-20 mt-3 ml-3"><i data-recipe="{{ recipe.id }}" class="{{ statusFav }} fa-star text-yellow-500 text-lg rounded-full p-2 bg-gray-600 border border-gray-500"></i></span>
+						{% set statusFav = "far" %}
+						{% if app.user %}
+							{% for favorite in app.user.favorites %}
+								{% if recipe.id == favorite.id %}
+									{% set statusFav = "fas" %}
+								{% endif %}
+							{% endfor %}
+						{% endif %}
+						<span class="fav absolute top-0 z-20 mt-3 ml-3"><i data-recipe="{{ recipe.id }}" class="{{ statusFav }} fa-star text-yellow-500 text-lg rounded-full p-2 bg-gray-600 border border-gray-500"></i></span>
 
 						<a href="{{ path('recipe_show', {'slug': recipe.slug}) }}" class="absolute w-full h-full z-5 inset-0 bg-black text-center flex flex-col items-center justify-center opacity-0 hover:opacity-100 bg-opacity-50 duration-300 rounded-lg">
 							<h1 class="tracking-wider font-extrabold text-xl text-yellow-500">{{ recipe.name }}</h1>
