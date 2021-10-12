@@ -3,6 +3,8 @@ const mailButton = document.querySelector('#mail');
 const menu = document.querySelector('#menu');
 const liste = document.querySelector('#divList');
 
+let ingredientsList = [];
+
 generateButton.addEventListener('click', generateList);
 mailButton.addEventListener('click', sendMail);
 
@@ -35,6 +37,7 @@ function sendAjax(id){
         liste.classList.remove('hidden');
         response.forEach(ingredient => {
 
+            ingredientsList.push(ingredient.name);
             $('#liste').append('<li>' + ingredient.name + '</li>');
         });
     });
@@ -42,8 +45,15 @@ function sendAjax(id){
 
 function sendMail(){
 
+    let mailObj = 
+    {ingredients : ingredientsList,
+    mail : 'evrard.ulrick.etc@gmail.com',
+    
+    };
+
     $.ajax({
         type: 'GET',
-        url: 'http://localhost:8000/recipe/email'
+        url: 'http://localhost:8000/recipe/email',
+        data: mailObj
     });
 }

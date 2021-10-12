@@ -9,14 +9,20 @@
 	<div class="flex">
 
 
-		<div id="divList" class="hidden flex justify-center fixed flex w-full h-full">
-			<div class="h-3/4 w-1/3 text-center rounded bg-gray-400">
-				<h2> Liste de course </h2>
+		<div id="divList" class="z-50 scale-in-center hidden flex bg-gray-400 bg-opacity-50 justify-center fixed flex w-full h-full">
+			<div class="z-50 flex flex-col items-center justify-between border-dashed border-4 border-indigo-500 shadow-2xl h-3/4 w-1/3 text-center rounded bg-white">
+				<h2 class="text-2xl"> Liste de course </h2>
 
 				<ul id="liste">
 				</ul>
+				
+				<div>
+					<p class="text-white"> Text caché qui sert à placer correctement la liste parce que j'ai pas le temps <br> </p>
+				</div>
 
-				<button id="mail" class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded"> Recevoir par mail </button>
+				<a href="https://www.ubereats.com/fr/store/mcdonalds-hallennes-lez-haubourdin/NeUEMI4FQ3iaDC9PXst4NA?pl=JTdCJTIyYWRkcmVzcyUyMiUzQSUyMjQlMjBSdWUlMjBkdSUyMEclQzMlQTluJUMzJUE5cmFsJTIwTWVzbnklMjIlMkMlMjJyZWZlcmVuY2UlMjIlM0ElMjJDaElKR3plcXZ0QXEzVWNSRDZCbGFPaE5KTHMlMjIlMkMlMjJyZWZlcmVuY2VUeXBlJTIyJTNBJTIyZ29vZ2xlX3BsYWNlcyUyMiUyQyUyMmxhdGl0dWRlJTIyJTNBNTAuNjA1NzUxNjk4MTc2NjA0JTJDJTIybG9uZ2l0dWRlJTIyJTNBMi45ODgzOTAyODc0ODczMjI3JTdE&ps=1&utm_campaign=place-action-link&utm_medium=organic&utm_source=google">Vous n'avez rien à manger cliquez ici</a> 
+
+				<button id="mail" class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 w-1/3 mb-5 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded"> Recevoir par mail </button>
 			</div>
 
 		</div>
@@ -164,9 +170,9 @@
 					</ul>
 				</div>
 
-					<div class="flex dropzone rounded-lg zone border-2 bg-gray-200 border-gray-400 rounded shadow-lg rounded-lg w-100 h-36 p-6 m-4" id="menu">
+					<div class="sticky z-0 top-0 flex dropzone rounded-lg zone border-2 bg-gray-200 border-gray-400 rounded shadow-lg rounded-lg w-100 h-36 p-6 m-4" id="menu">
 
-						<div class="text-center flex flex-col justify-center ">
+						<div class="z-0 text-center flex flex-col justify-center ">
 
 							<h2 class="uppercase text-l md:text-xl text-gray-600 font-bold my-6">
 								Votre Séléction
