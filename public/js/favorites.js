@@ -12,7 +12,7 @@ $('.fav').click(function (){
 
             FlashMessage.removeClass("container");
             FlashMessage.html(`
-                <div class="bg-${response.color}-100 border-l-4 border-${response.color}-500 text-${response.color}-700 p-4 fixed w-full" role="alert">
+                <div class="bg-${response.color}-100 border-l-4 border-${response.color}-500 text-${response.color}-700 p-4 fixed top-0 z-50 w-full" role="alert">
                     <p class="font-bold">Information</p>
                     <p>${response.message}</p>
                 </div>
@@ -39,7 +39,7 @@ $('.fav').click(function (){
     
             FlashMessage.removeClass("container");
             FlashMessage.html(`
-                <div class="bg-${response.color}-100 border-l-4 border-${response.color}-500 text-${response.color}-700 p-4 fixed w-full" role="alert">
+                <div class="bg-${response.color}-100 border-l-4 border-${response.color}-500 text-${response.color}-700 p-4 fixed z-50 top-0 w-full" role="alert">
                     <p class="font-bold">Information</p>
                     <p>${response.message}</p>
                 </div>

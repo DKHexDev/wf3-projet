@@ -18,12 +18,12 @@
 			<!-- Link Site -->
 			<div class="hidden md:flex items-center space-x-2">
 
-				<a href="{{ path('home') }}" class="py-4 px-3 hover:text-yellow-600 hover:underline
-									">Accueil</a>
+				<a href="{{ path('home') }}" class="py-4 px-3 hover:text-yellow-600
+									"><i class="fas fa-home"></i> Accueil</a>
 
-				<a href="{{ path('recipe_list') }}" class="py-4 px-3 hover:text-yellow-600 hover:underline">Recettes</a>
+				<a href="{{ path('recipe_list') }}" class="py-4 px-3 hover:text-yellow-600"><i class="fas fa-stream"></i> Recettes</a>
 
-				<a href="{{ path('contact') }}" class="py-4 px-3 hover:text-yellow-600 hover:underline">Contact</a>
+				<a href="{{ path('contact') }}" class="py-4 px-3 hover:text-yellow-600"><i class="fas fa-id-badge"></i> Contact</a>
 
 			</div>
 
@@ -33,9 +33,9 @@
 		<div class="hidden md:flex items-center space-x-1">
 
 			{% if app.user %}
-				<a href="{{ path('account') }}" class="py-2 px-3 hover:text-yellow-600 account-menu-button">{{ app.user.email }}</a>
+				<a href="{{ path('account') }}" class="py-2 px-3 hover:text-yellow-600 account-menu-button"><i class="fas fa-user-circle"></i> {{ app.user.pseudo }}</a>
 			{% else %}
-				<a href="{{ path('app_login') }}" class="py-2 px-3 hover:text-yellow-600">Se connecter</a>
+				<a href="{{ path('app_login') }}" class="py-2 px-3 hover:text-yellow-600"><i class="fas fa-sign-in-alt"></i> Se connecter</a>
 				<a href="{{ path('app_register') }}" class="py-1 px-2 border-2 border-gray-500 hover:border-yellow-600 hover:text-yellow-600 transition duration-300 rounded">Inscription</a>
 			{% endif %}
 
@@ -55,17 +55,17 @@
 	<!-- Mobile Menu -->
 	<div class="mobile-menu absolute max-w-full max-h-full mx-4 hidden w-11/12 md:hidden bg-white rounded-lg border border-gray-300 shadow-lg ">
 
-		<a href="{{ path('home') }}" class="block py-2 px-4 hover:text-yellow-600">Accueil</a>
+		<a href="{{ path('home') }}" class="block py-2 px-4 hover:text-yellow-600"><i class="fas fa-home"></i> Accueil</a>
 
-		<a href="{{ path('recipe_list') }}" class="block py-2 px-4 hover:text-yellow-600">Recettes</a>
+		<a href="{{ path('recipe_list') }}" class="block py-2 px-4 hover:text-yellow-600"><i class="fas fa-stream"></i> Recettes</a>
 
-		<a href="{{ path('contact') }}" class="block py-2 px-4 hover:text-yellow-600">Contacts</a>
+		<a href="{{ path('contact') }}" class="block py-2 px-4 hover:text-yellow-600"><i class="fas fa-id-badge"></i> Contacts</a>
 
 		{% if app.user %}
-			<a href="{{ path('account') }}" class="block py-2 px-4 hover:text-yellow-600">Mon Compte</a>
+			<a href="{{ path('account') }}" class="block py-2 px-4 hover:text-yellow-600"><i class="fas fa-user-circle"></i> {{ app.user.pseudo }}</a>
 		{% else %}
-			<a href="{{ path('app_login') }}" class="block py-2 px-4 hover:text-yellow-600">Se connecter</a>
-			<a href="{{ path('app_register') }}" class="block py-2 px-4 hover:text-yellow-600">Inscription</a>
+			<a href="{{ path('app_login') }}" class="block py-2 px-4 hover:text-yellow-600"><i class="fas fa-sign-in-alt"></i> Se connecter</a>
+			<a href="{{ path('app_register') }}" class="block py-2 px-4 hover:text-yellow-600"><i class="fas fa-pen"></i> Inscription</a>
 		{% endif %}
 
 	</div>
