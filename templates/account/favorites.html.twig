@@ -19,7 +19,7 @@
 
         {% for recipe in favorites %}
             
-			<article class="relative w-full h-40 bg-white rounded-lg">
+			<article class="slide-in-bottom relative w-full h-40 bg-white rounded-lg">
                 <img class="w-full h-full object-cover rounded-lg" src="{{ recipe.background ? asset('upload/recipes/' ~ recipe.background) : asset('assets_img/default_img.jpg') }}" alt="{{ recipe.name }}">
 
                 <span class="fav absolute top-0 z-20 mt-3 ml-3"><i data-recipe="{{ recipe.id }}" class="fas fa-star text-yellow-500 text-lg rounded-full p-2 bg-gray-600 border border-gray-500"></i></span>
