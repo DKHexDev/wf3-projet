@@ -2,17 +2,17 @@
 
 {% block body %}
 
-    <table style="background-repeat: no-repeat;" background="https://i.ibb.co/KsNsjVp/fruitsBG.png" width="100%" height="300px">
+    <table style="" background="https://i.ibb.co/KsNsjVp/fruitsBG.png" width="100%" height="600px">
 
         <tr>
             <td>
-                <h1 style="text-align: center; font-size: 4rem;> Votre liste de course </h1>
+                <h1 style="text-align: center; font-size: 4rem;"> Votre liste de course </h1>
 
-                <div style="  ">
-                <ul>
+                <div style="background:white; width:33%; min-height:30%; height:fit-content; border-radius:15px; padding:auto;padding-top:35px !important; margin:auto;">
+                <ul style="list-style: square;">
                 {%for ingredient in ingredients %}
 
-                    <li>{{ingredient}}</li>
+                    <li style="font-size:2em">{{ingredient}}</li>
 
                 {% endfor %}
                 </ul>

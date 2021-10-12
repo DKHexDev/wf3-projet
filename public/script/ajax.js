@@ -15,10 +15,8 @@ $('.check').change(function (){
 
             response.forEach(recipeF => {
                 let newrecipe = $('#product-list')
-                .append(' <div id="'+ recipeF['id'] +'" class="myDraggableElement object" draggable="true"><li class="flex flex-col flex-space bg-gray-200 rounded-lg p-4 m-2 recipe">' +
-                recipeF['name']  +
-                ','+
-                recipeF['description']+
+                .append(' <div id="'+ recipeF["id"]+'"><li class="class="myDraggableElement object flex flex-col border-2 border-gray-400 rounded shadow-lg rounded-lg text-center h-full p-4 m-2 recipe" draggable="true"><li class="flex flex-col flex-space bg-gray-200 rounded-lg p-4 m-2 recipe" ' +
+                recipeF['name'] +
                 '</li> </div>'); 
             });
             setDragDrop();
