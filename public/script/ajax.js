@@ -60,9 +60,9 @@ function ajax(){
                 .append(
                 
                 '<div id = '+ recipeF["id"] +' class="m-2 myDraggableElement object" draggable="true">'+
-                '<li class="flex flex-col border-2 border-gray-400 rounded shadow-lg rounded-lg text-center h-full p-4 m-2 recipe">'+
-                recipeF['name']+
-                '<a href="'+ recipeF['slug'] +'" >Voir</a>'+
+                '<li class="relative flex min-h-full flex-col border-2 border-gray-400 rounded shadow-lg rounded-lg text-center h-full p-4 m-2 recipe">'+
+                '<button class="cross hidden"><i class="text-xl absolute -top-1 -right-1 text-red-600 fas fa-times-circle"></i></button>'+
+                '<a href="'+ recipeF['slug'] +'" >'+recipeF['name']+'</a>'+
                 '</li>'+
                 '</div>');
             });
