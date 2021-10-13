@@ -81,7 +81,7 @@ class Recipe
 
     /**
      * @ORM\Column(type="string", length=255)
-     * 
+     * @Groups({"public_json"})
      */
     private $slug;
 

@@ -7,6 +7,7 @@
         "php": ">=7.2.5",
         "ext-ctype": "*",
         "ext-iconv": "*",
+        "ext-mbstring": "*",
         "composer/package-versions-deprecated": "1.11.99.3",
         "doctrine/annotations": "^1.0",
         "doctrine/doctrine-bundle": "^2.4",
@@ -14,6 +15,7 @@
         "doctrine/orm": "^2.9",
         "phpdocumentor/reflection-docblock": "^5.2",
         "sensio/framework-extra-bundle": "^6.1",
+        "symfony/apache-pack": "^1.0",
         "symfony/asset": "5.3.*",
         "symfony/console": "5.3.*",
         "symfony/dotenv": "5.3.*",
@@ -46,7 +48,9 @@
         "twig/intl-extra": "^3.3",
         "twig/string-extra": "^3.3",
         "twig/twig": "^2.12|^3.0",
-        "vich/uploader-bundle": "^1.18"
+        "vich/uploader-bundle": "^1.18",
+        "doctrine/doctrine-fixtures-bundle": "^3.4",
+        "fakerphp/faker": "^1.16"
     },
     "require-dev": {
         "doctrine/doctrine-fixtures-bundle": "^3.4",

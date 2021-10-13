@@ -22,6 +22,8 @@ class ApiController extends AbstractController
         $cultures = $request->get('culture', []);
         $types    = $request->get('type',[]);
 
+        $page     = $request->get('page', 0);
+
         $recipeBySeason = [];
         $recipeByEvent = [];
         $recipeByCulture = [];
@@ -72,9 +74,12 @@ class ApiController extends AbstractController
                 }
             }
 
-            $recipes = array_merge($recipeBySeason, $recipeByEvent, $recipeByCulture, $recipeByType);
 
-            return $this->json($recipes, 200, [], ['groups' => ['public_json']]);
+
+            $recipes = array_merge($recipeBySeason, $recipeByEvent, $recipeByCulture, $recipeByType);
+            $recipesPages = array_chunk($recipes, 25, false);
+
+            return $this->json($recipesPages[$page], 200, [], ['groups' => ['public_json']]);
         }
 
     }
@@ -105,5 +110,18 @@ class ApiController extends AbstractController
         }
 
         return $this->json($ingredientList, 200, [], ['groups' => 'public_json']);
+    }
+
+    /**
+     * @Route("/api/recipes/search", name="api_recipes_search")
+     * 
+     */
+    public function searchByName(Request $request, RecipeRepository $recipeRepository): Response{
+
+        $searchTerms = $request->get('searchTerms');
+
+        $recipes = $recipeRepository->findByNameLike($searchTerms);
+
+        return $this->json($recipes, 200, [], ['groups' => 'public_json']);
     }
 }
