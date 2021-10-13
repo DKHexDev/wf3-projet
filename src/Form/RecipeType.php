@@ -90,10 +90,7 @@ class RecipeType extends AbstractType
             ])
             // Image de couverture.
             ->add('imageFile', VichImageType::class, [
-                'label' => 'Image de couverture',
-                'attr' => [
-                    'placeholder' => 'Image de couverture'
-                ]
+                'label' => 'Image de couverture'
             ])
         ;
     }
