@@ -6,7 +6,7 @@
 {% block body %}
 
 
-	<div class="flex">
+<div class="flex">
 
 		<div id="divList" class="z-50 scale-in-center hidden flex bg-gray-400 bg-opacity-50 justify-center fixed flex w-full h-full">
 			<div id="listSquare" class="z-50 flex flex-col items-center justify-between border-dashed border-4 border-indigo-500 shadow-2xl h-3/4 w-1/3 text-center rounded bg-white">
@@ -25,6 +25,7 @@
 		</div>
 		
 		<div class="border-2 bg-gray-200 border-gray-400 rounded shadow-lg rounded-lg w-3/12 p-6 m-4 text-center">
+
 			<form method="get" id="searchBar" class="flex flex-col">
 				<div class="flex flex-col items-center">
 					<input placeholder=" Croque-monsieur, Carbonara ... " class="rounded h-10 w-3/4" type="searchBar" id="search" >
@@ -35,6 +36,7 @@
 					</div>
 				</div>
 			</form>
+
 			<form class="flex flex-col" id="filtres">
 
 				<h2 class="uppercase md:text-xl text-gray-600 font-bold my-6">saisons</h2>
@@ -156,6 +158,7 @@
 				</div>
 
 			</form>
+
 		</div>
 
 			
@@ -168,11 +171,10 @@
 
 						<div id={{ recipe.id }} class="m-2 myDraggableElement object" draggable='true'>
 
-							<li class="relative flex flex-col border-2 border-gray-400 rounded shadow-lg rounded-lg text-center h-full p-4 m-2 recipe">
-								{{ recipe.name }}
+							<li class="relative flex flex-col border-2 border-gray-400 rounded shadow-lg rounded-lg text-center min-w-max h-full p-4 m-2 recipe">
 								
 								<button class="cross hidden"><i class="text-xl absolute -top-1 -right-1 text-red-600 fas fa-times-circle"></i></button>
-								<a href="recipe/{{recipe.slug}}" >Voir</a>
+								<a href="recipe/{{recipe.slug}}" >	{{ recipe.name }}</a>
 							</li>
 
 						</div>
@@ -182,15 +184,16 @@
 			</div>
 
 			<div id="page" class="flex justify-around">
+
 				<button class="hidden" type="button" id="prec"><i class="fas fa-arrow-left"></i> </button>
 
 				<button class="hidden" type="button" id="next"><i class="fas fa-arrow-right"></i> </button>
 
 			</div>
 
-			<div class="sticky z-0 top-0 flex dropzone rounded-lg zone border-2 bg-gray-200 border-gray-400 rounded shadow-lg rounded-lg w-100 h-36 p-6 m-4" id="menu">
+			<div class="overflow-x-scroll max-w-screen-2xl sticky z-0 top-0 flex dropzone rounded-lg zone border-2 bg-gray-200 border-gray-400 rounded shadow-lg rounded-lg w-100 h-36 p-6 m-4" id="menu">
 
-				<div class="z-0 text-center flex flex-col justify-center ">
+				<div class="min-w-max z-0 text-center flex flex-col justify-center ">
 
 					<h2 class="uppercase text-l md:text-xl text-gray-600 font-bold my-6">
 						Votre Séléction
