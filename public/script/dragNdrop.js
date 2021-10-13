@@ -4,11 +4,15 @@ function setCrosses(){
     let crossesArray = Array.from(crosses);
 
     crossesArray.forEach(cross => {
-    
+        console.log(crossesArray);
+
         cross.addEventListener('click', function(){
 
-            document.getElementById(cross.parentNode.parentNode.id).remove();
-
+            if (document.getElementById(cross.parentNode.parentNode.id))
+            {
+                document.getElementById(cross.parentNode.parentNode.id).remove();
+            }
+            
         })
     })}
 

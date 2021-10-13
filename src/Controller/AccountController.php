@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\User;
 use App\Entity\Recipe;
 use App\Form\AccountSettingsType;
+use App\Repository\RecipeRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -54,6 +55,21 @@ class AccountController extends AbstractController
         $this->addFlash('red', 'Votre compte à été clôturer.');
 
         return $this->redirectToRoute('home');
+    }
+
+    /**
+     * @Route("/api/user/favorites", name="recipe_list_account")
+     */
+    public function AccountListFavorites()
+    {
+        /** @var User $user */   
+        $user = $this->getUser();
+
+        if (!$user) return $this->json("Vous devez être connecté !");
+
+        $recipes = $user->getFavorites();
+
+        return $this->json($recipes, 200, [], ['groups' => 'public_json']);
     }
 
     /**
