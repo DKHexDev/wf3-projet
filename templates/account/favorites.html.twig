@@ -4,13 +4,14 @@
 
 {% block body %}
 
-<section class="container m-2 h-screen mx-auto border-2 border-gray-400 shadow-lg rounded-lg flex flex-row">
+<div class="container m-2 h-screen mx-auto border-2 border-gray-400 shadow-lg rounded-lg flex flex-row">
 
-    <nav class="w-1/3 md:w-1/6 h-auto border-r-2 bg-gray-300 border-gray-400 text-sm md:text-lg pt-2 pb-2">
+    <nav class="w-1/3 md:w-1-5 h-auto border-r-2 bg-gray-300 border-gray-400 text-xs sm:text-sm md:text-base pt-2 pb-2">
         <ul class="flex flex-col gap-2 pl-1 h-full">
             <li class="bg-gray-600 rounded-l-3xl p-2 pl-4 text-yellow-400 uppercase font-mono hover:bg-gray-800 font-bold tracking-wider"><a href="{{ path('account') }}" class="w-full h-full"><i class="fas fa-user w-4 h-4 mr-3"></i>Compte</a></li>
             <li class="bg-gray-600 rounded-l-3xl p-2 pl-4 text-yellow-400 uppercase font-mono hover:bg-gray-800 font-bold tracking-wider"><a href="{{ path('account_settings') }}"><i class="fas fa-user-cog w-4 h-4 mr-3"></i>Paramètres</a></li>
             <li class="bg-gray-600 rounded-l-3xl p-2 pl-4 text-yellow-400 uppercase font-mono hover:bg-gray-800 font-bold tracking-wider"><a href="{{ path('account_favorites') }}"><i class="fas fa-user-check w-4 h-4 mr-3"></i>Favoris</a></li>
+            <li class="bg-gray-600 rounded-l-3xl p-2 pl-4 text-yellow-400 uppercase font-mono hover:bg-gray-800 font-bold tracking-wider"><a href="{{ path('app_logout') }}"><i class="fas fa-sign-out-alt w-4 h-4 mr-3"></i>Se déconnecter</a></li>
         </ul>
     </nav>
 
@@ -18,7 +19,7 @@
 
         {% for recipe in favorites %}
             
-			<article class="relative w-full h-40 bg-white rounded-lg">
+			<article class="slide-in-bottom relative w-full h-40 bg-white rounded-lg">
                 <img class="w-full h-full object-cover rounded-lg" src="{{ recipe.background ? asset('upload/recipes/' ~ recipe.background) : asset('assets_img/default_img.jpg') }}" alt="{{ recipe.name }}">
 
                 <span class="fav absolute top-0 z-20 mt-3 ml-3"><i data-recipe="{{ recipe.id }}" class="fas fa-star text-yellow-500 text-lg rounded-full p-2 bg-gray-600 border border-gray-500"></i></span>
@@ -33,6 +34,6 @@
 
     </div>
 
-</section>
+</div>
 
 {% endblock %}

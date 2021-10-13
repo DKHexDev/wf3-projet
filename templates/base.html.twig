@@ -1,49 +1,54 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Accueil{% endblock %} - M'Cooking</title>
-        {% block stylesheets %}
-            {{ encore_entry_link_tags('app') }}
-            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-            <link href="{{ asset('js/tagsinput/bootstrap-tagsinput.css') }}" rel="stylesheet">
-        {% endblock %}
+<html lang="fr">
+	<head>
+		<meta charset="UTF-8">
+		<title>
+			{% block title %}Accueil
+			{% endblock %}
+			- M'Cooking</title>
+		{% block stylesheets %}
+			{{ encore_entry_link_tags('app') }}
+			<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+			<link href="{{ asset('js/tagsinput/bootstrap-tagsinput.css') }}" rel="stylesheet">
+			<link rel="apple-touch-icon" sizes="180x180" href="{{ asset('assets_img/apple-touch-icon.png') }}">
+			<link rel="icon" type="image/png" sizes="32x32" href="{{ asset('assets_img/favicon-32x32.png') }}">
+			<link rel="icon" type="image/png" sizes="16x16" href="{{ asset('assets_img/favicon-16x16.png') }}">
+		{% endblock %}
 
-    </head>
-    <body class="bg-white">
-        <header class="bg-gray-50 border-b border-gray-300">{% include('partials/_header.html.twig') %}</header>
+	</head>
+	<body class="bg-white">
+		<header class="bg-gray-50 border-b border-gray-300">{% include('partials/_header.html.twig') %}</header>
 
-        <div id="FlashMessage" class="container mx-auto">
-            {% for label, messages in app.flashes %}
-                {% for message in messages %}
-                    <div class="bg-{{label}}-100 border-l-4 border-{{label}}-500 text-{{label}}-700 p-4" role="alert">
-                        <p class="font-bold">Information</p>
-                        <p>{{ message }}</p>
-                    </div>
-                {% endfor %}
-            {% endfor %}
-        </div>
+		<div id="FlashMessage" class="container mx-auto">
+			{% for label, messages in app.flashes %}
+				{% for message in messages %}
+					<div class="bg-{{label}}-100 border-l-4 border-{{label}}-500 text-{{label}}-700 p-4" role="alert">
+						<p class="font-bold">Information</p>
+						<p>{{ message }}</p>
+					</div>
+				{% endfor %}
+			{% endfor %}
+		</div>
 
-        {% block body %}{% endblock %}
+		{% block body %}{% endblock %}
 
-        <footer class="bg-gray-50 border-t border-gray-300 pt-8 mt-20">{% include('partials/_footer.html.twig') %}</footer>
+		<footer class="bg-gray-50 border-t border-gray-300 pt-8 mt-20">
+            {% include('partials/_footer.html.twig') %}
+        </footer>
 
-        {% block javascripts %}
-            {{ encore_entry_script_tags('app') }}
-            <script
-            src="https://code.jquery.com/jquery-3.6.0.min.js"
-            integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
-            crossorigin="anonymous"></script>
-            
-            <script src="{{ asset("js/tagsinput/bootstrap-tagsinput.min.js") }}"></script>
-            <script src="{{ asset("js/typehead.js") }}"></script>
-            <script src="{{ asset("js/main.js") }}"></script>
-            <script src="{{ asset("js/_header.js") }}"></script>
-            <script src="{{ asset("script/dragNdrop.js") }}"></script>
-            <script src="{{ asset("script/ajax.js") }}"></script>
-            <script src="{{ asset("script/list.js") }}"></script>
-            <script src="{{ asset("js/favorites.js") }}"></script>
-            <script src="{{ asset("js/likes.js") }}"></script>
-        {% endblock %}
-    </body>
+		{% block javascripts %}
+			{{ encore_entry_script_tags('app') }}
+			<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+			<script src="{{ asset("js/tagsinput/bootstrap-tagsinput.min.js") }}"></script>
+			<script src="{{ asset("js/typehead.js") }}"></script>
+			<script src="{{ asset("js/main.js") }}"></script>
+			<script src="{{ asset("js/_header.js") }}"></script>
+			<script src="{{ asset("script/dragNdrop.js") }}"></script>
+			<script src="{{ asset("script/ajax.js") }}"></script>
+			<script src="{{ asset("script/list.js") }}"></script>
+			<script src="{{ asset("js/favorites.js") }}"></script>
+			<script src="{{ asset("js/likes.js") }}"></script>
+		{% endblock %}
+	</body>
 </html>

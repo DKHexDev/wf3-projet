@@ -77,10 +77,7 @@ class AccountSettingsType extends AbstractType
             ])
             // Avatar.
             ->add('imageFile', VichImageType::class, [
-                'label' => 'Avatar',
-                'attr' => [
-                    'placeholder' => 'Avatar'
-                ]
+                'label' => 'Avatar'
             ])
         ;
     }
