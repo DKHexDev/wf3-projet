@@ -1,9 +1,21 @@
+function setCrosses(){
+
+    let crosses = document.querySelector('#menu').getElementsByClassName('cross');
+    let crossesArray = Array.from(crosses);
+
+    crossesArray.forEach(cross => {
+    
+        cross.addEventListener('click', function(){
+
+            document.getElementById(cross.parentNode.parentNode.id).remove();
+
+        })
+    })}
+
 
 function setDragDrop(){
 
 var draggableElements = document.getElementsByClassName("myDraggableElement");
-
-console.log(draggableElements);
 
 for(let drag of draggableElements){
 
@@ -45,12 +57,16 @@ for (const dropzone of document.querySelectorAll(".zone")){
     
         let newDragElement = droppedElement.cloneNode(true);
         dropzone.appendChild(newDragElement);
-        newDragElement.classList.add('w-3/12')
-        //newDragElement.querySelector('.cross').classList.remove('d-none');
-        //newDragElement.id +="Clone";
+        newDragElement.classList.add('w-3/12');
+
+        newDragElement.querySelector('.cross').classList.remove('hidden');
+        newDragElement.id +="Clone";
+
+
         }
         dropzone.classList.remove("drop-zone--over");
 
+        setCrosses();
     });
 
 

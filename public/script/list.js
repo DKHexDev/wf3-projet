@@ -8,9 +8,16 @@ let ingredientsList = [];
 generateButton.addEventListener('click', generateList);
 mailButton.addEventListener('click', sendMail);
 
+$(document).click((event) =>{
+
+    if(!$(event.target).closest('#listSquare').lenght){
+
+        liste.classList.add('hidden');
+    }
+})
+
 function generateList(){
 
-    console.log('nal');
     let id = [];
     let recipes = menu.querySelectorAll('.object');
 
@@ -18,7 +25,7 @@ function generateList(){
         
         id.push(element.id);
     });
-    
+
     sendAjax(id);
 }
 
@@ -32,7 +39,7 @@ function sendAjax(id){
         data: obj
     })
     .then(function(response){
-        console.log(response)
+
         $('#liste').html(' ');
         liste.classList.remove('hidden');
         response.forEach(ingredient => {
