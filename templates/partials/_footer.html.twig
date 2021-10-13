@@ -8,11 +8,14 @@
 			<!-- Liens Site-->
 			<div class="flex flex-col md:px-10">
 
-				<a href="{{ path('recipe_list') }}" class="hover:text-yellow-600">Recettes</a>
+				<a href="{{ path('recipe_list') }}" class="text-sm sm:text-base py-2 hover:text-yellow-600">Recettes</a>
 
-				<a href="{{ path('app_login') }}" class="hover:text-yellow-600">Se connecter</a>
-
-				<a href="#" class="hover:text-yellow-600">Inscription</a>
+				{% if app.user %}
+			<a href="{{ path('account') }}" class="block py-2 px-4 text-sm sm:text-base hover:text-yellow-600">{{ app.user.pseudo }}</a>
+		{% else %}
+			<a href="{{ path('app_login') }}" class="block py-2 px-4 text-sm sm:text-base hover:text-yellow-600">Connexion</a>
+			<a href="{{ path('app_register') }}" class="block py-2 px-4 text-sm sm:text-base hover:text-yellow-600"> Inscription</a>
+		{% endif %}
 
 			</div>
 
@@ -20,28 +23,28 @@
 			<!--Liens Infos-->
 			<div class="flex flex-col md:px-10">
 
-				<a href="#" class="hover:text-yellow-600">Mentions légales</a>
+				<a href="#" class="text-sm sm:text-base py-2 hover:text-yellow-600">Mentions légales</a>
 
-				<a href="{{ path('contact') }}" class="hover:text-yellow-600">Contacts</a>
+				<a href="{{ path('contact') }}" class="text-sm sm:text-base py-2 hover:text-yellow-600">Contacts</a>
 
 			</div>
 		</div>
 
 		<!-- Entreprise -->
-		<div class="flex flex-col leading-7">
+		<div class="flex flex-col text-sm sm:text-base">
 
-			<p>Webforce3</p>
+			<h3>Webforce3</h3>
 
 			<p>105 Avenue de la République</p>
 
-			<P> 59110 La Madeleine</p>
+			<P>59110 La Madeleine</p>
 
 			<p>0 805 62 23 45</p>
 
 		</div>
 
 		<!--Socials Networks-->
-		<div class="md:flex items-center py-2">
+		<div class="md:flex items-center py-2 mt-4">
 
 			<a href="https://www.instagram.com/webforce3/">
 				<i class="fab fa-instagram fa-2x p-3 mx-2 border-2 rounded-md border-gray-500 hover:border-yellow-600 hover:text-yellow-600"></i>
