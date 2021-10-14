@@ -58,7 +58,7 @@ class RecipeType extends AbstractType
             ->add('event',  ChoiceType::class, [
                 'label' => 'Évènement',
                 'choices' => [
-                    'Aucun' => '',
+                    'Aucun' => 'Aucun',
                     'Fêtes de fin d\'année' => 'chistmas',
                     'Pâques' => 'easter',
                     'Halloween' => 'halloween',
