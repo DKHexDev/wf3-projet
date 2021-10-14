@@ -6,7 +6,11 @@ const liste = document.querySelector('#divList');
 let ingredientsList = [];
 
 generateButton.addEventListener('click', generateList);
-mailButton.addEventListener('click', sendMail);
+
+if (mailButton)
+{
+    mailButton.addEventListener('click', sendMail);
+}
 
 $(document).click((event) =>{
 
@@ -52,15 +56,23 @@ function sendAjax(id){
 
 function sendMail(){
 
-    let mailObj = 
-    {ingredients : ingredientsList,
-    mail : 'evrard.ulrick.etc@gmail.com',
-    
-    };
+    $.get('/api/user/email')
+    .then(function (rep) {
 
-    $.ajax({
-        type: 'GET',
-        url: '/recipe/email',
-        data: mailObj
+        if (rep !== "")
+        {
+            let mailObj = 
+            {ingredients : ingredientsList,
+            mail : rep,
+            
+            };
+
+            $.ajax({
+                type: 'GET',
+                url: '/recipe/email',
+                data: mailObj
+            });
+        }
+
     });
 }
