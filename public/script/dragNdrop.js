@@ -71,6 +71,7 @@ for (const dropzone of document.querySelectorAll(".zone")){
         dropzone.classList.remove("drop-zone--over");
 
         setCrosses();
+        RefreshEventClickFavorites();
     });
 
 

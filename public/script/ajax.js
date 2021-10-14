@@ -10,6 +10,11 @@ document.querySelector('#prec').addEventListener('click', function(){
     if(data.page > 0){
         data.page--;
     }
+    else 
+    {
+        document.querySelector('#prec').classList.add('hidden');
+    }
+
     pageForm.setAttribute('value', data.page);
     console.log(data.page);
 
@@ -85,6 +90,8 @@ function ajax(){
             
                                     <span class="fav absolute top-0 z-20 mt-3 ml-3"><i data-recipe="${recipeF["id"]}" class="${statusFav} fa-star text-yellow-500 text-lg rounded-full p-2 bg-gray-600 border border-gray-500"></i></span>
             
+                                    <button class="absolute top-0 right-0 z-20 cross hidden"><i class="text-xl absolute -top-1 -right-1 text-red-600 fas fa-times-circle"></i></button>
+
                                     <a href="/recipe/${recipeF['slug']}" class="absolute w-full h-full z-5 inset-0 bg-black text-center flex flex-col items-center justify-center opacity-0 hover:opacity-100 bg-opacity-50 duration-300 rounded-lg">
                                         <h1 class="tracking-wider font-extrabold text-xl text-yellow-500">${recipeF["name"]}</h1>
                                         <p class="mx-auto text-white">${recipeF["description"].substring(0, 80)}${recipeF["description"].length > 80 ? "..." : ""}</p>    
@@ -119,6 +126,8 @@ function ajax(){
                                 <img class="w-full h-full object-cover rounded-lg" src="${recipeF["background"] != null ? "/upload/recipes/" + recipeF["background"] : "/assets_img/default_img.jpg"}" alt="${recipeF["name"]}">
 
                                 <span class="fav absolute top-0 z-20 mt-3 ml-3"><i data-recipe="${recipeF["id"]}" class="far fa-star text-yellow-500 text-lg rounded-full p-2 bg-gray-600 border border-gray-500"></i></span>
+
+                                <button class="absolute top-0 right-0 z-20 cross hidden"><i class="text-xl absolute -top-1 -right-1 text-red-600 fas fa-times-circle"></i></button>
 
                                 <a href="/recipe/${recipeF['slug']}" class="absolute w-full h-full z-5 inset-0 bg-black text-center flex flex-col items-center justify-center opacity-0 hover:opacity-100 bg-opacity-50 duration-300 rounded-lg">
                                     <h1 class="tracking-wider font-extrabold text-xl text-yellow-500">${recipeF["name"]}</h1>

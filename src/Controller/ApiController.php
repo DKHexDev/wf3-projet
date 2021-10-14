@@ -133,4 +133,18 @@ class ApiController extends AbstractController
 
         return $this->json($recipes, 200, [], ['groups' => 'public_json']);
     }
+
+    /**
+     * @Route("/api/user/email", name="api_get_user_email")
+     * 
+     */
+    public function ApiGetUserEmail()
+    {
+        /** @var User $user */
+        $user = $this->getUser();
+
+        if (!$user) return $this->json("");
+
+        return $this->json($user->getEmail());
+    }
 }
