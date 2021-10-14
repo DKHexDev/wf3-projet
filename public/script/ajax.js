@@ -30,6 +30,7 @@ document.querySelector('#next').addEventListener('click', function(){
 
 $('.check').change(ajax)
 
+
 function ajax(){
 
         // On récupère les valeurs du formulaire 'filtres'
@@ -38,9 +39,8 @@ function ajax(){
         const recipesFav = [];
 
         //filtres += '&'+ JSON.stringify(data);
-        console.log(filtres)
 
-        $.get('/api/recipes/', filtres)
+        $.get('/api/recipes', filtres)
         .then(function (response){
 
             // Si l'utilisateur est connecté
@@ -65,7 +65,6 @@ function ajax(){
                         recipesFav.push(recipeFav);
                     });
 
-                    console.log([recipesFav]);
 
                     response[0].forEach(recipeF => {
 
@@ -77,8 +76,6 @@ function ajax(){
                                 statusFav = "fas";
                             }
                         })
-
-                        console.log(recipeF['name'] + " = " + statusFav)
 
                         let newrecipe = $('#product-list')
                         .append(`
@@ -98,15 +95,13 @@ function ajax(){
                     });
 
                     setDragDrop();
-
+                    RefreshEventClickFavorites();
                 });
             }
             // Si l'utilisateur n'est pas connecté
             else
             {
                 $('#product-list').html(" ");
-
-                console.log(response);
 
                 if(response[0].length >24){
                     
@@ -135,6 +130,7 @@ function ajax(){
                 });
 
                 setDragDrop();
+                RefreshEventClickFavorites();
             }
 
         });
