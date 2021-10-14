@@ -36,6 +36,16 @@
 				</div>
 			</form>
       
+	  		{% if app.user %}
+				{% for role in app.user.roles %}
+					{% if role == "ROLE_ADMIN" %}
+						<div class="mt-5 mb-5">
+							<a href="{{ path('recipe_create') }}" class="bg-green-500 text-white hover:bg-green-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150">Créer une recette</a>
+						</div>
+					{% endif %}
+				{% endfor %}  
+			{% endif %}
+
 			<form class="fflex flex-col" id="filtres">
 
 				<h2 class="uppercase text-sm md:text-xl text-gray-600 font-bold my-4">saisons</h2>

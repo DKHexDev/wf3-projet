@@ -138,6 +138,16 @@
         </div>
     {% endif %}
 
+    {% if app.user %}
+		{% for role in app.user.roles %}
+			{% if role == "ROLE_ADMIN" %}
+				<div class="mt-5 mb-5 w-full">
+					<a href="{{ path('recipe_edit', {'id': recipe.id}) }}" class="w-full bg-yellow-500 text-white hover:bg-yellow-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150">Modifier la recette</a>
+				</div>
+			{% endif %}
+		{% endfor %}  
+    {% endif %}
+
 </div>
 
 {# MODAL POPUP } #}

@@ -23,8 +23,8 @@
 		<h3 class="uppercase text-left text-base sm:text-lg md:text-xl leading-3 text-gray-600 font-bold">Nouveautés</h3>
 		<div class= "flex flex-col items-center ">
 
-			<!-- Recipes -->
-			<div class="md:h-full md:w-full my-2 flex flex-col items-center md:flex-row md:justify-center gap-8 py-10 border-t-2 border-b-2 border-gray-300">
+			<!-- New Last Recipes -->
+			<div class="md:h-full md:w-full my-2 flex flex-col items-center md:flex-row md:justify-center gap-8 py-10 border-t-2 border-gray-300">
 
 				{% for recipe in lastRecipes %}
 					
@@ -51,7 +51,74 @@
 
 				
 			</div>
+		</div>
 
+		<!-- Recipes by season -->
+		<h3 class="mt-10 uppercase text-left text-base sm:text-lg md:text-xl leading-3 text-gray-600 font-bold">Recettes de saison</h3>
+		<div class= "flex flex-col items-center ">
+
+			<!-- New Last Recipes -->
+			<div class="md:h-full md:w-full my-2 flex flex-col items-center md:flex-row md:justify-center gap-8 py-10 border-t-2 border-gray-300">
+
+				{% for recipe in seasonRecipes %}
+					
+					<article class="slide-in-right relative w-full h-full md:w-1/4 md:h-80 bg-white rounded-lg">
+						<img class="w-full h-full object-cover rounded-lg" src="{{ recipe.background ? asset('upload/recipes/' ~ recipe.background) : asset('assets_img/default_img.jpg') }}" alt="{{ recipe.name }}">
+
+						{% set statusFav = "far" %}
+						{% if app.user %}
+							{% for favorite in app.user.favorites %}
+								{% if recipe.id == favorite.id %}
+									{% set statusFav = "fas" %}
+								{% endif %}
+							{% endfor %}
+						{% endif %}
+						<span class="fav absolute top-0 z-20 mt-3 ml-3"><i data-recipe="{{ recipe.id }}" class="{{ statusFav }} fa-star text-yellow-500 text-lg rounded-full p-2 bg-gray-600 border border-gray-500"></i></span>
+
+						<a href="{{ path('recipe_show', {'slug': recipe.slug}) }}" class="absolute w-full h-full z-5 inset-0 bg-black text-center flex flex-col items-center justify-center opacity-0 hover:opacity-100 bg-opacity-50 duration-300 rounded-lg">
+							<h1 class="tracking-wider font-extrabold text-xl text-yellow-500">{{ recipe.name }}</h1>
+							<p class="mx-auto text-white">{{ recipe.description|u.truncate(80, '...', false) }}</p>    
+						</a>
+					</article>
+
+				{% endfor %}
+
+				
+			</div>
+		</div>
+
+		<!-- Recipes by event -->
+		<h3 class="mt-10 uppercase text-left text-base sm:text-lg md:text-xl leading-3 text-gray-600 font-bold">Recettes du moment</h3>
+		<div class= "flex flex-col items-center ">
+
+			<!-- New Last Recipes -->
+			<div class="md:h-full md:w-full my-2 flex flex-col items-center md:flex-row md:justify-center gap-8 py-10 border-t-2 border-b-2 border-gray-300">
+
+				{% for recipe in eventRecipes %}
+					
+					<article class="slide-in-right relative w-full h-full md:w-1/4 md:h-80 bg-white rounded-lg">
+						<img class="w-full h-full object-cover rounded-lg" src="{{ recipe.background ? asset('upload/recipes/' ~ recipe.background) : asset('assets_img/default_img.jpg') }}" alt="{{ recipe.name }}">
+
+						{% set statusFav = "far" %}
+						{% if app.user %}
+							{% for favorite in app.user.favorites %}
+								{% if recipe.id == favorite.id %}
+									{% set statusFav = "fas" %}
+								{% endif %}
+							{% endfor %}
+						{% endif %}
+						<span class="fav absolute top-0 z-20 mt-3 ml-3"><i data-recipe="{{ recipe.id }}" class="{{ statusFav }} fa-star text-yellow-500 text-lg rounded-full p-2 bg-gray-600 border border-gray-500"></i></span>
+
+						<a href="{{ path('recipe_show', {'slug': recipe.slug}) }}" class="absolute w-full h-full z-5 inset-0 bg-black text-center flex flex-col items-center justify-center opacity-0 hover:opacity-100 bg-opacity-50 duration-300 rounded-lg">
+							<h1 class="tracking-wider font-extrabold text-xl text-yellow-500">{{ recipe.name }}</h1>
+							<p class="mx-auto text-white">{{ recipe.description|u.truncate(80, '...', false) }}</p>    
+						</a>
+					</article>
+
+				{% endfor %}
+
+				
+			</div>
 		</div>
 
 
