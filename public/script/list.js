@@ -35,7 +35,7 @@ function sendAjax(id){
 
     $.ajax({
         type:'POST',
-        url: 'http://localhost:8000/api/recipes/list',
+        url: '/api/recipes/list',
         data: obj
     })
     .then(function(response){
@@ -60,7 +60,7 @@ function sendMail(){
 
     $.ajax({
         type: 'GET',
-        url: 'http://localhost:8000/recipe/email',
+        url: '/recipe/email',
         data: mailObj
     });
 }

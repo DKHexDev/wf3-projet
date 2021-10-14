@@ -11,7 +11,7 @@ $('.liked').click(function (){
 
     if(ThumbLike.hasClass("far"))
     {
-        $.get('http://localhost:8000/recipe/messages/likes/' + ThumbLike.attr('data-message') + '/add')
+        $.get('/recipe/messages/likes/' + ThumbLike.attr('data-message') + '/add')
         .then(function (response){
 
             FlashMessage.removeClass("container");
@@ -70,7 +70,7 @@ $('.liked').click(function (){
 
     if (ThumbLike.hasClass("fas"))
     {
-        $.get('http://localhost:8000/recipe/messages/likes/' + ThumbLike.attr('data-message') + '/remove')
+        $.get('/recipe/messages/likes/' + ThumbLike.attr('data-message') + '/remove')
         .then(function (response){
     
             FlashMessage.removeClass("container");

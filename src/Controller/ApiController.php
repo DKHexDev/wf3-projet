@@ -29,11 +29,22 @@ class ApiController extends AbstractController
         $recipeByCulture = [];
         $recipeByType = [];
 
+        /** @var User $user */
+        $user = $this->getUser();
+
+        $userLogin = false;
+
+        // Si l'utilisateur est connecté, on renvoie true (pour le système des favoris)
+        if ($user)
+        {
+            $userLogin = true;
+        }
+
         if((count($seasons) + count($events) + count($cultures) + count($types)) == 0){
 
             $recipes = $repository->findAll();
 
-            return $this->json($recipes, 200, [], ['groups' => ['public_json']]);
+            return $this->json(["userLogin" => $userLogin, $recipes], 200, [], ['groups' => ['public_json']]);
         }
 
         else{
@@ -74,12 +85,10 @@ class ApiController extends AbstractController
                 }
             }
 
-
-
             $recipes = array_merge($recipeBySeason, $recipeByEvent, $recipeByCulture, $recipeByType);
             $recipesPages = array_chunk($recipes, 25, false);
 
-            return $this->json($recipesPages[$page], 200, [], ['groups' => ['public_json']]);
+            return $this->json(['userLogin' => $userLogin, $recipesPages[$page]], 200, [], ['groups' => ['public_json']]);
         }
 
     }
