@@ -7,7 +7,7 @@ $('.fav').click(function (){
 
     if(StarFav.children().hasClass("far"))
     {
-        $.get('http://localhost:8000/account/favorites/' + StarFav.children().attr('data-recipe') + '/add')
+        $.get('/account/favorites/' + StarFav.children().attr('data-recipe') + '/add')
         .then(function (response){
 
             FlashMessage.removeClass("container");
@@ -34,7 +34,7 @@ $('.fav').click(function (){
 
     if (StarFav.children().hasClass("fas"))
     {
-        $.get('http://localhost:8000/account/favorites/' + StarFav.children().attr('data-recipe') + '/remove')
+        $.get('/account/favorites/' + StarFav.children().attr('data-recipe') + '/remove')
         .then(function (response){
     
             FlashMessage.removeClass("container");

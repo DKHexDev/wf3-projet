@@ -40,13 +40,13 @@ function ajax(){
         //filtres += '&'+ JSON.stringify(data);
         console.log(filtres)
 
-        $.get('http://localhost:8000/api/recipes/', filtres)
+        $.get('/api/recipes/', filtres)
         .then(function (response){
 
             // Si l'utilisateur est connecté
             if (response.userLogin)
             {
-                $.get('http://localhost:8000/api/user/favorites')
+                $.get('/api/user/favorites')
                 .then(function (rep) {
 
 
@@ -145,7 +145,7 @@ $('#searchBar').keydown(function (){
 
     let searchTerms = { 'searchTerms' : $('#search').val() };
 
-    $.get('http://localhost:8000/api/recipes/search', searchTerms)
+    $.get('/api/recipes/search', searchTerms)
     .then(function(response){
 
         $('#resultList').html(' ');
