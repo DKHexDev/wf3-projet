@@ -67,11 +67,6 @@ class SecurityController extends AbstractController
                 )
             );
 
-            if ($form->get('imageFile')->getData() == null)
-            {
-                $user->setAvatar("avatar_default.png");
-            }
-
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($user);
             $entityManager->flush();
