@@ -63,7 +63,7 @@ class RecipeController extends AbstractController
             $manager->flush();
 
             // Message de succès pour informer l'utilisateur
-            $this->addFlash('green', 'La recette a bien été créé.');
+            $this->addFlash('green', 'La recette a bien été créée.');
 
             // Redirection vers la nouvelle recette.
             return $this->redirectToRoute('recipe_show', ['slug' => $recipe->getSlug()]);
@@ -96,7 +96,7 @@ class RecipeController extends AbstractController
         {
             $this->getDoctrine()->getManager()->flush();
 
-            $this->addFlash('green', 'La recette a bien été modifié');
+            $this->addFlash('green', 'La recette a bien été modifiée');
             return $this->redirectToRoute('recipe_show', ['slug' => $recipe->getSlug()]);
         }
 
