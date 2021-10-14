@@ -53,6 +53,8 @@ class RecipeController extends AbstractController
             $slug = $slugger->slug($recipe->getName())->lower();
             $recipe->setSlug($slug);
 
+            $recipe->setCreatedBy($this->getUser());
+
             // Définition de la date de création.
             $recipe->setCreatedAt(new \DateTimeImmutable());
 
